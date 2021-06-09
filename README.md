@@ -1,10 +1,8 @@
-# React-Movie-App
+# Netflix-Clone
 
 ## 🔗 Demo
-https://githubgw.github.io/react-movie-app
 
 ## 🖥 Preview
-<img src="preview.png">
 
 ## 🔥 Stack
 ### Front-end
@@ -12,15 +10,15 @@ https://githubgw.github.io/react-movie-app
 <img height="30" src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white" />
 
 ## ✅ Packages
-- [x] React
-- [x] React Router
-- [x] Axios
-- [x] GitHub Pages
+- [x] 
+- [x] 
+- [x] 
+- [x] 
 
 ## 📖 Theory
-- [x] JSX
-- [x] State
-- [x] Props
-- [x] Class Components
-- [x] Data Fetching
-- [x] Routing
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
+- [x] 
