@@ -1,0 +1,14 @@
+/* CSS파일을 모듈화 하기 */
+/* 현재 이 Header.css 파일을 글로벌이 아닌 로컬화 시켜서 다른 파일에 영향을 주지 않고 Header.js에만 css스타일이 적용되도록 하는 방법이다. */
+/* 이걸 로컬화 시키면서 css모듈로 바꾸려면 Header.css에 module을 붙여서 Header.module.css형태로 만들어주면 된다. */
+/* module을 붙여서 css를 모듈화시키는 방법은 create-react-app으로 만든 프로젝트에서 해당된다. */
+/* 또한 Header.js에서 이 css를 import할 때 import header from "./Header.module.css 처럼 자바스크립트 import 해오듯이 가져와야 한다. */
+/* 그리고 Header.module.css 파일의 스타일을 주고 싶은 태그의 className에는 className={header.navList}처럼 객체 형태로 불러와서 써줘야 한다. */
+/* 또 만약 navList대신 nav-list형태로 쓰면 js파일에서 className안에서는 -를 쓸 수 없기 때문에 className={header.navList}대신 className={header["nav-list"]}형태로 써줘야 한다. */
+.navList {
+  display: flex;
+}
+
+.navList:hover {
+  background-color: dodgerblues;
+}
