@@ -50,3 +50,11 @@
 - [x] Search
 - [x] Movie Detail
 - [x] TV Detail
+
+## 🌐 API
+
+- [x] Get Now Playing (Movie)
+- [x] Get Top Rated (Movie, TV)
+- [x] Get Popular (Movie, TV)
+- [x] Get Upcoming (Movie)
+- [x] Get Airing today (TV)
