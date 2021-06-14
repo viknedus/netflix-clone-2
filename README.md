@@ -53,8 +53,11 @@
 
 ## 🌐 API
 
-- [x] Get Now Playing (Movie)
-- [x] Get Top Rated (Movie, TV)
-- [x] Get Popular (Movie, TV)
-- [x] Get Upcoming (Movie)
-- [x] Get Airing today (TV)
+- [x] Now Playing (Movie)
+- [x] Top Rated (TV)
+- [x] Popular (Movie, TV)
+- [x] Upcoming (Movie)
+- [x] Airing today (TV)
+- [x] Movie Detail
+- [x] TV Show Detail
+- [x] Search (Movie, TV)
