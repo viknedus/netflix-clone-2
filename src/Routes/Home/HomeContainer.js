@@ -1,6 +1,6 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
-import api, { moviesApi } from "api";
+import { moviesApi } from "api";
 
 class HomeContainer extends React.Component {
   // HomeContainer클래스를 생성하고 기본적인 state를 정의해줬다.
@@ -34,7 +34,7 @@ class HomeContainer extends React.Component {
       // console.log(popular);
 
       // throw Error()를 통해 의도적으로 에러를 던져서 catch문이 실행되도록 테스트해볼 수 있다.
-      throw Error("에러 발생");
+      // throw Error("에러 발생");
 
       // 여기서 주의할 점은 아래에 console.log(this.state)가 3번 찍히게 된다.
       // 그 이유는 this.setState()함수가 실행이 되면! 리액트는 render()함수를 다시 실행하기 때문이다.
@@ -48,7 +48,7 @@ class HomeContainer extends React.Component {
       });
     } catch (error) {
       this.setState({
-        error: "Can't Get Movies Information.",
+        error: "Can't find Movie Information.",
       });
     } finally {
       this.setState({
@@ -59,7 +59,7 @@ class HomeContainer extends React.Component {
 
   render() {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
-    console.log(this.state);
+    // console.log(this.state);
 
     return <HomePresenter nowPlaying={nowPlaying} upcoming={upcoming} popular={popular} error={error} loading={loading} />;
   }
