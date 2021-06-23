@@ -17,7 +17,7 @@
 - [x] React 
 - [x] React Router 
 - [x] React Hooks 
-- [x] React Context
+- [x] React Context 
 - [x] Typescript
 - [x] Axios
 - [x] Ajax
