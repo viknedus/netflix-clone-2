@@ -19,7 +19,7 @@
 - [x] React Hooks 
 - [x] React Context 
 - [x] Typescript
-- [x] Axios
+- [x] Axios 
 - [x] Ajax
 - [x] Styled Components
 - [x] The MovieDB API
