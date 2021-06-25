@@ -22,7 +22,7 @@
 - [x] Axios 
 - [x] Ajax
 - [x] Styled Components
-- [x] The MovieDB API
+- [x] The MovieDB API 
 
 ## 📖 Theory
 
