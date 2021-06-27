@@ -25,6 +25,7 @@ export const moviesApi = {
   nowPlaying: () => api.get("movie/now_playing"),
   upcoming: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
+
   // movieDetail의 함수는 id값을 받고  그 id를 이용해서 api를 요청한다.
   // api.get(`movie/${id}`,{})에서 두 번째 인자로 {}객체를 쓰고 그 안에 추가적인 params를 써줄 수 있다.
   // 이런 방식을 통해 라우터, 파라미터들을 개별적으로 설정할 수 있다.
@@ -36,6 +37,7 @@ export const moviesApi = {
         append_to_response: "videos",
       },
     }),
+
   // search함수는 term값을 받고 term을 이용해서 검색한다.
   // 위에 movieDetail은 append_to_response에 값을 넣어 전달했지만 아래 search는 params로 query안에 값을 전달해야 한다.
   // append_to_response, query등의 이름은 변경 불가하다.
@@ -43,6 +45,7 @@ export const moviesApi = {
     api.get("search/movie", {
       params: {
         query: term,
+
         // 만약 인자 term에 문자열+빈칸 형태로 값이 오게 되면 (ex: hello Cody! => hello%20Cody%21) %20 이런식으로 나오게 된다.
         // 예를들어 사용자가 @를 입력하면 URL에 인코딩되 변환되서 들어가야 한다. 왜냐하면 term은 string으로 되어야 하기 때문이다.
         // 그래서 우리는 이것을 처리하는 부분이 필요하다. 그 때 사용하는 것이 encodeURIComponent이다.
