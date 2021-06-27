@@ -56,11 +56,19 @@ class DetailContainer extends React.Component {
     // isMovie가 true라면 try문안에 if문을 실행해서 moviesApi.movieDetail()를 통해 /movie/123같은 주소로 api.get()를 실행한다.
     try {
       if (isMovie) {
-        const request = await moviesApi.movieDetail(parsedId);
-        result = request.data;
+        // const request = await moviesApi.movieDetail(parsedId);
+        // result = request.data;
+
+        // 위의 코드를 ES6문법에 따라 아래와 같이도 쓸 수 있다.
+        // 전체에 ()괄호를 쳐주고 {}를 통해 data프로퍼티를 바로 뽑아올 수 있다.
+        // 전체에 ()괄호를 쳐주게 되면 바로 객체 안으로 들어가게 되고 거기에 data프로퍼티를 뽑아와서 그 data프로퍼티의 이름을 result로 변경한 것이다.
+        // ()괄호를 쳐주게 되면 ({data:  result} = await moviesApi.movieDetail(parsedId)); 는 const = {data : result}와 같은 의미이다.
+        ({ data: result } = await moviesApi.movieDetail(parsedId));
       } else {
-        const request = await tvApi.tvDetail(parsedId);
-        result = request.data;
+        // const request = await tvApi.tvDetail(parsedId);
+        // result = request.data;
+
+        ({ data: result } = await tvApi.tvDetail(parsedId));
       }
       // console.log("result", result);
     } catch (error) {
