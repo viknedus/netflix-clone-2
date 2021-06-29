@@ -27,7 +27,7 @@
 ## 📖 Theory
 
 - [x] React + Typescript 
-- [x] Routing in React
+- [x] Routing in React 
 - [x] Styles in React
 - [x] Classes
 - [x] context API
