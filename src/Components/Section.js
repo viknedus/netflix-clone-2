@@ -16,6 +16,8 @@ const ScTitle = styled.span`
 
 const ScGrid = styled.div`
   margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
 `;
 
 // title과 children은 리액트 자체가 가지고 있는 예약된 props이다.
