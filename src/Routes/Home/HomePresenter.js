@@ -14,7 +14,8 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
   ) : (
     <ScContainer>
       {/* nowPlaying && nowPlaying.length > 0 && <Section title="Now Playing Movies">{nowPlaying.map((movie) => movie.title)}</Section> */}
-      {/* nowPlaying이 존재하는지 체크하기 위해 nowPlaying이 존재하는 동시에 nowPlaying배열의 길이가 0보다 클 때 Section 컴포넌트를 랜더하도록 한다. */}
+      {/* a && b && c는 a가 true이고, b가 true이고, c가 true일 때, 맨 마지막 c를 리턴한다. */}
+      {/* nowPlaying이 존재하는자 체크하고, nowPlaying의 배열 길이가 0보다 큰 지 체크하고, Section 컴포넌트가 존재하는지 체크한 후, Section컴포넌트를 리턴하도록 한다. */}
       {/* react에서 children은 일반적으로 <Section> </Section> Section컴포넌트의 사이의 값을 전달 받는다. */}
       {/* 그래서 여기서는 배열인 nowPlaying을 가져와서 map()메서드를 통해 movie를 뽑아와서 그 movie의 title을 Section.js의 children에 순차적으로 전달해준다. */}
       {/* 주의할 점은 <span></span> 이렇게 태그 사이에 자바스크립트 형태의 데이터를 넣을 떄는 {}로 묶어줘야 한다. */}
