@@ -39,6 +39,8 @@ const ScLi = styled.li`
   border-bottom: 3px solid ${(props) => (props.current ? "black" : "transparent")};
 `;
 
+// 스타일 컴포넌트를 사용할 때 기존의 HTML태그는 styled.ul 이런 식으로 사용하고 react가 가지고 있는 컴포넌트는 styled(Link) 이렇게 사용한다.
+// Link라는 것은 HTML태그가 아니고 react에서 가지고 있는 컴포넌트이기 때문에 styled(Link)형태로 써준다.
 const ScLink = styled(Link)`
   height: 50px;
   display: flex;
@@ -64,7 +66,7 @@ const Header = ({ location: { pathname } }) => {
         <ScLi current={pathname === "/"}>
           {/* a태그 대신 react-router-dom에서 제공하는 Link컴포넌트를 사용했다. */}
           {/* Link컴포넌트는 a태그처럼 href속성을 쓰지 않고 to속성을 사용한다. */}
-          <ScLink to="/">Home</ScLink>
+          <ScLink to="/">Movie</ScLink>
         </ScLi>
         <ScLi current={pathname === "/tv"}>
           <ScLink to="/tv">TV</ScLink>

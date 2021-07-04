@@ -5,7 +5,7 @@ import styled from "styled-components";
 const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => null;
 
 // PropTypes를 통해 받아온 props들의 타입들을 검사한다.
-TVPresenter.PropTypes = {
+TVPresenter.propTypes = {
   topRated: PropTypes.array,
   popular: PropTypes.array,
   airingToday: PropTypes.array,
