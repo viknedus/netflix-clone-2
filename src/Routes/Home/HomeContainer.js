@@ -34,7 +34,7 @@ class HomeContainer extends React.Component {
       // console.log(popular);
 
       // throw Error()를 통해 의도적으로 에러를 던져서 catch문이 실행되도록 테스트해볼 수 있다.
-      // throw Error("에러 발생");
+      throw Error();
 
       // 여기서 주의할 점은 아래에 console.log(this.state)가 3번 찍히게 된다.
       // 그 이유는 this.setState()함수가 실행이 되면! 리액트는 render()함수를 다시 실행하기 때문이다.

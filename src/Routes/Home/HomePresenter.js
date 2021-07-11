@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
+import Message from "Components/Message";
 
 const ScContainer = styled.div`
   padding: 0px 10px;
@@ -41,6 +42,10 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
           ))}
         </Section>
       )}
+
+      {/* 만약 error가 존재하면 <Message>컴포넌트에 text props로는 error를, color props로는 사용자가 설정할 색깔을 전달해준다. */}
+      {/* 여기서는 color로는 red를 text로는 error변수를 전달해준 것이다. */}
+      {error && <Message color="red" text={error}></Message>}
     </ScContainer>
   );
 };

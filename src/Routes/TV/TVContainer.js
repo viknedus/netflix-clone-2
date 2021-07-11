@@ -27,6 +27,8 @@ class TVContainer extends React.Component {
 
       // console.log(topRated, popular, airingToday);
 
+      // throw Error();
+
       this.setState({
         topRated,
         popular,
