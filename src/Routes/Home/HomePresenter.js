@@ -26,7 +26,21 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
         <Section title="Now Playing Movies">
           {nowPlaying.map((movie) => (
             // <span key={movie.id}>{movie.title}</span>
-            <Poster title={movie.original_title}></Poster>
+
+            // Poster컴포넌트를 호출하고 Poster컴포넌트에게 각각의 props로 데이터를 넣어서 전달해준다.
+            // substring은 문자열을 자를 때 사용하는 메서드이다.
+            // movie.release_date ? movie.release_date.substring("0","4"):""  를 통해 movie.release_date가 있으면 movie.release_date.substring("0","4")를 보여주고 없으면 "" 빈 문자열을 보낸다.
+            // movie.release_date.substring("0","4")를 통해 문자열에서 앞에서부터 0부터 3까지를 자른다.
+            // 또는 movie.release_date && movie.release_date.substring("0","4") &&를 이용해서 movie.release_date가 존재해서 true일 때 movie.release_date.substring("0","4")가 실행되도록 할 수 있다.
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.original_title}
+              rating={movie.vote_average}
+              year={movie.release_date ? movie.release_date.substring("0", "4") : ""}
+              isMovie={true}
+            ></Poster>
           ))}
         </Section>
       )}
@@ -34,7 +48,15 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
         <Section title="Upcoming Movies">
           {upcoming.map((movie) => (
             // <span key={movie.id}>{movie.title}</span>
-            <Poster></Poster>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.original_title}
+              rating={movie.vote_average}
+              year={movie.release_date ? movie.release_date.substring("0", "4") : ""}
+              isMovie={true}
+            ></Poster>
           ))}
         </Section>
       )}
@@ -42,7 +64,15 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
         <Section title="Popular Movies">
           {popular.map((movie) => (
             // <span key={movie.id}>{movie.title}</span>
-            <Poster></Poster>
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.original_title}
+              rating={movie.vote_average}
+              year={movie.release_date ? movie.release_date.substring("0", "4") : ""}
+              isMovie={true}
+            ></Poster>
           ))}
         </Section>
       )}

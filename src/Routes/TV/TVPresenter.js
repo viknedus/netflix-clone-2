@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
+import Poster from "Components/Poster";
 
 const ScContainer = styled.div`
   padding: 0 10px;
@@ -16,9 +17,52 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => {
     <Loader></Loader>
   ) : (
     <ScContainer>
-      {topRated && topRated.length > 0 && <Section title="Top Rated TV">{topRated.map((tv) => tv.name)}</Section>}
-      {popular && popular.length > 0 && <Section title="Popular TV">{popular.map((tv) => tv.name)}</Section>}
-      {airingToday && airingToday.length > 0 && <Section title="Airing Today TV">{airingToday.map((tv) => tv.name)}</Section>}
+      {topRated && topRated.length > 0 && (
+        <Section title="Top Rated TV">
+          {topRated.map((tv) => (
+            // TVPresenter는 Poster컴포넌트에게 각각의 tv에 대한 데이터를 props로 넘겨준다.
+            <Poster
+              key={tv.id}
+              id={tv.id}
+              imageUrl={tv.poster_path}
+              title={tv.original_name}
+              rating={tv.vote_average}
+              year={tv.first_air_date ? tv.first_air_date.substring("0", "4") : ""}
+              isMovie={false}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+      {popular && popular.length > 0 && (
+        <Section title="Popular TV">
+          {popular.map((tv) => (
+            <Poster
+              key={tv.id}
+              id={tv.id}
+              imageUrl={tv.poster_path}
+              title={tv.original_name}
+              rating={tv.vote_average}
+              year={tv.first_air_date ? tv.first_air_date.substring("0", "4") : ""}
+              isMovie={false}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+      {airingToday && airingToday.length > 0 && (
+        <Section title="Airing Today TV">
+          {airingToday.map((tv) => (
+            <Poster
+              key={tv.id}
+              id={tv.id}
+              imageUrl={tv.poster_path}
+              title={tv.original_name}
+              rating={tv.vote_average}
+              year={tv.first_air_date ? tv.first_air_date.substring("0", "4") : ""}
+              isMovie={false}
+            ></Poster>
+          ))}
+        </Section>
+      )}
       {error && <Message color="blue" text={error}></Message>}
     </ScContainer>
   );
