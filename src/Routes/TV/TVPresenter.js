@@ -11,7 +11,7 @@ const ScContainer = styled.div`
 
 // TVContainer로부터 받아온 객체를 함수의 파라미터로 받는다.
 const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => {
-  // loading을 체크해서 loading이 true일 때는 Loading컴포넌트를 false일 때 ScContainer컴포넌트를 리턴한다.
+  // loading을 체크해서 loading이 true일 때는 Loader컴포넌트를, false면 ScContainer컴포넌트를 리턴한다.
   // ScContainer컴포넌트는 Section컴포넌트를 가지고 있고 Section컴포넌트로 title에 값을 넘겨주고 children에는 <Section></Section>사이의 값을 데이터로 넘겨준다.
   return loading ? (
     <Loader></Loader>

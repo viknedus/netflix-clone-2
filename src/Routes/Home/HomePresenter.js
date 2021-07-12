@@ -5,12 +5,10 @@ import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
 
-const ScContainer = styled.div`
-  padding: 0px 10px;
-`;
+const ScContainer = styled.div``;
 
 const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
-  // HomePresenter함수는 만약 loading이 true면 null을 false면 ScContainer컴포넌트를 리턴한다.
+  // HomePresenter함수는 만약 loading이 true면 Loader컴포넌트를, false면 ScContainer컴포넌트를 리턴한다.
   return loading ? (
     <Loader></Loader>
   ) : (

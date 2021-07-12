@@ -15,7 +15,7 @@ const globalStyles = createGlobalStyle`
   }
   body{
     background-color: lightgray;
-    padding-top: 100px;
+    padding-top: 50px;
   }
   a{
     text-decoration: none;
