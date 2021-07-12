@@ -23,7 +23,8 @@ const ScBackdrop = styled.div`
 
 const ScContent = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
   height: 100%;
   position: relative;
@@ -31,7 +32,8 @@ const ScContent = styled.div`
 `;
 
 const ScCover = styled.div`
-  width: 30%;
+  width: 20%;
+  height: 80%;
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
 `;
