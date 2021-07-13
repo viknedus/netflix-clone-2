@@ -38,6 +38,13 @@ const ScCover = styled.div`
   background-size: cover;
 `;
 
+const ScData = styled.div`
+  width: 70%;
+  margin-left: 10px;
+`;
+
+const ScTitle = styled.div``;
+
 const DetailPresenter = ({ result, error, loading = true }) => {
   // console.log("result", result);
   // console.log("loading", loading);
