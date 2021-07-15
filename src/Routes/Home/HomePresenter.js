@@ -5,6 +5,9 @@ import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
 
+// react-helmet모듈을 이용하면 웹 사이트의 head태그안의 내용을 수정할 수 있도록 도와준다.
+import Helmet from "react-helmet";
+
 const ScContainer = styled.div``;
 
 const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
@@ -13,6 +16,12 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
     <Loader></Loader>
   ) : (
     <ScContainer>
+      {/* react-helmet에서 가져온 Helmet컴포넌트를 사용해서 head태그안에 내용을 넣을 수 있다. */}
+      {/* <Helmet><title>Netflix | Movie</title></Helmet>처럼 Helmeet컴포넌트 안에 태그를 넣어주면 head태그 안에 들어가게 된다. */}
+      <Helmet>
+        <title>Netflix | Movie</title>
+      </Helmet>
+
       {/* nowPlaying && nowPlaying.length > 0 && <Section title="Now Playing Movies">{nowPlaying.map((movie) => movie.title)}</Section> */}
       {/* a && b && c는 a가 true이고, b가 true이고, c가 true일 때, 맨 마지막 c를 리턴한다. */}
       {/* nowPlaying이 존재하는자 체크하고, nowPlaying의 배열 길이가 0보다 큰 지 체크하고, Section 컴포넌트가 존재하는지 체크한 후, Section컴포넌트를 리턴하도록 한다. */}

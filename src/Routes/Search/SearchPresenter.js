@@ -4,6 +4,7 @@ import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
+import Helmet from "react-helmet";
 
 const ScContainer = styled.div`
   padding: 0 20px;
@@ -25,6 +26,10 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
 
   return (
     <ScContainer>
+      <Helmet>
+        <title>Netflix | Search</title>
+      </Helmet>
+
       {/* onSubmit속성을 통해 Submit이벤트가 발생했을 때 handleSubmit함수를 실행하고 onChange속성을 통해 input에 변화가 생겼을 때 updateSearchTerm함수를 실행한다. */}
       <ScForm onSubmit={handleSubmit} onChange={updateSearchTerm}>
         {/* form태그안에는 input태그가 있고 input태그의 value로는 state안에 있는 searchTerm을 가져온다. */}

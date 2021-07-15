@@ -14,20 +14,20 @@
 
 ## ✅ Packages
 
-- [x] React 
-- [x] React Router 
-- [x] React Hooks 
-- [x] React Context 
+- [x] React
+- [x] React Router
+- [x] React Hooks
+- [x] React Context
 - [x] Typescript
-- [x] Axios 
+- [x] Axios
 - [x] Ajax
 - [x] Styled Components
-- [x] The MovieDB API 
+- [x] The MovieDB API
 
 ## 📖 Theory
 
-- [x] React + Typescript 
-- [x] Routing in React 
+- [x] React + Typescript
+- [x] Routing in React
 - [x] Styles in React
 - [x] Classes
 - [x] context API

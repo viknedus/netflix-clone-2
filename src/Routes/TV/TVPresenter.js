@@ -4,6 +4,7 @@ import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
+import Helmet from "react-helmet";
 
 const ScContainer = styled.div`
   padding: 0 10px;
@@ -17,6 +18,9 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => {
     <Loader></Loader>
   ) : (
     <ScContainer>
+      <Helmet>
+        <title>Netflix | TV</title>
+      </Helmet>
       {topRated && topRated.length > 0 && (
         <Section title="Top Rated TV">
           {topRated.map((tv) => (
