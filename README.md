@@ -61,3 +61,11 @@
 - [x] Movie Detail
 - [x] TV Show Detail
 - [x] Search (Movie, TV)
+
+## 💎 Challenge
+
+- [ ] IMDB Link
+- [ ] Show Movie Details (Youtube Videos, Production Company, Countries)
+- [ ] Show TV Details (Seasons and Creators)
+- [ ] Collections Link
+- [ ] Collections Route
