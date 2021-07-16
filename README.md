@@ -18,11 +18,10 @@
 - [x] React Router
 - [x] React Hooks
 - [x] React Context
+- [x] Styled Components
 - [x] Typescript
 - [x] Axios
 - [x] Ajax
-- [x] Styled Components
-- [x] The MovieDB API
 
 ## 📖 Theory
 
@@ -37,7 +36,7 @@
 ## ⚙ Features
 
 - [x] List Movies
-- [x] TV Shows
+- [x] List TV
 - [x] The MovieDB API
 - [x] Container / Presenter Pattern
 - [x] To Do List with useReducer
@@ -45,8 +44,8 @@
 
 ## 📑 Pages
 
-- [x] Home
-- [x] TV Shows
+- [x] Movie
+- [x] TV
 - [x] Search
 - [x] Movie Detail
 - [x] TV Detail
@@ -59,7 +58,7 @@
 - [x] Upcoming (Movie)
 - [x] Airing today (TV)
 - [x] Movie Detail
-- [x] TV Show Detail
+- [x] TV Detail
 - [x] Search (Movie, TV)
 
 ## 💎 Challenge
