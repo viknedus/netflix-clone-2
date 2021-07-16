@@ -22,6 +22,7 @@ export default () => {
       {/* Switch컴포넌트는 리액트 라우터가 오직 하나의 Route만 랜더하게 해준다. */}
       {/* 다시말해, /tv나 /tv/abc 모두 하나의 라우트만 랜더해준다. (다른 라우트를 랜더해주지 않는다.) */}
       {/* 그래서 다른 라우트를 랜더해주기 위해서는 /tv에 exact속성을 넣어줘서 정확히 /tv인 경우에만 TV컴포넌트를 랜더해서 보여주도록 한다. */}
+      {/* 만약 배포를 github에 하려고 gh-pages를 설치하고 배포한다면 BrowserRouter보다는 HashRouter를 사용하는 것이 덜 충돌이 생긴다. */}
       <Switch>
         <Route path="/" exact component={Home}></Route>
         <Route path="/tv" exact component={TV}></Route>

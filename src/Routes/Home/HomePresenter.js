@@ -10,6 +10,9 @@ import Helmet from "react-helmet";
 
 const ScContainer = styled.div``;
 
+// 마지막에 netlify로 배포를 했는데 netlify는 백엔드가 아닌 프론트엔드로만 이뤄진 정적인 웹사이트를 배포할 때 사용하기 좋다. (백엔드가 불가능은 아닌거 같음)
+// netlify는 static Component(정적 컴포넌트)를 가지고 함께 작동한다.
+
 const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
   // HomePresenter함수는 만약 loading이 true면 Loader컴포넌트를, false면 ScContainer컴포넌트를 리턴한다.
   return loading ? (
