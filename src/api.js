@@ -26,11 +26,12 @@ export const moviesApi = {
   upcoming: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
 
-  // movieDetail의 함수는 id값을 받고  그 id를 이용해서 api를 요청한다.
-  // api.get(`movie/${id}`,{})에서 두 번째 인자로 {}객체를 쓰고 그 안에 추가적인 params를 써줄 수 있다.
+  // movieDetail의 함수는 id값을 매개변수로 받고 그 id를 이용해서 movie/:id 주소로 api를 요청한다.
+  // api.get(`movie/${id}`,{})에서 두 번째 인자로 {}중괄호를 쓰고 그 안에 추가적인 params를 써줄 수 있다.
   // 이런 방식을 통해 라우터, 파라미터들을 개별적으로 설정할 수 있다.
-  // 그렇게되면 movie/${id}/에서 append_to_response=videos가 추가적으로 붙게된다.
-  // 또한 append_to_response으로 video나 image등을 params로 같이 전달하게 되면 결과 값으로 id, key(유튜브 예고편의 URL주소), 이름, site, size 등의 정보를 준다.
+  // TheMovieDB사이트에서 추가적으로 지원하는 append_to_response 를 통해 추가적인 정보들을 요청할 수 있다.
+  // append_to_response에 video나 image등을 params로 같이 전달하게 되면 결과 값으로 id, key(유튜브 예고편 URL주소), 이름, site, size 등의 정보를 가져올 수 있다.
+  // 유튜브 예고편 URL 주소는 https://www.youtube.com/watch?v=key값 형태로 넣어주면 된다.
   movieDetail: (id) =>
     api.get(`movie/${id}`, {
       params: {
@@ -46,8 +47,8 @@ export const moviesApi = {
       params: {
         query: term,
 
-        // 만약 인자 term에 문자열+빈칸 형태로 값이 오게 되면 (ex: hello Cody! => hello%20Cody%21) %20 이런식으로 나오게 된다.
-        // 예를들어 사용자가 @를 입력하면 URL에 인코딩되 변환되서 들어가야 한다. 왜냐하면 term은 string으로 되어야 하기 때문이다.
+        // 만약 인자 term에 문자열+빈칸 형태로 값이 오게 되면 (ex: hello Cody! => hello%20Cody%21) 이런 식으로 나오게 된다.
+        // 예를들어 사용자가 @를 입력하면 URL에 인코딩 변환되서 들어가야 한다. 왜냐하면 term은 string으로 되어야 하기 때문이다.
         // 그래서 우리는 이것을 처리하는 부분이 필요하다. 그 때 사용하는 것이 encodeURIComponent이다.
         // 즉 어떤 term값을 넘기든 encodeURIComponent()함수를 통해 값을 인코딩하고 그 문자열을 검색한다.
         // axios에서 기본적으로 encodeURIComponent을 지원해주기 때문에 굳이 쓰지 않아도 됨

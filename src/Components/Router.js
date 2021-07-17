@@ -13,14 +13,14 @@ import Detail from "Routes/Detail";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
   return (
-    // Route는 리액트에서 라우트로 페이지를 만들고 이동할 수 있다.
-    // Route는 Router안에 감싸져 있어야 한다.
+    // react-router-dom에서 가져온 Route 컴포넌트는 리액트를 통해 라우트로 페이지를 만들고 이동할 수 있다.
+    // Route 컴포넌트는 Router 컴포넌트 안에서 사용되어야 한다.
     // path는 URL을 지정할 수 있고 component에는 해당 URL에 왔을 때 보여줄 컴포넌트를 지정한다.
     <Router>
       <Header></Header>
 
-      {/* Switch컴포넌트는 리액트 라우터가 오직 하나의 Route만 랜더하게 해준다. */}
-      {/* 다시말해, /tv나 /tv/abc 모두 하나의 라우트만 랜더해준다. (다른 라우트를 랜더해주지 않는다.) */}
+      {/* Switch컴포넌트는 리액트 라우터가 한 번에 오직 하나의 Route만 랜더하게 해준다. */}
+      {/* 다시말해, /tv나 /tv/abc가 있다하면 각각 하나의 라우트만 랜더해준다. (다른 라우트를 랜더해주지 않는다.) */}
       {/* 그래서 다른 라우트를 랜더해주기 위해서는 /tv에 exact속성을 넣어줘서 정확히 /tv인 경우에만 TV컴포넌트를 랜더해서 보여주도록 한다. */}
       {/* 만약 배포를 github에 하려고 gh-pages를 설치하고 배포한다면 BrowserRouter보다는 HashRouter를 사용하는 것이 덜 충돌이 생긴다. */}
       <Switch>
