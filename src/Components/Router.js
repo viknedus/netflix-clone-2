@@ -42,3 +42,6 @@ export default () => {
     </Router>
   );
 };
+
+// Header.js(Header)컴포넌트는 withRouter컴포넌트를 통해 감싸줘야 비로서 props를 받아올 수 있다. (왜냐하면 Header컴포넌트는 정보를 주도록 허락되지 않기 때문이다.)
+// 하지만 Router컴포넌트 아래에 있는 Route들은 withRouter컴포넌트를 통해 감싸주지 않아도 기본적으로 리액트 라우터가 Route들에게 props를 전달해준다.
