@@ -16,9 +16,7 @@ const ScSpan = styled.span`
 
 // Message라는 함수를 만들고 Message함수는 color와 text 매개 변수를 가지고 Presenter.js파일들에서 전달 했던 값들을 받는다.
 // color로는 사용자가 지정한 색깔을 받아오고 text로는 error변수를 받아와서 화면에 뿌려준다.
-{
-  /* <ScSpan color={color}></ScSpan>를 통해 매개 변수로 받은 color를  */
-}
+// <ScSpan color={color}></ScSpan>를 통해 props로 받은 color를 위에 ScSpan에 스타일로 준다.
 const Message = ({ color, text }) => {
   return (
     <ScContainer>
