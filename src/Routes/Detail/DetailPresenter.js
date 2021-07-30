@@ -87,7 +87,8 @@ const DetailPresenter = ({ result, error, loading = true }) => {
             <ScDivider>▪</ScDivider>
             <ScItem>{result.runtime ? result.runtime : result.episode_run_time}분</ScItem>
             <ScDivider>▪</ScDivider>
-            {/* {조건 ? 참: 거짓}과 아래 {조건 && 구문}의 차이점은 위는 조건이 true이면 참 또는 거짓을 실행하지만 아래는 조건이 true이면 && 뒷 구문을 실행한다. */}
+            {/* {조건 ? 참: 거짓}과 {조건 && 구문}의 차이점 */}
+            {/* {조건 ? 참: 거짓} : 조건이 true이면 참, false이면 거짓을 실행한다. {조건 && 구문} : 조건이 true이면 && 뒤에 구문을 실행한다. */}
             {/* 만약 result.genres가 존재해서 true면 result.genres.map()함수를 실행한다. */}
             {/* result.genres.map()함수는 매개변수로 genres와 index를 받고 index와 result.genres배열의 길이가 같아지면 genre.name를 출력하고 그렇지 않을 때는 genre.name /을 출력한다. */}
             {/* Family / Drama 이런식으로 맨 마지막 장르 Drama에서는 /가 붙지 않게 하기 위해서 아래와 같이 코드를 짰다. */}
