@@ -47,6 +47,8 @@ class HomeContainer extends React.Component {
         popular,
       });
     } catch (error) {
+      console.log(error);
+
       this.setState({
         error: "Can't find Movie Information.",
       });

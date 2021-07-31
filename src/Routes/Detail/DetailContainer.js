@@ -1,5 +1,5 @@
-import { moviesApi, tvApi } from "api";
 import React from "react";
+import { moviesApi, tvApi } from "api";
 import DetailPresenter from "./DetailPresenter";
 
 class DetailContainer extends React.Component {
@@ -7,6 +7,7 @@ class DetailContainer extends React.Component {
   // constructor함수안에 들어가게 되면 state앞에 this를 붙여줘야 한다.
   constructor(props) {
     super(props);
+
     const {
       location: { pathname },
     } = props;
@@ -33,6 +34,7 @@ class DetailContainer extends React.Component {
       history: { push },
       location: { pathname },
     } = this.props;
+
     // console.log(this.props);
 
     // parseInt()함수를 통해 id를 숫자로 변환한다.
@@ -70,9 +72,12 @@ class DetailContainer extends React.Component {
 
         ({ data: result } = await tvApi.tvDetail(parsedId));
       }
+
       // console.log("result", result);
     } catch (error) {
-      this.setState({ error: "Can't find anything." });
+      console.log(error);
+
+      this.setState({ error: "Can't find Anything." });
     } finally {
       this.setState({ loading: false, result });
     }

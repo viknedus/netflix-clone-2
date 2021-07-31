@@ -8,21 +8,23 @@ import Poster from "Components/Poster";
 // react-helmet모듈을 이용하면 웹 사이트의 head태그안의 내용을 수정할 수 있도록 도와준다.
 import Helmet from "react-helmet";
 
-const ScContainer = styled.div``;
+const Container = styled.div``;
 
 // 마지막에 netlify로 배포를 했는데 netlify는 백엔드가 아닌 프론트엔드로만 이뤄진 정적인 웹사이트를 배포할 때 사용하기 좋다. (백엔드가 불가능은 아닌거 같음)
 // netlify는 static Component(정적 컴포넌트)를 가지고 함께 작동한다.
 
 const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
-  // HomePresenter함수는 만약 loading이 true면 Loader컴포넌트를, false면 ScContainer컴포넌트를 리턴한다.
+  console.log(nowPlaying, upcoming, popular, error, loading);
+
+  // HomePresenter함수는 만약 loading이 true면 Loader컴포넌트를, false면 Container컴포넌트를 리턴한다.
   return loading ? (
     <Loader></Loader>
   ) : (
-    <ScContainer>
+    <Container>
       {/* react-helmet에서 가져온 Helmet컴포넌트를 사용해서 head태그안에 내용을 넣을 수 있다. */}
-      {/* <Helmet><title>Netflix | Movie</title></Helmet>처럼 Helmeet컴포넌트 안에 태그를 넣어주면 head태그 안에 들어가게 된다. */}
+      {/* <Helmet><title>Netflix | Movie</title></Helmet>처럼 Helmet컴포넌트 안에 태그를 넣어주면 head태그 안에 들어가게 된다. */}
       <Helmet>
-        <title>Netflix | Movie</title>
+        <title>Netflix - Movie</title>
       </Helmet>
 
       {/* nowPlaying && nowPlaying.length > 0 && <Section title="Now Playing Movies">{nowPlaying.map((movie) => movie.title)}</Section> */}
@@ -35,8 +37,6 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
       {nowPlaying && nowPlaying.length > 0 && (
         <Section title="Now Playing Movies">
           {nowPlaying.map((movie) => (
-            // <span key={movie.id}>{movie.title}</span>
-
             // Poster컴포넌트를 호출하고 Poster컴포넌트에게 각각의 props로 데이터를 넣어서 전달해준다.
             // substring은 문자열을 자를 때 사용하는 메서드이다.
             // movie.release_date ? movie.release_date.substring("0","4"):""  를 통해 movie.release_date가 있으면 movie.release_date.substring("0","4")를 보여주고 없으면 "" 빈 문자열을 보낸다.
@@ -46,9 +46,9 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
               key={movie.id}
               id={movie.id}
               imageUrl={movie.poster_path}
-              title={movie.original_title}
+              title={movie.title}
               rating={movie.vote_average}
-              year={movie.release_date ? movie.release_date.substring("0", "4") : ""}
+              year={movie.release_date ? movie.release_date.substring(0, 4) : ""}
               isMovie={true}
             ></Poster>
           ))}
@@ -57,14 +57,13 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
       {upcoming && upcoming.length > 0 && (
         <Section title="Upcoming Movies">
           {upcoming.map((movie) => (
-            // <span key={movie.id}>{movie.title}</span>
             <Poster
               key={movie.id}
               id={movie.id}
               imageUrl={movie.poster_path}
-              title={movie.original_title}
+              title={movie.title}
               rating={movie.vote_average}
-              year={movie.release_date ? movie.release_date.substring("0", "4") : ""}
+              year={movie.release_date ? movie.release_date.substring(0, 4) : ""}
               isMovie={true}
             ></Poster>
           ))}
@@ -73,14 +72,13 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
       {popular && popular.length > 0 && (
         <Section title="Popular Movies">
           {popular.map((movie) => (
-            // <span key={movie.id}>{movie.title}</span>
             <Poster
               key={movie.id}
               id={movie.id}
               imageUrl={movie.poster_path}
-              title={movie.original_title}
+              title={movie.title}
               rating={movie.vote_average}
-              year={movie.release_date ? movie.release_date.substring("0", "4") : ""}
+              year={movie.release_date ? movie.release_date.substring(0, 4) : ""}
               isMovie={true}
             ></Poster>
           ))}
@@ -89,8 +87,8 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) => {
 
       {/* 만약 error가 존재하면 <Message>컴포넌트에 text props로는 error를, color props로는 사용자가 설정할 색깔을 전달해준다. */}
       {/* 여기서는 color로는 red를 text로는 error변수를 전달해준 것이다. */}
-      {error && <Message color="red" text={error}></Message>}
-    </ScContainer>
+      {error && <Message text={error}></Message>}
+    </Container>
   );
 };
 

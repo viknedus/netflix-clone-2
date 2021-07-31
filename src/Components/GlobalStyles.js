@@ -9,6 +9,7 @@ import reset from "styled-reset";
 
 const globalStyles = createGlobalStyle`
   ${reset};
+  
   *{
     box-sizing: border-box;
   }

@@ -50,7 +50,6 @@ class SearchContainer extends React.Component {
   // 그리고 그 데이터들을 state의 movieResults와 tvResults에 넣는다.
   searchByTerm = async () => {
     const { searchTerm } = this.state;
-    this.setState({ loading: true });
 
     try {
       const {
@@ -68,8 +67,11 @@ class SearchContainer extends React.Component {
       this.setState({
         movieResults,
         tvResults,
+        loading: true,
       });
-    } catch {
+    } catch (error) {
+      console.log(error);
+
       this.setState({
         error: "Can't fint Results.",
       });
@@ -93,7 +95,7 @@ class SearchContainer extends React.Component {
         loading={loading}
         handleSubmit={this.handleSubmit}
         updateSearchTerm={this.updateSearchTerm}
-      />
+      ></SearchPresenter>
     );
   }
 }

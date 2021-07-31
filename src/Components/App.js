@@ -13,8 +13,8 @@ function App() {
     <div className="App">
       {/* <h1>App</h1> */}
       {/* <Header2></Header2> */}
-      <Router />
       <GlobalStyles />
+      <Router />
     </div>
   );
 }

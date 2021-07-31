@@ -26,11 +26,11 @@ const ScHeader = styled.header`
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
 `;
 
-const ScUl = styled.ul`
+const Ul = styled.ul`
   display: flex;
 `;
 
-const ScLi = styled.li`
+const Li = styled.li`
   width: 70px;
   text-align: center;
 
@@ -60,23 +60,23 @@ const Header = ({ location: { pathname } }) => {
   return (
     <ScHeader>
       {/* 스타일 컴포넌트 모듈을 사용해서 React에서 HTML태그에 CSS 스타일을 줄 때는 ul 태그 대신 위에서 변수를 만들고 그 만든 변수 List로 태그명을 바꿔준다. */}
-      <ScUl>
+      <Ul>
         {/* 스타일 컴포넌트 각각에게 props를 줄 수 있다. */}
         {/* 예를들면 사용자가 아래와 같이 current라는 props를 주고 current의 props값에 따라 true나 false를 반환하게 할 수 있다. */}
         {/* 여기서는 current가 true가 되면 ScLi에 border-bottom에 색깔을 주고 false가 되면 투명하게 처리했다. */}
         {/* pathname==="/"을 통해 pathname이 /가 되면 해당 라우트에 들어왔기 때문에 true를 반환하게 해주는 것이다. */}
-        <ScLi current={pathname === "/"}>
+        <Li current={pathname === "/" && true}>
           {/* a태그 대신 react-router-dom에서 제공하는 Link컴포넌트를 사용했다. */}
           {/* Link컴포넌트는 a태그의 href속성을 사용하지 않고 to속성을 사용한다. */}
           <ScLink to="/">Movie</ScLink>
-        </ScLi>
-        <ScLi current={pathname === "/tv"}>
+        </Li>
+        <Li current={pathname === "/tv" && true}>
           <ScLink to="/tv">TV</ScLink>
-        </ScLi>
-        <ScLi current={pathname === "/search"}>
+        </Li>
+        <Li current={pathname === "/search" && true}>
           <ScLink to="/search">Search</ScLink>
-        </ScLi>
-      </ScUl>
+        </Li>
+      </Ul>
     </ScHeader>
   );
 };
