@@ -1,6 +1,6 @@
 import React from "react";
 // HashRouter as Router: HashRouter를 react-router-dom으로부터 가져와서 이름을 바꿔 Router로 사용하도록 한다.
-import { HashRouter, BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, HashRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import Header from "Components/Header";
 import Home from "Routes/Home";
 import TV from "Routes/TV";
