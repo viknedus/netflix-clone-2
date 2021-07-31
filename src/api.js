@@ -22,7 +22,12 @@ const api = axios.create({
 // moviesApi와 tvApi객체를 생성해서 Movie와 TV각각에 해당하는 API를 안에 담아서 힌 번에 관리할 수 있도록 한다.
 // moviesApi와 tvApi 객체안에 프로퍼티를 만들고 각각의 프로퍼티는 api.get()을 통해 URL주소로 요청하고 요청한 결과 값을 반환해준다.
 export const moviesApi = {
-  nowPlaying: () => api.get("movie/now_playing"),
+  nowPlaying: () =>
+    api.get("movie/now_playing", {
+      params: {
+        append_to_response: "videos",
+      },
+    }),
   upcoming: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
   topRated: () => api.get("movie/top_rated"),

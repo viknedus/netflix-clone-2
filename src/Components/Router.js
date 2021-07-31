@@ -1,13 +1,13 @@
 // HashRouter as Router: HashRouter를 react-router-dom으로부터 가져와서 이름을 바꿔 Router로 사용하도록 한다.
+// HashRouter는 약간 앱처럼 보여주면서 사용자 페이지의 Hash를 사용한다. (URL에 #가 붙는다.)
+// BrowserRouter는 웹 사이트처럼 보여주면서 HTML history API를 사용한다. (URL에 #가 붙지 않고 일반적인 웹사이트처럼 보인다.)
 import { BrowserRouter, HashRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import Header from "Components/Header";
 import Home from "Routes/Home";
+import Movie from "Routes/Movie";
 import TV from "Routes/TV";
 import Search from "Routes/Search";
 import Detail from "Routes/Detail";
-
-// HashRouter는 약간 앱처럼 보여주면서 사용자 페이지의 Hash를 사용한다. (URL에 #가 붙는다.)
-// BrowserRouter는 웹 사이트처럼 보여주면서 HTML history API를 사용한다. (URL에 #가 붙지 않고 일반적인 웹사이트처럼 보인다.)
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
@@ -24,6 +24,7 @@ export default () => {
       {/* 만약 배포를 github에 하려고 gh-pages를 설치하고 배포한다면 BrowserRouter보다는 HashRouter를 사용하는 것이 덜 충돌이 생긴다. */}
       <Switch>
         <Route path="/" exact component={Home}></Route>
+        <Route path="/movie" exact component={Movie}></Route>
         <Route path="/tv" exact component={TV}></Route>
 
         {/* 아래와 같이 component가 아닌 render를 통해서도 함수를 실행하고 리턴해서 보여줄 수 있다. */}

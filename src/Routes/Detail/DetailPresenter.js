@@ -86,6 +86,7 @@ const DetailPresenter = ({ result, error, loading = true }) => {
             <Divider>▪</Divider>
             <Item>{result.runtime ? result.runtime : result.episode_run_time}분</Item>
             <Divider>▪</Divider>
+
             {/* {조건 ? 참: 거짓}과 {조건 && 구문}의 차이점 */}
             {/* {조건 ? 참: 거짓} : 조건이 true이면 참, false이면 거짓을 실행한다. {조건 && 구문} : 조건이 true이면 && 뒤에 구문을 실행한다. */}
             {/* 만약 result.genres가 존재해서 true면 result.genres.map()함수를 실행한다. */}

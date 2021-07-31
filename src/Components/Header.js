@@ -86,6 +86,11 @@ const Header = ({ location: { pathname } }) => {
           {/* a태그 대신 react-router-dom에서 제공하는 Link컴포넌트를 사용했다. */}
           {/* Link컴포넌트는 a태그의 href속성을 사용하지 않고 to속성을 사용한다. */}
           <ScLink to="/" current={pathname === "/" && true}>
+            홈
+          </ScLink>
+        </Li>
+        <Li current={pathname === "/movie" && true}>
+          <ScLink to="/movie" current={pathname === "/movie" && true}>
             영화
           </ScLink>
         </Li>
