@@ -6,9 +6,7 @@ import Message from "Components/Message";
 import Poster from "Components/Poster";
 import Helmet from "react-helmet";
 
-const Container = styled.div`
-  padding: 0 10px;
-`;
+const Container = styled.div``;
 
 // TVContainer로부터 받아온 props들을 파라미터로 받는다.
 const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => {
@@ -21,11 +19,27 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => {
   ) : (
     <Container>
       <Helmet>
-        <title>Netflix - TV</title>
+        <title>넷플릭스 - TV</title>
       </Helmet>
 
+      {airingToday && airingToday.length > 0 && (
+        <Section title="현재 방영중">
+          {airingToday.map((tv) => (
+            <Poster
+              key={tv.id}
+              id={tv.id}
+              imageUrl={tv.poster_path}
+              title={tv.name}
+              rating={tv.vote_average}
+              year={tv.first_air_date ? tv.first_air_date.substring(0, 4) : ""}
+              isMovie={false}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+
       {topRated && topRated.length > 0 && (
-        <Section title="Top Rated TV">
+        <Section title="최고 평점 프로그램">
           {topRated.map((tv) => (
             // TVPresenter는 Poster컴포넌트에게 각각의 tv에 대한 데이터를 props로 넘겨준다.
             <Poster
@@ -40,8 +54,9 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => {
           ))}
         </Section>
       )}
+
       {popular && popular.length > 0 && (
-        <Section title="Popular TV">
+        <Section title="인기 프로그램">
           {popular.map((tv) => (
             <Poster
               key={tv.id}
@@ -55,21 +70,7 @@ const TVPresenter = ({ topRated, popular, airingToday, error, loading }) => {
           ))}
         </Section>
       )}
-      {airingToday && airingToday.length > 0 && (
-        <Section title="Airing Today TV">
-          {airingToday.map((tv) => (
-            <Poster
-              key={tv.id}
-              id={tv.id}
-              imageUrl={tv.poster_path}
-              title={tv.name}
-              rating={tv.vote_average}
-              year={tv.first_air_date ? tv.first_air_date.substring(0, 4) : ""}
-              isMovie={false}
-            ></Poster>
-          ))}
-        </Section>
-      )}
+
       {error && <Message text={error}></Message>}
     </Container>
   );

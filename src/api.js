@@ -9,7 +9,7 @@ const api = axios.create({
   baseURL: "https://api.themoviedb.org/3/",
   params: {
     api_key: "d20d691c4dcca268fa8e0c655d698616",
-    language: "en-US",
+    language: "ko-KR",
   },
 });
 
@@ -25,6 +25,7 @@ export const moviesApi = {
   nowPlaying: () => api.get("movie/now_playing"),
   upcoming: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
+  topRated: () => api.get("movie/top_rated"),
 
   // movieDetail의 함수는 id값을 매개변수로 받고 그 id를 이용해서 movie/:id 주소로 api를 요청한다.
   // api.get(`movie/${id}`,{})에서 두 번째 인자로 {}중괄호를 쓰고 그 안에 추가적인 params를 써줄 수 있다.
@@ -53,6 +54,12 @@ export const moviesApi = {
         // 즉 어떤 term값을 넘기든 encodeURIComponent()함수를 통해 값을 인코딩하고 그 문자열을 검색한다.
         // axios에서 기본적으로 encodeURIComponent을 지원해주기 때문에 굳이 쓰지 않아도 됨
         // query: encodeURIComponent(term),
+      },
+    }),
+  nowPlaying2: () =>
+    api.get(`movie/now_playing`, {
+      params: {
+        page: "2",
       },
     }),
 };

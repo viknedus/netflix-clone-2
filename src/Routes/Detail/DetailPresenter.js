@@ -71,7 +71,7 @@ const DetailPresenter = ({ result, error, loading = true }) => {
   ) : (
     <Container>
       <Helmet>
-        <title>Netflix - {result.title ? result.title : result.name}</title>
+        <title>{result.title ? result.title : result.name}</title>
       </Helmet>
 
       {/* {console.log(result.backdrop_path)} */}

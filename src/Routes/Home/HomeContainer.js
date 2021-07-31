@@ -8,8 +8,10 @@ class HomeContainer extends React.Component {
     nowPlaying: null,
     upcoming: null,
     popular: null,
+    topRated: null,
     error: null,
     loading: true,
+    nowPlaying2: null,
   };
 
   // componentDidMount는 컴포넌트가 생성된 후 실행되는 함수이다.
@@ -34,6 +36,16 @@ class HomeContainer extends React.Component {
       } = await moviesApi.popular();
       // console.log(popular);
 
+      const {
+        data: { results: topRated },
+      } = await moviesApi.topRated();
+
+      const {
+        data: { results: nowPlaying2 },
+      } = await moviesApi.nowPlaying2();
+
+      console.log("nowPlaying2", nowPlaying2);
+
       // throw Error()를 통해 의도적으로 에러를 던져서 catch문이 실행되도록 테스트해볼 수 있다.
       // throw Error();
 
@@ -45,6 +57,8 @@ class HomeContainer extends React.Component {
         nowPlaying,
         upcoming,
         popular,
+        topRated,
+        nowPlaying2,
       });
     } catch (error) {
       console.log(error);
@@ -60,10 +74,12 @@ class HomeContainer extends React.Component {
   }
 
   render() {
-    const { nowPlaying, upcoming, popular, error, loading } = this.state;
+    const { nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 } = this.state;
     // console.log(this.state);
 
-    return <HomePresenter nowPlaying={nowPlaying} upcoming={upcoming} popular={popular} error={error} loading={loading} />;
+    console.log(this.state);
+
+    return <HomePresenter nowPlaying={nowPlaying} upcoming={upcoming} popular={popular} topRated={topRated} error={error} loading={loading} nowPlaying2={nowPlaying2} />;
   }
 }
 

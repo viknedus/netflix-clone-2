@@ -9,12 +9,12 @@ import reset from "styled-reset";
 
 const globalStyles = createGlobalStyle`
   ${reset};
-  
+
   *{
     box-sizing: border-box;
   }
   body{
-    background-color: lightgray;
+    background-color: rgb(25, 25, 25);
     padding-top: 50px;
   }
   a{

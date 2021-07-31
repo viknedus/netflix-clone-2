@@ -7,17 +7,48 @@ import Poster from "Components/Poster";
 import Helmet from "react-helmet";
 
 const Container = styled.div`
-  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  flex-direction: column;
+`;
+
+const Title = styled.h1`
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1.6;
 `;
 
 const Form = styled.form`
-  margin-bottom: 20px;
+  position: relative;
+  margin-bottom: 80px;
 `;
 
 const Input = styled.input`
-  /* all: unset;은 모든 스타일 속성을 초기화 시켜버린다. */
-  /* all: unset; */
-  font-size: 25px;
+  /* all: unset: 기본적으로 가지고 있는 태그의 스타일 속성을 초기화시킨다. */
+  font-size: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 660px;
+  padding: 15px 20px;
+  background-color: white;
+`;
+
+const Button = styled.button`
+  border: none;
+  outline: none;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #e30914;
+  color: white;
+  padding: 13px 30px;
+  cursor: pointer;
 `;
 
 const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, handleSubmit, updateSearchTerm }) => {
@@ -27,21 +58,28 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
   return (
     <Container>
       <Helmet>
-        <title>Netflix - Search</title>
+        <title>넷플릭스 - 검색</title>
       </Helmet>
+
+      <Title>
+        수백만 편의 영화, TV 프로그램이 있습니다.
+        <br />
+        지금 바로 검색해보세요.
+      </Title>
 
       {/* onSubmit속성을 통해 Submit이벤트가 발생했을 때 handleSubmit함수를 실행한다. */}
       <Form onSubmit={handleSubmit}>
         {/* form태그안에는 input태그가 있고 input태그의 value로는 state안에 있는 searchTerm을 가져온다. */}
         {/* onChange속성을 통해 input에 변화가 생겼을 때 updateSearchTerm함수를 실행한다. */}
-        <Input placeholder="Search Movies or TV" value={searchTerm} onChange={updateSearchTerm}></Input>
+        <Input placeholder="영화 또는 TV 프로그램을 검색하세요." value={searchTerm} onChange={updateSearchTerm}></Input>
+        <Button onSubmit={handleSubmit}>검색</Button>
       </Form>
       {loading ? (
         <Loader></Loader>
       ) : (
         <>
           {movieResults && movieResults.length > 0 && (
-            <Section title="Movie Results">
+            <Section title="영화">
               {movieResults.map((movie) => (
                 <Poster
                   key={movie.id}
@@ -56,7 +94,7 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
             </Section>
           )}
           {tvResults && tvResults.length > 0 && (
-            <Section title="TV Results">
+            <Section title="TV 프로그램">
               {tvResults.map((tv) => (
                 <Poster
                   key={tv.id}

@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 // styled-component를 이용해서 div태그를 생성해서 그것을 변수에 담아서 리액트 컴포넌트 형태로 사용할 수 있도록 한다.
 const Container = styled.div`
+  padding: 40px;
+  padding-top: 50px;
+  padding-bottom: 0;
+  border: 3px solid yellow;
+
   /* :not(:last-child)를 통해 마지막 Container를 제외한 나머지 것들에 스타일을 준다. */
   :not(:last-child) {
     margin-bottom: 50px;
@@ -12,12 +17,16 @@ const Container = styled.div`
 const Title = styled.span`
   font-size: 20px;
   font-weight: bold;
+  color: white;
+  font-size: 18px;
 `;
 
 const Children = styled.div`
   display: flex;
+  justify-content: flex--start;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 20px;
 `;
 
 // children은 리액트가 가지고 있는 예약된 props이다.

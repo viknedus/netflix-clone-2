@@ -5,6 +5,7 @@ import noPoster from "../assets/noPoster.png";
 
 const Container = styled.div`
   font-size: 13px;
+  transition: 0.2s linear;
 `;
 
 const Image = styled.div`
@@ -13,25 +14,71 @@ const Image = styled.div`
   /* w300대신 w400이나 w500, original을 통해 가져오려고 하는 이미지 크기를 조정할 수 있다. */
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
-  height: 200px;
+  height: 360px;
   transition: 0.2s linear;
+  border-radius: 7px;
+`;
+
+const Overview = styled.span`
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  opacity: 0;
+  transition: 0.2s linear;
+  color: white;
+  line-height: 1.8;
+  font-size: 14px;
+  padding: 20px;
 `;
 
 const Rating = styled.span`
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 8px;
+  left: 50%;
+  transform: translate(-50%);
   opacity: 0;
   transition: 0.2s linear;
+  color: white;
+  line-height: 1.8;
+  font-size: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
 `;
 
-const Title = styled.span``;
+const RatingChild = styled.span`
+  color: dodgerblue;
+  font-size: 23px;
+  margin-left: 7px;
+  margin-bottom: 5px;
+`;
 
-const Year = styled.span``;
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Title = styled.span`
+  color: white;
+  font-size: 15px;
+  margin-top: 12px;
+  font-weight: bold;
+`;
+
+const Year = styled.span`
+  color: gray;
+  margin-top: 8px;
+  font-size: 14px;
+`;
 
 const PosterContainer = styled.div`
   margin-bottom: 5px;
   position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+  transition: 0.2s linear;
 
   /* PosterContainer에 hover했을 때 Image와 Rating의 스타일을 변경해준다. */
   /* ${Image}라고 적어준 이유는 Image는 const로 선언된 변수이기 때문에 자바스크립트를 쓸 수 있는 $중괄호 형태로 묶어줘야 한다. */
@@ -39,19 +86,43 @@ const PosterContainer = styled.div`
     ${Image} {
       opacity: 0.3;
     }
+    ${Overview} {
+      opacity: 1;
+    }
     ${Rating} {
       opacity: 1;
     }
   }
 `;
 
+const ScLink = styled(Link)`
+  width: 240px;
+  border-radius: 7px;
+  margin-right: 20px;
+  margin-bottom: 45px;
+
+  /* &:nth-child(10),
+  &:nth-child(20) {
+    margin-right: 0;
+  } */
+
+  &:hover {
+    ${Container} {
+      transform: scale(1.05);
+    }
+    ${PosterContainer} {
+      box-shadow: 0 2px 8px black, 0 2px 4px black;
+    }
+  }
+`;
+
 // Poster함수는 id, imageUrl, title, isMovie등의 파라미터를 받고 isMovie파라미터의 기본값으로는 false로 설정해줬다.
-const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => {
+const Poster = ({ id, imageUrl, title, rating, year, isMovie = false, overview }) => {
   return (
     // react-router-dom이 가지고 있는 Link컴포넌트를 통해 조건에 따라 각각의 라우터로 이동시키고 컴포넌트를 랜더한다.
     // Link컴포넌트에 to속성에 라우터 URL를 지정해주고 isMovie가 true이면 /movie/${id}로 false면 /tv/${id}로 URL을 이동시키고 아래 <Container>컴포넌트를 랜더한다.
     // isMovie가 true라는 의미는 영화에 대한 정보가 있다는 의미니깐 /movie 라우터로 이동시키고 false라는 의미는 영화에 대한 정보가 없고 TV에 대한 정보가 있다는 의미니깐 /tv 라우터로 이동시킨다.
-    <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
+    <ScLink to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
       <Container>
         <PosterContainer>
           {/* 영화나 TV 이미지가 있는지 체크해서 있으면 imageUrl props로 `https://image.tmdb.org/t/p/w300${imageUrl}`를 전달하고 없으면 require("../assets/noPoster.png")를 통해 aseets폴더 아래있는 noPoster.png 이미지를 전달한다. */}
@@ -63,14 +134,20 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => {
           {/* 위와 같이 require()를 통해 가져와도 되고 또 다른 방법으로는 import noPoster from "../assets/noPoster.png";를 통해 noPoster.png이미지를 가져와서 아래와 같이 noPoster로 넣어줄 수도 있다. */}
           {/* {console.log(require("../assets/noPoster.png"))} */}
           <Image imageUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}` : noPoster}></Image>
-          <Rating>⭐ {rating}/10</Rating>
+          <Overview>{overview ? `${overview.substring(0, 130)}..` : title}</Overview>
+          <Rating>
+            관람평
+            <RatingChild>{rating}</RatingChild>
+          </Rating>
         </PosterContainer>
 
-        {/* title.length를 체크해서 15보다 크면 substring(0,15)를 통해 0부터 15까지의 글자수만 전달하도록 한다. */}
-        <Title>{title.length > 16 ? `${title.substring(0, 16)}...` : title}</Title>
-        <Year>{year}</Year>
+        <ContentContainer>
+          {/* title.length를 체크해서 15보다 크면 substring(0,15)를 통해 0부터 15까지의 글자수만 전달하도록 한다. */}
+          <Title>{title.length > 15 ? `${title.substring(0, 15)}..` : title}</Title>
+          <Year>{year}</Year>
+        </ContentContainer>
       </Container>
-    </Link>
+    </ScLink>
   );
 };
 
