@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
-import Poster from "Components/Poster";
 import Helmet from "react-helmet";
 
 const Container = styled.div`
@@ -51,35 +49,35 @@ const Content = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-size: 53px;
   text-shadow: rgba(255, 255, 255, 0.6) 0px 5px 10px;
   font-family: "Do Hyeon", sans-serif;
 `;
 
 const SubTitle = styled.h2`
-  font-size: 24px;
+  font-size: 28px;
   margin-top: 40px;
   font-style: italic;
 `;
 
 const Genres = styled.div`
-  font-size: 15px;
+  font-size: 19px;
   color: rgb(108, 117, 125);
-  margin-top: 16px;
-  margin-bottom: 6px;
+  margin-top: 18px;
+  margin-bottom: 8px;
 `;
 
 const YearRuntimeContainer = styled.div`
-  font-size: 15px;
+  font-size: 19px;
 `;
 
 const Year = styled.span`
-  font-size: 15px;
+  font-size: 19px;
   color: rgb(108, 117, 125);
 `;
 
 const Runtime = styled.span`
-  font-size: 15px;
+  font-size: 19px;
   color: rgb(108, 117, 125);
 `;
 
@@ -89,20 +87,20 @@ const YearRuntimeSpan = styled.span`
 `;
 
 const Rating = styled.div`
-  font-size: 17px;
+  font-size: 20px;
   color: white;
   margin-top: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 
 const RatingChild = styled.span`
   color: dodgerblue;
-  font-size: 17px;
+  font-size: 20px;
   margin-left: 7px;
 `;
 
 const Overview = styled.div`
-  font-size: 18px;
+  font-size: 21px;
   line-height: 1.6;
 `;
 
