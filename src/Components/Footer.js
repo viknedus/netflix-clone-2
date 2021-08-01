@@ -4,7 +4,7 @@ const FooterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 70px 0px;
+  padding: 35px 0px;
   border-top: 1px solid rgb(25, 25, 25);
 `;
 
@@ -23,7 +23,7 @@ const FooterLinkContent = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: 35px;
 `;
 
 const FooterLink = styled.a`
@@ -49,7 +49,6 @@ const FooterDescTitle = styled.h1`
 const FooterDescRights = styled.h2`
   color: white;
   font-size: 14px;
-  margin-top: 10px;
   text-align: center;
 `;
 
@@ -58,7 +57,7 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <FooterLinkContainer>
-          <FooterLinkTitle>질문이 있으신가요?</FooterLinkTitle>
+          <FooterLinkTitle>넷플릭스 대한민국</FooterLinkTitle>
           <FooterLinkContent>
             <FooterLink href="https://help.netflix.com/ko/node/412">넷플릭스 소개</FooterLink>
             <FooterLink href="https://help.netflix.com/ko/">고객 센터</FooterLink>

@@ -17,7 +17,6 @@ function App() {
       {/* <Header2></Header2> */}
       <GlobalStyles />
       <Router />
-      <QnA></QnA>
       <Footer></Footer>
     </div>
   );

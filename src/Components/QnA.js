@@ -50,12 +50,12 @@ const QnASubDesc = styled.div`
   box-sizing: border-box;
   z-index: -1;
   padding-top: 30px;
-  transition: 0.3s;
 
   &.active {
     position: static;
     height: 240px;
     margin-top: 25px;
+    transition: 0.3s;
   }
 `;
 
@@ -103,7 +103,9 @@ const QnA = () => {
             <QnASubTitle onClick={handleQnATitle}>
               멤버십을 해지하려면 어떻게 하나요?
               <QnASubDesc>
-                넷플릭스는 부담 없이 간편합니다. 성가신 계약도, 약정도 없으니까요. 멤버십 해지도 온라인에서 클릭 두 번이면 완료할 수 있습니다.
+                넷플릭스는 부담 없이 간편합니다. 성가신 계약도, 약정도 없으니까요.
+                <br></br>
+                멤버십 해지도 온라인에서 클릭 두 번이면 완료할 수 있습니다.
                 <br></br>
                 <br></br>
                 해지 수수료도 없으니 원할 때 언제든 계정을 시작하거나 종료하세요.

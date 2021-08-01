@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
-import Helmet from "react-helmet";
+import QnA from "Components/QnA";
 
 const Container = styled.div`
   display: flex;
@@ -114,50 +115,36 @@ const HomePresenter = ({ movieDetail, error, loading }) => {
       </Helmet>
 
       {movieDetail && (
-        <HomeContainer>
-          <Iframe
-            src={`https://www.youtube.com/embed/${movieDetail.videos.results[0].key}?autoplay=1&mute=1&controls=0`}
-            width="640"
-            height="360"
-            frameborder="0"
-            loop
-            allow="autoplay; fullscreen"
-            allowfullscreen
-          ></Iframe>
-          <Content>
-            <Title>{movieDetail.title}</Title>
-            <SubTitle>{movieDetail.tagline}</SubTitle>
-            <Genres>{movieDetail.genres.map((genre, index) => (movieDetail.genres.length - 1 === index ? genre.name : `${genre.name} • `))}</Genres>
-            <YearRuntimeContainer>
-              <Year>{movieDetail.release_date.substring(0, 4)}</Year>
-              <YearRuntimeSpan>•</YearRuntimeSpan>
-              <Runtime>{movieDetail.runtime}분</Runtime>
-            </YearRuntimeContainer>
-            <Rating>
-              관람평
-              <RatingChild>{movieDetail.vote_average}</RatingChild>
-            </Rating>
-            <Overview>{movieDetail.overview.substring(0, 310)}..</Overview>
-          </Content>
-        </HomeContainer>
+        <>
+          <HomeContainer>
+            <Iframe
+              src={`https://www.youtube.com/embed/${movieDetail.videos.results[0].key}?autoplay=1&mute=1&controls=0`}
+              width="640"
+              height="360"
+              frameborder="0"
+              loop
+              allow="autoplay; fullscreen"
+              allowfullscreen
+            ></Iframe>
+            <Content>
+              <Title>{movieDetail.title}</Title>
+              <SubTitle>{movieDetail.tagline}</SubTitle>
+              <Genres>{movieDetail.genres.map((genre, index) => (movieDetail.genres.length - 1 === index ? genre.name : `${genre.name} • `))}</Genres>
+              <YearRuntimeContainer>
+                <Year>{movieDetail.release_date.substring(0, 4)}</Year>
+                <YearRuntimeSpan>•</YearRuntimeSpan>
+                <Runtime>{movieDetail.runtime}분</Runtime>
+              </YearRuntimeContainer>
+              <Rating>
+                관람평
+                <RatingChild>{movieDetail.vote_average}</RatingChild>
+              </Rating>
+              <Overview>{movieDetail.overview.substring(0, 310)}..</Overview>
+            </Content>
+          </HomeContainer>
+        </>
       )}
-
-      {/* {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="현재 상영중">
-          {nowPlaying.map((movie) => (
-            <Poster
-              key={movie.id}
-              id={movie.id}
-              imageUrl={movie.poster_path}
-              title={movie.title}
-              rating={movie.vote_average}
-              year={movie.release_date ? movie.release_date.substring(0, 4) : ""}
-              isMovie={true}
-              overview={movie.overview}
-            ></Poster>
-          ))}
-        </Section>
-      )} */}
+      <QnA></QnA>
 
       {error && <Message text={error}></Message>}
     </Container>
