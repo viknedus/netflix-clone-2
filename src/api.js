@@ -19,15 +19,19 @@ const api = axios.create({
 // 우리는 상대경로를 써서 https://api.themoviedb.org/3/tv/popular로 요청해야 한다.
 // api.get("tv/popular");
 
-// moviesApi와 tvApi객체를 생성해서 Movie와 TV각각에 해당하는 API를 안에 담아서 힌 번에 관리할 수 있도록 한다.
-// moviesApi와 tvApi 객체안에 프로퍼티를 만들고 각각의 프로퍼티는 api.get()을 통해 URL주소로 요청하고 요청한 결과 값을 반환해준다.
-export const moviesApi = {
-  nowPlaying: () =>
-    api.get("movie/now_playing", {
+export const homeApi = {
+  movieDetail: (id) =>
+    api.get(`movie/${id}`, {
       params: {
         append_to_response: "videos",
       },
     }),
+};
+
+// moviesApi와 tvApi객체를 생성해서 Movie와 TV각각에 해당하는 API를 안에 담아서 힌 번에 관리할 수 있도록 한다.
+// moviesApi와 tvApi 객체안에 프로퍼티를 만들고 각각의 프로퍼티는 api.get()을 통해 URL주소로 요청하고 요청한 결과 값을 반환해준다.
+export const moviesApi = {
+  nowPlaying: () => api.get("movie/now_playing"),
   upcoming: () => api.get("movie/upcoming"),
   popular: () => api.get("movie/popular"),
   topRated: () => api.get("movie/top_rated"),
@@ -38,6 +42,8 @@ export const moviesApi = {
   // TheMovieDB사이트에서 추가적으로 지원하는 append_to_response 를 통해 추가적인 정보들을 요청할 수 있다.
   // append_to_response에 video나 image등을 params로 같이 전달하게 되면 결과 값으로 id, key(유튜브 예고편 URL주소), 이름, site, size 등의 정보를 가져올 수 있다.
   // 유튜브 예고편 URL 주소는 https://www.youtube.com/watch?v=key값 형태로 넣어주면 된다.
+  // 위의 형태로 iframe으로 가져오면 youtube에서 거부하는 문제가 있어서 https://www.youtube.com/embed/key값 형태로 가져오는 것으로 변경했다.
+  // key값은 videos에 results안에 key에 있는 값이다.
   movieDetail: (id) =>
     api.get(`movie/${id}`, {
       params: {

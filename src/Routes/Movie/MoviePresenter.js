@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 }) => {
-  // console.log(nowPlaying, upcoming, popular, topRated, error, loading);
+  console.log(nowPlaying, upcoming, popular, topRated, error, loading);
 
   return loading ? (
     <Loader></Loader>

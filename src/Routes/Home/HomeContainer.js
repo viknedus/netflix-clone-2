@@ -1,26 +1,20 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
-import { moviesApi } from "api";
+import { homeApi } from "api";
 
 class HomeContainer extends React.Component {
   state = {
-    nowPlaying: null,
-    upcoming: null,
-    popular: null,
-    topRated: null,
+    movieDetail: null,
     error: null,
     loading: true,
   };
 
   async componentDidMount() {
     try {
-      const {
-        data: { results: nowPlaying },
-      } = await moviesApi.nowPlaying();
-      // console.log(nowPlaying);
+      const { data: movieDetail } = await homeApi.movieDetail(497698);
 
       this.setState({
-        nowPlaying,
+        movieDetail,
       });
     } catch (error) {
       console.log(error);
@@ -36,11 +30,10 @@ class HomeContainer extends React.Component {
   }
 
   render() {
-    const { nowPlaying, upcoming, popular, topRated, error, loading } = this.state;
+    const { movieDetail, error, loading } = this.state;
+    // console.log(this.state);
 
-    console.log(this.state);
-
-    return <HomePresenter nowPlaying={nowPlaying} upcoming={upcoming} popular={popular} topRated={topRated} error={error} loading={loading} />;
+    return <HomePresenter movieDetail={movieDetail} error={error} loading={loading} />;
   }
 }
 
