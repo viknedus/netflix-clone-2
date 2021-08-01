@@ -26,29 +26,87 @@ const Iframe = styled.iframe`
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  z-index: -1;
+  opacity: 0.6;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid red;
+  }
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  color: white;
+  position: absolute;
+  top: 36%;
+  left: 40px;
+  transform: translateY(-50%);
+  width: 550px;
+  font-family: "Do Hyeon", sans-serif;
+`;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-size: 48px;
+  text-shadow: rgba(255, 255, 255, 0.6) 0px 5px 10px;
+  font-family: "Do Hyeon", sans-serif;
+`;
 
-const SubTitle = styled.h2``;
+const SubTitle = styled.h2`
+  font-size: 24px;
+  margin-top: 40px;
+  font-style: italic;
+`;
 
-const Genres = styled.span``;
+const Genres = styled.div`
+  font-size: 15px;
+  color: rgb(108, 117, 125);
+  margin-top: 16px;
+  margin-bottom: 6px;
+`;
 
-const Year = styled.div``;
+const YearRuntimeContainer = styled.div`
+  font-size: 15px;
+`;
 
-const Runtime = styled.div``;
+const Year = styled.span`
+  font-size: 15px;
+  color: rgb(108, 117, 125);
+`;
 
-const Rating = styled.div``;
+const Runtime = styled.span`
+  font-size: 15px;
+  color: rgb(108, 117, 125);
+`;
 
-const Overview = styled.div``;
+const YearRuntimeSpan = styled.span`
+  margin: 0 5px;
+  color: rgb(108, 117, 125);
+`;
+
+const Rating = styled.div`
+  font-size: 17px;
+  color: white;
+  margin-top: 12px;
+  margin-bottom: 10px;
+`;
+
+const RatingChild = styled.span`
+  color: dodgerblue;
+  font-size: 17px;
+  margin-left: 7px;
+`;
+
+const Overview = styled.div`
+  font-size: 18px;
+  line-height: 1.6;
+`;
 
 const HomePresenter = ({ movieDetail, error, loading }) => {
-  console.log(movieDetail);
-
-  // console.log(movieDetail.title);
-
   return loading ? (
     <Loader></Loader>
   ) : (
@@ -60,21 +118,28 @@ const HomePresenter = ({ movieDetail, error, loading }) => {
       {movieDetail && (
         <HomeContainer>
           <Iframe
-            src="https://www.youtube.com/embed/rmR7xefwjWs?autoplay=1&mute=1&showinfo=0&controls=0&loop=1&autopause=0"
+            src={`https://www.youtube.com/embed/${movieDetail.videos.results[0].key}?autoplay=1&mute=1&controls=0`}
             width="640"
             height="360"
             frameborder="0"
+            loop
             allow="autoplay; fullscreen"
             allowfullscreen
           ></Iframe>
           <Content>
             <Title>{movieDetail.title}</Title>
             <SubTitle>{movieDetail.tagline}</SubTitle>
-            <Genres>{movieDetail.title}</Genres>
-            <Year>{movieDetail.release_date}</Year>
-            <Runtime>{movieDetail.runtime}</Runtime>
-            <Rating>{movieDetail.vote_average}</Rating>
-            <Overview>{movieDetail.overview}</Overview>
+            <Genres>{movieDetail.genres.map((genre, index) => (movieDetail.genres.length - 1 === index ? genre.name : `${genre.name} • `))}</Genres>
+            <YearRuntimeContainer>
+              <Year>{movieDetail.release_date.substring(0, 4)}</Year>
+              <YearRuntimeSpan>•</YearRuntimeSpan>
+              <Runtime>{movieDetail.runtime}분</Runtime>
+            </YearRuntimeContainer>
+            <Rating>
+              관람평
+              <RatingChild>{movieDetail.vote_average}</RatingChild>
+            </Rating>
+            <Overview>{movieDetail.overview.substring(0, 310)}..</Overview>
           </Content>
         </HomeContainer>
       )}

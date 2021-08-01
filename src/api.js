@@ -20,6 +20,7 @@ const api = axios.create({
 // api.get("tv/popular");
 
 export const homeApi = {
+  nowPlaying: () => api.get("movie/now_playing"),
   movieDetail: (id) =>
     api.get(`movie/${id}`, {
       params: {
