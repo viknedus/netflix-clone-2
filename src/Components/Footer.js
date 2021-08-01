@@ -6,6 +6,7 @@ const FooterContainer = styled.div`
   align-items: center;
   padding: 35px 0px;
   border-top: 1px solid rgb(25, 25, 25);
+  width: 100%;
 `;
 
 const FooterContent = styled.div``;

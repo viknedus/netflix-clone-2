@@ -4,6 +4,7 @@ import Helmet from "react-helmet";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 import QnA from "Components/QnA";
+import Footer from "Components/Footer";
 
 const Container = styled.div`
   display: flex;
@@ -105,6 +106,12 @@ const Overview = styled.div`
   line-height: 1.6;
 `;
 
+const HomeSubContainer = styled.div`
+  border: 3px solid red;
+  width: 100%;
+  margin-top: 200vh;
+`;
+
 const HomePresenter = ({ movieDetail, error, loading }) => {
   return loading ? (
     <Loader></Loader>
@@ -144,7 +151,10 @@ const HomePresenter = ({ movieDetail, error, loading }) => {
           </HomeContainer>
         </>
       )}
-      <QnA></QnA>
+      <HomeSubContainer>
+        <QnA></QnA>
+        <Footer></Footer>
+      </HomeSubContainer>
 
       {error && <Message text={error}></Message>}
     </Container>
