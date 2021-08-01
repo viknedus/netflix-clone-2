@@ -14,8 +14,10 @@ const globalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body{
+    /* background-color: black; */
     background-color: rgb(25, 25, 25);
     padding-top: 50px;
+    font-family: 'Noto Sans KR', sans-serif;
   }
   a{
     text-decoration: none;
