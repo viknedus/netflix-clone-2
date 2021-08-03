@@ -5,6 +5,7 @@ import Loader from "Components/Loader";
 import Message from "Components/Message";
 import QnA from "Components/QnA";
 import Footer from "Components/Footer";
+import Description from "Components/Description";
 
 const Container = styled.div`
   display: flex;
@@ -20,11 +21,7 @@ const HomeContainer = styled.div`
 `;
 
 const Iframe = styled.iframe`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
+  width: 100vw;
   height: 100%;
   z-index: -1;
   opacity: 0.6;
@@ -36,7 +33,7 @@ const Iframe = styled.iframe`
     left: 0;
     width: 100%;
     height: 100%;
-    border: 3px solid red;
+    border: 3px solid yellow;
   }
 `;
 
@@ -109,10 +106,12 @@ const Overview = styled.div`
 const HomeSubContainer = styled.div`
   border: 3px solid red;
   width: 100%;
-  margin-top: 200vh;
+  /* margin-top: 316vh; */
 `;
 
 const HomePresenter = ({ movieDetail, error, loading }) => {
+  console.log(movieDetail);
+
   return loading ? (
     <Loader></Loader>
   ) : (
@@ -120,18 +119,15 @@ const HomePresenter = ({ movieDetail, error, loading }) => {
       <Helmet>
         <title>넷플릭스 - 홈</title>
       </Helmet>
-
       {movieDetail && (
         <>
           <HomeContainer>
             <Iframe
-              src={`https://www.youtube.com/embed/${movieDetail.videos.results[0].key}?autoplay=1&mute=1&controls=0`}
+              src={`https://www.youtube.com/embed/${movieDetail.videos.results[0].key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${movieDetail.videos.results[0].key}`}
               width="640"
               height="360"
               frameborder="0"
-              loop
               allow="autoplay; fullscreen"
-              allowfullscreen
             ></Iframe>
             <Content>
               <Title>{movieDetail.title}</Title>
@@ -148,13 +144,14 @@ const HomePresenter = ({ movieDetail, error, loading }) => {
               </Rating>
               <Overview>{movieDetail.overview.substring(0, 310)}..</Overview>
             </Content>
+            <HomeSubContainer>
+              <Description></Description>
+              <QnA></QnA>
+              <Footer></Footer>
+            </HomeSubContainer>
           </HomeContainer>
         </>
       )}
-      <HomeSubContainer>
-        <QnA></QnA>
-        <Footer></Footer>
-      </HomeSubContainer>
 
       {error && <Message text={error}></Message>}
     </Container>

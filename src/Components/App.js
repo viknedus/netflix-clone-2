@@ -1,8 +1,6 @@
 import React from "react";
 import Router from "./Router";
 import GlobalStyles from "./GlobalStyles";
-import Footer from "./Footer";
-import QnA from "./QnA";
 
 // Header폴더 안에 index.js파일을 만들고 import Header from "Components/Header"처럼 import 하게 되면 기본적으로 Components/Header폴더 안에서 index.js파일을 찾아서 가져온다.
 // 원래는 Components/Header/Header를 통해 Header.js를 찾아서 가져와야 했지만 Header폴더를 따로 만들고 거기 안에 index.js를 만들어서 index.js에 Header.js를 가져오는 형태로도 만들 수 있다.
