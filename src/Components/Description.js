@@ -23,18 +23,18 @@ const DescContent = styled.div`
 const DescTitle = styled.div`
   color: white;
   flex: 0.8;
-  padding: 0 80px;
+  padding: 0 75px;
 `;
 
 const DescH1 = styled.h1`
-  font-size: 46px;
+  font-size: 45px;
   margin-bottom: 20px;
   line-height: 1.3;
   font-weight: bold;
 `;
 
 const DescP = styled.p`
-  font-size: 25px;
+  font-size: 27px;
   line-height: 1.6;
 `;
 
@@ -66,13 +66,21 @@ const Description = () => {
             <DescImage src={iconTV}></DescImage>
           </DescImageContainer>
           <DescTitle>
-            <DescH1>즐겨 보는 콘텐츠를 저장해 오프라인으로 시청하세요.</DescH1>
+            <DescH1>
+              즐겨 보는 콘텐츠를 저장해
+              <br />
+              오프라인으로 시청하세요.
+            </DescH1>
             <DescP>간편하게 저장하고 빈틈없이 즐겨보세요.</DescP>
           </DescTitle>
         </DescContent>
         <DescContent>
           <DescTitle>
-            <DescH1>다양한 디바이스에서 시청하세요.</DescH1>
+            <DescH1>
+              다양한 디바이스에서
+              <br />
+              시청하세요.
+            </DescH1>
             <DescP>각종 영화와 TV 프로그램을 스마트폰, 태블릿, 노트북, TV에서 무제한으로 스트리밍하세요. 추가 요금이 전혀 없습니다.</DescP>
           </DescTitle>
           <DescImageContainer>
@@ -84,7 +92,11 @@ const Description = () => {
             <DescImage src={iconTV}></DescImage>
           </DescImageContainer>
           <DescTitle>
-            <DescH1>어린이 전용 프로필을 만들어 보세요.</DescH1>
+            <DescH1>
+              어린이 전용 프로필을
+              <br />
+              만들어 보세요.
+            </DescH1>
             <DescP>자기만의 공간에서 좋아하는 캐릭터와 즐기는 신나는 모험. 자녀에게 이 특별한 경험을 선물하세요. 넷플릭스 회원이라면 무료입니다.</DescP>
           </DescTitle>
         </DescContent>
