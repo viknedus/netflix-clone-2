@@ -5,7 +5,7 @@ const QnAContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 70px 0px;
-  border-top: 1px solid rgb(25, 25, 25);
+  border-top: 8px solid rgb(25, 25, 25);
   width: 100%;
 `;
 

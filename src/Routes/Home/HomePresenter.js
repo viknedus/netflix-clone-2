@@ -104,9 +104,7 @@ const Overview = styled.div`
 `;
 
 const HomeSubContainer = styled.div`
-  border: 3px solid red;
   width: 100%;
-  /* margin-top: 316vh; */
 `;
 
 const HomePresenter = ({ movieDetail, error, loading }) => {

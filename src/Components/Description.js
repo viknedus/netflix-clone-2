@@ -1,23 +1,34 @@
 import styled from "styled-components";
 import iconTV from "../assets/icon_tv.png";
+import iconMobile from "../assets/icon_mobile.jpg";
+import iconDevice from "../assets/icon_device.png";
+import iconKid from "../assets/icon_kid.png";
+import videoKnight from "../assets/video_knight.mp4";
+import videoDevice from "../assets/video_device.mp4";
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
 `;
 
 const DescContainer = styled.div`
-  border: 3px solid blue;
-  width: 1300px;
+  width: 100%;
 `;
 
 const DescContent = styled.div`
-  border: 3px solid orange;
   padding: 80px 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  border-top: 8px solid rgb(25, 25, 25);
+`;
+
+const DescSubContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1300px;
 `;
 
 const DescTitle = styled.div`
@@ -27,7 +38,7 @@ const DescTitle = styled.div`
 `;
 
 const DescH1 = styled.h1`
-  font-size: 45px;
+  font-size: 46px;
   margin-bottom: 20px;
   line-height: 1.3;
   font-weight: bold;
@@ -42,10 +53,29 @@ const DescImageContainer = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
 
 const DescImage = styled.img`
-  width: 500px;
+  width: 520px;
+`;
+
+const DescVideoTV = styled.video`
+  position: absolute;
+  top: 49%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  width: 382px;
+  z-index: -1;
+`;
+
+const DescVideoDevice = styled.video`
+  position: absolute;
+  top: 33%;
+  left: 49.5%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  z-index: -1;
 `;
 
 const Description = () => {
@@ -53,52 +83,62 @@ const Description = () => {
     <Container>
       <DescContainer>
         <DescContent>
-          <DescTitle>
-            <DescH1>TV로 즐기세요.</DescH1>
-            <DescP>스마트 TV, PlayStation, Xbox, Chromecast, Apple TV, 블루레이 플레이어 등 다양한 디바이스에서 시청하세요.</DescP>
-          </DescTitle>
-          <DescImageContainer>
-            <DescImage src={iconTV}></DescImage>
-          </DescImageContainer>
+          <DescSubContent>
+            <DescTitle>
+              <DescH1>TV로 즐기세요.</DescH1>
+              <DescP>스마트 TV, PlayStation, Xbox, Chromecast, Apple TV, 블루레이 플레이어 등 다양한 디바이스에서 시청하세요.</DescP>
+            </DescTitle>
+            <DescImageContainer>
+              <DescImage src={iconTV}></DescImage>
+              <DescVideoTV src={videoKnight} autoPlay muted loop></DescVideoTV>
+            </DescImageContainer>
+          </DescSubContent>
         </DescContent>
         <DescContent>
-          <DescImageContainer>
-            <DescImage src={iconTV}></DescImage>
-          </DescImageContainer>
-          <DescTitle>
-            <DescH1>
-              즐겨 보는 콘텐츠를 저장해
-              <br />
-              오프라인으로 시청하세요.
-            </DescH1>
-            <DescP>간편하게 저장하고 빈틈없이 즐겨보세요.</DescP>
-          </DescTitle>
+          <DescSubContent>
+            <DescImageContainer>
+              <DescImage src={iconMobile}></DescImage>
+            </DescImageContainer>
+            <DescTitle>
+              <DescH1>
+                즐겨 보는 콘텐츠를 저장해
+                <br />
+                오프라인으로 시청하세요.
+              </DescH1>
+              <DescP>간편하게 저장하고 빈틈없이 즐겨보세요.</DescP>
+            </DescTitle>
+          </DescSubContent>
         </DescContent>
         <DescContent>
-          <DescTitle>
-            <DescH1>
-              다양한 디바이스에서
-              <br />
-              시청하세요.
-            </DescH1>
-            <DescP>각종 영화와 TV 프로그램을 스마트폰, 태블릿, 노트북, TV에서 무제한으로 스트리밍하세요. 추가 요금이 전혀 없습니다.</DescP>
-          </DescTitle>
-          <DescImageContainer>
-            <DescImage src={iconTV}></DescImage>
-          </DescImageContainer>
+          <DescSubContent>
+            <DescTitle>
+              <DescH1>
+                다양한 디바이스에서
+                <br />
+                시청하세요.
+              </DescH1>
+              <DescP>각종 영화와 TV 프로그램을 스마트폰, 태블릿, 노트북, TV에서 무제한으로 스트리밍하세요. 추가 요금이 전혀 없습니다.</DescP>
+            </DescTitle>
+            <DescImageContainer>
+              <DescImage src={iconDevice}></DescImage>
+              <DescVideoDevice src={videoDevice} autoPlay muted loop></DescVideoDevice>
+            </DescImageContainer>
+          </DescSubContent>
         </DescContent>
         <DescContent>
-          <DescImageContainer>
-            <DescImage src={iconTV}></DescImage>
-          </DescImageContainer>
-          <DescTitle>
-            <DescH1>
-              어린이 전용 프로필을
-              <br />
-              만들어 보세요.
-            </DescH1>
-            <DescP>자기만의 공간에서 좋아하는 캐릭터와 즐기는 신나는 모험. 자녀에게 이 특별한 경험을 선물하세요. 넷플릭스 회원이라면 무료입니다.</DescP>
-          </DescTitle>
+          <DescSubContent>
+            <DescImageContainer>
+              <DescImage src={iconKid}></DescImage>
+            </DescImageContainer>
+            <DescTitle>
+              <DescH1>
+                어린이 전용 프로필을
+                <br />
+                만들어 보세요.
+              </DescH1>
+              <DescP>자기만의 공간에서 좋아하는 캐릭터와 즐기는 신나는 모험. 자녀에게 이 특별한 경험을 선물하세요. 넷플릭스 회원이라면 무료입니다.</DescP>
+            </DescTitle>
+          </DescSubContent>
         </DescContent>
       </DescContainer>
     </Container>
