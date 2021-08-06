@@ -24,7 +24,7 @@ const Iframe = styled.iframe`
   width: 100vw;
   height: 100%;
   z-index: -1;
-  opacity: 0.6;
+  opacity: 0.5;
 
   &::after {
     content: "";
@@ -55,28 +55,28 @@ const Title = styled.h1`
 
 const SubTitle = styled.h2`
   font-size: 28px;
-  margin-top: 40px;
+  margin-top: 25px;
   font-style: italic;
 `;
 
 const Genres = styled.div`
-  font-size: 19px;
+  font-size: 20px;
   color: rgb(108, 117, 125);
   margin-top: 18px;
   margin-bottom: 8px;
 `;
 
 const YearRuntimeContainer = styled.div`
-  font-size: 19px;
+  font-size: 20px;
 `;
 
 const Year = styled.span`
-  font-size: 19px;
+  font-size: 20px;
   color: rgb(108, 117, 125);
 `;
 
 const Runtime = styled.span`
-  font-size: 19px;
+  font-size: 20px;
   color: rgb(108, 117, 125);
 `;
 
@@ -93,8 +93,8 @@ const Rating = styled.div`
 `;
 
 const RatingChild = styled.span`
+  font-size: 22px;
   color: dodgerblue;
-  font-size: 20px;
   margin-left: 7px;
 `;
 
