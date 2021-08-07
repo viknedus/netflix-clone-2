@@ -16,7 +16,7 @@ const Container = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  margin-top: 100px;
+  margin-top: 90px;
 `;
 
 const TitleContent = styled.div`
@@ -24,7 +24,7 @@ const TitleContent = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-size: 40px;
   color: white;
   margin-bottom: 25px;
   font-weight: bold;
@@ -37,7 +37,7 @@ const SubTitle = styled.p`
 `;
 
 const ButtonContainer = styled.div`
-  margin-top: 90px;
+  margin-top: 45px;
   width: 100%;
   display: flex;
   justify-content: center;

@@ -7,10 +7,16 @@ import Poster from "Components/Poster";
 import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const TitleContainer = styled.div`
-  margin-top: 80px;
+  margin-top: 90px;
 `;
 
 const TitleContent = styled.div`
@@ -18,15 +24,16 @@ const TitleContent = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 36px;
+  font-size: 40px;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  font-weight: bold;
 `;
 
 const SubTitle = styled.p`
-  font-size: 16px;
+  font-size: 18px;
   color: gray;
-  line-height: 1.6;
+  line-height: 1.5;
 `;
 
 const ButtonContainer = styled.div`

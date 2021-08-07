@@ -22,7 +22,7 @@ const HeaderContainer = styled.header`
   left: 50%;
   transform: translate(-50%);
   display: flex;
-  background-color: transparent;
+  /* background-color: transparent; */
   background-color: black;
   z-index: 100;
   padding: 15px 40px;

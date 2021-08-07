@@ -14,7 +14,8 @@ const Image = styled.div`
   /* w300대신 w400이나 w500, original을 통해 가져오려고 하는 이미지 크기를 조정할 수 있다. */
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
-  height: 360px;
+  /* height: 360px; */
+  height: 340px;
   transition: 0.2s linear;
   border-radius: 7px;
 `;
@@ -33,7 +34,7 @@ const Overview = styled.span`
 
 const Popularity = styled.span`
   position: absolute;
-  bottom: 8px;
+  bottom: 18px;
   left: 50%;
   transform: translate(-50%);
   opacity: 0;
@@ -41,11 +42,20 @@ const Popularity = styled.span`
   color: white;
   line-height: 1.8;
   font-size: 14px;
-  padding: 20px;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  color: white;
+  border: 1px solid white;
+  width: 48%;
+  border-radius: 3px;
+  transition: 0.3s;
+
+  &:hover {
+    color: dodgerblue;
+    border: 1px solid dodgerblue;
+  }
 `;
 
 const PopularityChild = styled.span`
@@ -92,6 +102,7 @@ const ContentRatingChild = styled.div`
   font-size: 14px;
   color: gray;
   margin-left: 3px;
+  margin-top: 2px;
 `;
 
 const PosterContainer = styled.div`
@@ -117,7 +128,8 @@ const PosterContainer = styled.div`
 `;
 
 const ScLink = styled(Link)`
-  width: 240px;
+  /* width: 240px; */
+  width: 220px;
   border-radius: 7px;
   margin-right: 20px;
   margin-bottom: 45px;
@@ -156,9 +168,7 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false, overview, 
           {/* {console.log(require("../assets/noPoster.png"))} */}
           <Image imageUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}` : noPoster}></Image>
           <Overview>{overview ? `${overview.substring(0, 130)}..` : title}</Overview>
-          <Popularity>
-            순위<PopularityChild>{popularity}</PopularityChild>
-          </Popularity>
+          <Popularity>{/* 순위<PopularityChild>{popularity}</PopularityChild> */}상세정보</Popularity>
         </PosterContainer>
 
         <ContentContainer>
@@ -168,7 +178,7 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false, overview, 
           <YearRatingContainer>
             <Year>개봉일 {year}</Year>
             <ContentRating>
-              관람평<ContentRatingChild>{rating}</ContentRatingChild>
+              ⭐<ContentRatingChild>{rating}</ContentRatingChild>
             </ContentRating>
           </YearRatingContainer>
         </ContentContainer>
