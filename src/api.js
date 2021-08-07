@@ -80,6 +80,7 @@ export const tvApi = {
   topRated: () => api.get("tv/top_rated"),
   popular: () => api.get("tv/popular"),
   airingToday: () => api.get("tv/airing_today"),
+  onTheAir: () => api.get("tv/on_the_air"),
   tvDetail: (id) =>
     api.get(`tv/${id}`, {
       params: {
