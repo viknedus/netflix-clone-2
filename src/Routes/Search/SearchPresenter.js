@@ -5,12 +5,13 @@ import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
 import Helmet from "react-helmet";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 110px;
   flex-direction: column;
 `;
 
@@ -51,9 +52,37 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  box-sizing: border-box;
+`;
+
+const ButtonContent = styled.div`
+  display: flex;
+`;
+
+const ButtonLink = styled(Link)`
+  color: white;
+  border-bottom: 3px solid ${(props) => (props.current ? "#E30914" : "transparent")};
+  color: ${(props) => (props.current ? "#E30914" : "white")};
+  margin: 0 15px;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  font-size: 17px;
+  font-weight: bold;
+`;
+
 const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, handleSubmit, updateSearchTerm }) => {
   // console.log("movieResults", movieResults);
   // console.log("tvResults", tvResults);
+
+  const {
+    location: { hash },
+  } = window;
 
   return (
     <Container>
@@ -74,11 +103,23 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
         <Input placeholder="영화 또는 TV 프로그램을 검색하세요." value={searchTerm} onChange={updateSearchTerm}></Input>
         <Button onSubmit={handleSubmit}>검색</Button>
       </Form>
+
       {loading ? (
         <Loader></Loader>
       ) : (
         <>
-          {movieResults && movieResults.length > 0 && (
+          <ButtonContainer>
+            <ButtonContent>
+              <ButtonLink to="/search" current={hash === "#/search" && true}>
+                영화
+              </ButtonLink>
+              <ButtonLink to="/search/result-tv" current={hash === "#/search/result-tv" && true}>
+                TV 프로그램
+              </ButtonLink>
+            </ButtonContent>
+          </ButtonContainer>
+
+          {movieResults && movieResults.length > 0 && hash === "#/search" && (
             <Section title="영화">
               {movieResults.map((movie) => (
                 <Poster
@@ -87,13 +128,14 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
                   imageUrl={movie.poster_path}
                   title={movie.title}
                   rating={movie.vote_average}
-                  year={movie.release_date ? movie.release_date.substring(0, 4) : ""}
+                  year={movie.release_date ? movie.release_date : ""}
                   isMovie={true}
+                  popularity={movie.popularity && Math.round(movie.popularity)}
                 ></Poster>
               ))}
             </Section>
           )}
-          {tvResults && tvResults.length > 0 && (
+          {tvResults && tvResults.length > 0 && hash === "#/search/result-tv" && (
             <Section title="TV 프로그램">
               {tvResults.map((tv) => (
                 <Poster
@@ -102,8 +144,9 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
                   imageUrl={tv.poster_path}
                   title={tv.name}
                   rating={tv.vote_average}
-                  year={tv.first_air_date ? tv.first_air_date.substring(0, 4) : ""}
+                  year={tv.first_air_date ? tv.first_air_date : ""}
                   isMovie={false}
+                  popularity={tv.popularity && Math.round(tv.popularity)}
                 ></Poster>
               ))}
             </Section>

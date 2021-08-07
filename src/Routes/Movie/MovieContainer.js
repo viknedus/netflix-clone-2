@@ -38,7 +38,7 @@ class MovieContainer extends React.Component {
         data: { results: nowPlaying2 },
       } = await moviesApi.nowPlaying2();
 
-      console.log("nowPlaying2", nowPlaying2);
+      // console.log("nowPlaying2", nowPlaying2);
       this.setState({
         nowPlaying,
         upcoming,
@@ -61,7 +61,7 @@ class MovieContainer extends React.Component {
 
   render() {
     const { nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 } = this.state;
-    console.log(this.state);
+    // console.log(this.state);
 
     return <MoviePresenter nowPlaying={nowPlaying} upcoming={upcoming} popular={popular} topRated={topRated} error={error} loading={loading} nowPlaying2={nowPlaying2} />;
   }

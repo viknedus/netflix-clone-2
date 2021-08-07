@@ -31,7 +31,7 @@ const Overview = styled.span`
   padding: 20px;
 `;
 
-const Rating = styled.span`
+const Popularity = styled.span`
   position: absolute;
   bottom: 8px;
   left: 50%;
@@ -44,11 +44,13 @@ const Rating = styled.span`
   padding: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 `;
 
-const RatingChild = styled.span`
+const PopularityChild = styled.span`
   color: dodgerblue;
-  font-size: 23px;
+  font-size: 21px;
   margin-left: 7px;
   margin-bottom: 5px;
 `;
@@ -67,10 +69,29 @@ const Title = styled.span`
   font-weight: bold;
 `;
 
+const YearRatingContainer = styled.div`
+  margin-top: 11px;
+`;
+
 const Year = styled.span`
   color: gray;
-  margin-top: 8px;
   font-size: 14px;
+  margin-right: 10px;
+`;
+
+const ContentRating = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: gray;
+  margin-top: 5px;
+`;
+
+const ContentRatingChild = styled.div`
+  font-size: 14px;
+  color: gray;
+  margin-left: 3px;
 `;
 
 const PosterContainer = styled.div`
@@ -80,7 +101,7 @@ const PosterContainer = styled.div`
   border-radius: 7px;
   transition: 0.2s linear;
 
-  /* PosterContainer에 hover했을 때 Image와 Rating의 스타일을 변경해준다. */
+  /* PosterContainer에 hover했을 때 Image와 Popularity의 스타일을 변경해준다. */
   /* ${Image}라고 적어준 이유는 Image는 const로 선언된 변수이기 때문에 자바스크립트를 쓸 수 있는 $중괄호 형태로 묶어줘야 한다. */
   &:hover {
     ${Image} {
@@ -89,7 +110,7 @@ const PosterContainer = styled.div`
     ${Overview} {
       opacity: 1;
     }
-    ${Rating} {
+    ${Popularity} {
       opacity: 1;
     }
   }
@@ -117,7 +138,7 @@ const ScLink = styled(Link)`
 `;
 
 // Poster함수는 id, imageUrl, title, isMovie등의 파라미터를 받고 isMovie파라미터의 기본값으로는 false로 설정해줬다.
-const Poster = ({ id, imageUrl, title, rating, year, isMovie = false, overview }) => {
+const Poster = ({ id, imageUrl, title, rating, year, isMovie = false, overview, popularity }) => {
   return (
     // react-router-dom이 가지고 있는 Link컴포넌트를 통해 조건에 따라 각각의 라우터로 이동시키고 컴포넌트를 랜더한다.
     // Link컴포넌트에 to속성에 라우터 URL를 지정해주고 isMovie가 true이면 /movie/${id}로 false면 /tv/${id}로 URL을 이동시키고 아래 <Container>컴포넌트를 랜더한다.
@@ -135,16 +156,21 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false, overview }
           {/* {console.log(require("../assets/noPoster.png"))} */}
           <Image imageUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}` : noPoster}></Image>
           <Overview>{overview ? `${overview.substring(0, 130)}..` : title}</Overview>
-          <Rating>
-            관람평
-            <RatingChild>{rating}</RatingChild>
-          </Rating>
+          <Popularity>
+            순위<PopularityChild>{popularity}</PopularityChild>
+          </Popularity>
         </PosterContainer>
 
         <ContentContainer>
           {/* title.length를 체크해서 15보다 크면 substring(0,15)를 통해 0부터 15까지의 글자수만 전달하도록 한다. */}
           <Title>{title.length > 15 ? `${title.substring(0, 15)}..` : title}</Title>
-          <Year>{year}</Year>
+
+          <YearRatingContainer>
+            <Year>개봉일 {year}</Year>
+            <ContentRating>
+              관람평<ContentRatingChild>{rating}</ContentRatingChild>
+            </ContentRating>
+          </YearRatingContainer>
         </ContentContainer>
       </Container>
     </ScLink>
@@ -158,6 +184,8 @@ Poster.propTypes = {
   rating: PropTypes.number,
   year: PropTypes.string,
   isMovie: PropTypes.bool,
+  overview: PropTypes.string,
+  popularity: PropTypes.number,
 };
 
 export default Poster;

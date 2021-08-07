@@ -24,8 +24,17 @@ export default () => {
       {/* 만약 배포를 github에 하려고 gh-pages를 설치하고 배포한다면 BrowserRouter보다는 HashRouter를 사용하는 것이 덜 충돌이 생긴다. */}
       <Switch>
         <Route path="/" exact component={Home}></Route>
+
         <Route path="/movie" exact component={Movie}></Route>
+        <Route path="/movie/popular" exact component={Movie}></Route>
+        <Route path="/movie/now-playing" exact component={Movie}></Route>
+        <Route path="/movie/upcoming" exact component={Movie}></Route>
+        <Route path="/movie/top-rated" exact component={Movie}></Route>
+
         <Route path="/tv" exact component={TV}></Route>
+        <Route path="/tv/airing-today" exact component={TV}></Route>
+        <Route path="/tv/on-the-air" exact component={TV}></Route>
+        <Route path="/tv/top-rated" exact component={TV}></Route>
 
         {/* 아래와 같이 component가 아닌 render를 통해서도 함수를 실행하고 리턴해서 보여줄 수 있다. */}
         {/* <Route path="/tv/abc" render={() => <h1>TV abc</h1>}></Route> */}

@@ -7,6 +7,7 @@ class TVContainer extends React.Component {
     topRated: null,
     popular: null,
     airingToday: null,
+    onTheAir: null,
     error: null,
     loading: true,
   };
@@ -26,7 +27,12 @@ class TVContainer extends React.Component {
       const {
         data: { results: airingToday },
       } = await tvApi.airingToday();
-      // console.log(topRated, popular, airingToday);
+
+      const {
+        data: { results: onTheAir },
+      } = await tvApi.onTheAir();
+
+      // console.log(topRated, popular, airingToday, onTheAir);
 
       // throw Error();
 
@@ -34,6 +40,7 @@ class TVContainer extends React.Component {
         topRated,
         popular,
         airingToday,
+        onTheAir,
       });
     } catch {
       this.setState({
@@ -47,10 +54,10 @@ class TVContainer extends React.Component {
   }
 
   render() {
-    const { topRated, popular, airingToday, error, loading } = this.state;
+    const { topRated, popular, airingToday, onTheAir, error, loading } = this.state;
     // console.log(this.state);
 
-    return <TYPresenter topRated={topRated} popular={popular} airingToday={airingToday} error={error} loading={loading} />;
+    return <TYPresenter topRated={topRated} popular={popular} airingToday={airingToday} onTheAir={onTheAir} error={error} loading={loading} />;
   }
 }
 

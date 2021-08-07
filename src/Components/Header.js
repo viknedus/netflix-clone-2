@@ -23,9 +23,11 @@ const HeaderContainer = styled.header`
   transform: translate(-50%);
   display: flex;
   background-color: transparent;
+  background-color: black;
   z-index: 100;
   padding: 15px 40px;
   width: 100%;
+  border-bottom: 5px solid rgb(25, 25, 25);
 `;
 
 const Ul = styled.ul`
@@ -36,9 +38,9 @@ const Ul = styled.ul`
 
 const Image = styled.div`
   background: url(${netflixLogo}) no-repeat center center;
-  background-size: cover;
+  background-size: 160px;
   margin-right: auto;
-  width: 187px;
+  width: 160px;
 `;
 
 const Li = styled.li`
@@ -89,18 +91,18 @@ const Header = ({ location: { pathname } }) => {
             홈
           </ScLink>
         </Li>
-        <Li current={pathname === "/movie" && true}>
-          <ScLink to="/movie" current={pathname === "/movie" && true}>
+        <Li current={pathname.includes("/movie") && true}>
+          <ScLink to="/movie" current={pathname.includes("/movie") && true}>
             영화
           </ScLink>
         </Li>
-        <Li current={pathname === "/tv" && true}>
-          <ScLink to="/tv" current={pathname === "/tv" && true}>
+        <Li current={pathname.includes("/tv") && true}>
+          <ScLink to="/tv" current={pathname.includes("/tv") && true}>
             TV
           </ScLink>
         </Li>
-        <Li current={pathname === "/search" && true}>
-          <ScLink to="/search" current={pathname === "/search" && true}>
+        <Li current={pathname.includes("/search") && true}>
+          <ScLink to="/search" current={pathname.includes("/search") && true}>
             검색
           </ScLink>
         </Li>

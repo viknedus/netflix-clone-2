@@ -17,14 +17,15 @@ const Container = styled.div`
 `;
 
 const HomeContainer = styled.div`
+  width: 100%;
   height: 100%;
 `;
 
 const Iframe = styled.iframe`
-  width: 100vw;
+  width: 100%;
   height: 100%;
   z-index: -1;
-  opacity: 0.5;
+  opacity: 0.65;
 
   &::after {
     content: "";
@@ -33,14 +34,14 @@ const Iframe = styled.iframe`
     left: 0;
     width: 100%;
     height: 100%;
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
   }
 `;
 
 const Content = styled.div`
   color: white;
   position: absolute;
-  top: 36%;
+  top: 39%;
   left: 40px;
   transform: translateY(-50%);
   width: 550px;

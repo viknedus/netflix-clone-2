@@ -6,7 +6,7 @@ const Container = styled.div`
   padding: 40px;
   padding-top: 50px;
   padding-bottom: 0;
-  border: 3px solid yellow;
+  /* border: 3px solid yellow; */
 
   /* :not(:last-child)를 통해 마지막 Container를 제외한 나머지 것들에 스타일을 준다. */
   :not(:last-child) {
@@ -36,7 +36,7 @@ const Children = styled.div`
 const Section = ({ title, children }) => {
   return (
     <Container>
-      <Title>{title}</Title>
+      {/* <Title>{title}</Title> */}
       <Children>{children}</Children>
     </Container>
   );
