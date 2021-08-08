@@ -51,6 +51,10 @@ export const moviesApi = {
         append_to_response: "videos",
       },
     }),
+  similarMovies: (id) => api.get(`/movie/${id}/similar`),
+  recommendations: (id) => api.get(`/movie/${id}/recommendations`),
+  credits: (id) => api.get(`/movie/${id}/credits`),
+  keywords: (id) => api.get(`/movie/${id}/keywords`),
 
   // search함수는 term값을 받고 term을 이용해서 검색한다.
   // 위에 movieDetail은 append_to_response에 값을 넣어 전달했지만 아래 search는 params로 query안에 값을 전달해야 한다.
@@ -68,6 +72,7 @@ export const moviesApi = {
         // query: encodeURIComponent(term),
       },
     }),
+
   nowPlaying2: () =>
     api.get(`movie/now_playing`, {
       params: {
