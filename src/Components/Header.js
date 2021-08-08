@@ -23,11 +23,13 @@ const HeaderContainer = styled.header`
   transform: translate(-50%);
   display: flex;
   /* background-color: transparent; */
-  background-color: black;
+  /* background-color: black; */
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
   z-index: 100;
   padding: 15px 40px;
   width: 100%;
-  border-bottom: 5px solid rgb(25, 25, 25);
+  /* border-bottom: 1px solid rgb(25, 25, 25); */
 `;
 
 const Ul = styled.ul`

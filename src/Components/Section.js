@@ -26,8 +26,8 @@ const Children = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
+  max-width: 2400px;
   flex-wrap: wrap;
-  width: 2400px;
 `;
 
 // children은 리액트가 가지고 있는 예약된 props이다.

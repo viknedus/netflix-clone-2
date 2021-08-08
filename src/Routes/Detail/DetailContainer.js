@@ -20,6 +20,10 @@ class DetailContainer extends React.Component {
       error: null,
       lodaing: true,
       isMovie: pathname.includes("/movie/"),
+      recommendations: null,
+      cast: null,
+      keywords: null,
+      reviews: null,
     };
   }
 
@@ -34,8 +38,6 @@ class DetailContainer extends React.Component {
       history: { push },
       location: { pathname },
     } = this.props;
-
-    // console.log(this.props);
 
     // parseInt()함수를 통해 id를 숫자로 변환한다.
     const parsedId = parseInt(id);
@@ -66,6 +68,38 @@ class DetailContainer extends React.Component {
         // 전체에 ()괄호를 쳐주게 되면 바로 객체 안으로 들어가게 되고 거기에 data프로퍼티를 뽑아와서 그 data프로퍼티의 이름을 result로 변경한 것이다.
         // ()괄호를 쳐주게 되면 ({data:  result} = await moviesApi.movieDetail(parsedId)); 는 const = {data : result}와 같은 의미이다.
         ({ data: result } = await moviesApi.movieDetail(parsedId));
+
+        const {
+          data: { results: similarMovies },
+        } = await moviesApi.similarMovies(parsedId);
+        // console.log(similarMovies);
+
+        const {
+          data: { results: recommendations },
+        } = await moviesApi.recommendations(parsedId);
+        // console.log(recommendations);
+
+        const {
+          data: { cast },
+        } = await moviesApi.credits(parsedId);
+        // console.log(cast);
+
+        const {
+          data: { keywords },
+        } = await moviesApi.keywords(parsedId);
+        // console.log(keywords);
+
+        const {
+          data: { results: reviews },
+        } = await moviesApi.reviews(parsedId);
+        // console.log(reviews);
+
+        this.setState({
+          recommendations,
+          cast,
+          keywords,
+          reviews,
+        });
       } else {
         // const request = await tvApi.tvDetail(parsedId);
         // result = request.data;
@@ -84,12 +118,10 @@ class DetailContainer extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
-
-    const { result, error, loading } = this.state;
+    const { result, error, loading, isMovie, recommendations, cast, keywords, reviews } = this.state;
     // console.log(this.state);
 
-    return <DetailPresenter result={result} error={error} loading={loading} />;
+    return <DetailPresenter result={result} error={error} loading={loading} isMovie={isMovie} recommendations={recommendations} cast={cast} keywords={keywords} reviews={reviews} />;
   }
 }
 

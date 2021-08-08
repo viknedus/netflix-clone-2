@@ -18,17 +18,14 @@ class MovieContainer extends React.Component {
       const {
         data: { results: nowPlaying },
       } = await moviesApi.nowPlaying();
-      // console.log(nowPlaying);
 
       const {
         data: { results: upcoming },
       } = await moviesApi.upcoming();
-      // console.log(upcoming);
 
       const {
         data: { results: popular },
       } = await moviesApi.popular();
-      // console.log(popular);
 
       const {
         data: { results: topRated },
@@ -38,7 +35,6 @@ class MovieContainer extends React.Component {
         data: { results: nowPlaying2 },
       } = await moviesApi.nowPlaying2();
 
-      // console.log("nowPlaying2", nowPlaying2);
       this.setState({
         nowPlaying,
         upcoming,
