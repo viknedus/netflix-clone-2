@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Helmet from "react-helmet";
+import noActor from "../../assets/noActor.png";
 
 const Container = styled.div`
   width: 100%;
@@ -30,42 +31,124 @@ const Content = styled.div`
   height: 100%;
   position: relative;
   z-index: 1;
+  flex-direction: column;
+  font-family: "Do Hyeon", sans-serif;
+  border: 3px solid red;
 `;
 
 const CoverContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  height: 700px;
+  color: white;
+  border: 3px solid blue;
+`;
+
+const CoverLink = styled.a`
+  width: 100%;
 `;
 
 const Cover = styled.div`
-  width: 200px;
-  height: 350px;
+  width: 100%;
+  height: 430px;
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
-  flex: 2;
+  border-radius: 15px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 7px 10px, rgb(0 0 0 / 24%) 0px -12px 30px, rgb(0 0 0 / 24%) 0px 4px 6px, rgb(0 0 0 / 34%) 0px 12px 13px, rgb(0 0 0 / 18%) 0px -3px 5px;
+  transition: 0.5s;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 `;
 
+const CoverHeading = styled.div`
+  display: flex;
+`;
+
+const CoverMiddle = styled.div``;
+
 const Data = styled.div`
-  width: 70%;
-  flex: 8;
+  padding-left: 30px;
 `;
 
 const Title = styled.h1`
-  font-size: 30px;
   margin-bottom: 20px;
+  font-size: 36px;
 `;
 
-const ItemContainer = styled.div``;
+const SubTitle = styled.h2`
+  font-size: 22px;
+  margin-top: 25px;
+  margin-bottom: 16px;
+  font-style: italic;
+`;
+
+const GenreContainer = styled.div`
+  font-size: 18px;
+  color: gray;
+  margin-bottom: 6px;
+`;
+
+const DateRunTimeContainer = styled.div`
+  font-size: 18px;
+  color: gray;
+`;
+
+const VoteContainer = styled.div`
+  font-size: 18px;
+  color: white;
+  margin-top: 14px;
+`;
+
+const VoteStrong = styled.strong`
+  font-size: 22px;
+  color: dodgerblue;
+  margin-left: 7px;
+`;
+
+const Divider = styled.span`
+  color: gray;
+  font-size: 18px;
+`;
+
+const Overview = styled.p`
+  font-size: 20px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  margin-top: 30px;
+`;
 
 const Item = styled.span``;
 
-const Divider = styled.span``;
+const Keywords = styled.span``;
 
-const Overview = styled.p`
-  margin-top: 30px;
-  line-height: 1.5;
+const ActorContainer = styled.div`
+  border: 3px solid orange;
 `;
 
-const ActorContainer = styled.div``;
+const ActorTitle = styled.h1``;
+
+const ActorImageContainer = styled.div`
+  border: 3px solid purple;
+`;
+
+const ActorImage = styled.div`
+  border: 3px solid yellow;
+`;
+
+const ActorPhoto = styled.div`
+  background: url(${(props) => (props.bgUrl ? `https://image.tmdb.org/t/p/w500${props.bgUrl}` : noActor)}) no-repeat center center;
+  background-size: cover;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+`;
+
+const ActorName = styled.h2``;
+
+const ActorCharacter = styled.p``;
 
 const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews }) => {
   // console.log(result, error, loading);
@@ -85,29 +168,55 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
       <BlurBackground imageUrl={result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` : `https://image.tmdb.org/t/p/original${result.poster_path}`}></BlurBackground>
       <Content>
         <CoverContainer>
-          <Cover imageUrl={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : `https://image.tmdb.org/t/p/original${result.backdrop_path}`}></Cover>
-          <Data>
-            <Title>{result.title ? result.title : result.name}</Title>
-            <ItemContainer>
-              <Item>{result.release_date ? result.release_date.substring(0, 4) : result.first_air_date.substring(0, 4)}</Item>
-              <Divider>▪</Divider>
-              <Item>{result.runtime ? result.runtime : result.episode_run_time}분</Item>
-              <Divider>▪</Divider>
+          <CoverHeading>
+            <CoverLink href={result.homepage ? result.homepage : "#"}>
+              <Cover imageUrl={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : `https://image.tmdb.org/t/p/original${result.backdrop_path}`}></Cover>
+            </CoverLink>
+            <Data>
+              <Title>{result.title ? result.title : result.name}</Title>
+              <SubTitle>{result.tagline ? result.tagline : ""}</SubTitle>
+              <GenreContainer>
+                {/* {조건 ? 참: 거짓}과 {조건 && 구문}의 차이점 */}
+                {/* {조건 ? 참: 거짓} : 조건이 true이면 참, false이면 거짓을 실행한다. {조건 && 구문} : 조건이 true이면 && 뒤에 구문을 실행한다. */}
+                {/* 만약 result.genres가 존재해서 true면 result.genres.map()함수를 실행한다. */}
+                {/* result.genres.map()함수는 매개변수로 genres와 index를 받고 index와 result.genres배열의 길이가 같아지면 genre.name를 출력하고 그렇지 않을 때는 genre.name /을 출력한다. */}
+                {/* Family / Drama 이런식으로 맨 마지막 장르 Drama에서는 /가 붙지 않게 하기 위해서 아래와 같이 코드를 짰다. */}
+                <Item>{result.genres && result.genres.map((genre, index) => (index === result.genres.length - 1 ? genre.name : `${genre.name}▪`))}</Item>
+              </GenreContainer>
+              <DateRunTimeContainer>
+                <Item>{result.release_date ? result.release_date : result.first_air_date}</Item>
+                <Divider>▪</Divider>
+                <Item>{result.runtime ? result.runtime : result.episode_run_time}분</Item>
+              </DateRunTimeContainer>
+              <VoteContainer>
+                <Item>
+                  관람평
+                  <VoteStrong>{result.vote_average && result.vote_average}</VoteStrong>
+                </Item>
+              </VoteContainer>
+              <Overview>{result.overview && result.overview}</Overview>
+              <Keywords>{keywords ? keywords.map((keyword) => keyword.name + "⭐") : ""}</Keywords>
+            </Data>
+          </CoverHeading>
 
-              {/* {조건 ? 참: 거짓}과 {조건 && 구문}의 차이점 */}
-              {/* {조건 ? 참: 거짓} : 조건이 true이면 참, false이면 거짓을 실행한다. {조건 && 구문} : 조건이 true이면 && 뒤에 구문을 실행한다. */}
-              {/* 만약 result.genres가 존재해서 true면 result.genres.map()함수를 실행한다. */}
-              {/* result.genres.map()함수는 매개변수로 genres와 index를 받고 index와 result.genres배열의 길이가 같아지면 genre.name를 출력하고 그렇지 않을 때는 genre.name /을 출력한다. */}
-              {/* Family / Drama 이런식으로 맨 마지막 장르 Drama에서는 /가 붙지 않게 하기 위해서 아래와 같이 코드를 짰다. */}
-              <Item>{result.genres && result.genres.map((genre, index) => (index === result.genres.length - 1 ? genre.name : `${genre.name} / `))}</Item>
-              <Divider>▪</Divider>
-              <Item>⭐{result.vote_average && result.vote_average}/10</Item>
-            </ItemContainer>
-            <Overview>{result.overview && result.overview}</Overview>
-          </Data>
+          <CoverMiddle>
+            <ActorContainer>
+              <ActorTitle>배우들</ActorTitle>
+              <ActorImageContainer>
+                {cast &&
+                  cast.map((cast) => {
+                    return (
+                      <ActorImage>
+                        <ActorPhoto bgUrl={cast.profile_path}></ActorPhoto>
+                        <ActorName>{cast.name}</ActorName>
+                        <ActorCharacter>{cast.character}</ActorCharacter>
+                      </ActorImage>
+                    );
+                  })}
+              </ActorImageContainer>
+            </ActorContainer>
+          </CoverMiddle>
         </CoverContainer>
-
-        <ActorContainer></ActorContainer>
       </Content>
     </Container>
   );
