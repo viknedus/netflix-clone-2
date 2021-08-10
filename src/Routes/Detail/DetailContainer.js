@@ -24,6 +24,7 @@ class DetailContainer extends React.Component {
       cast: null,
       keywords: null,
       reviews: null,
+      changes: null,
     };
   }
 
@@ -94,11 +95,16 @@ class DetailContainer extends React.Component {
         } = await moviesApi.reviews(parsedId);
         // console.log(reviews);
 
+        const {
+          data: { changes },
+        } = await moviesApi.changes(parsedId);
+
         this.setState({
           recommendations,
           cast,
           keywords,
           reviews,
+          changes: changes.length > 0 && changes[2].items,
         });
       } else {
         // const request = await tvApi.tvDetail(parsedId);
@@ -118,10 +124,10 @@ class DetailContainer extends React.Component {
   }
 
   render() {
-    const { result, error, loading, isMovie, recommendations, cast, keywords, reviews } = this.state;
+    const { result, error, loading, isMovie, recommendations, cast, keywords, reviews, changes } = this.state;
     // console.log(this.state);
 
-    return <DetailPresenter result={result} error={error} loading={loading} isMovie={isMovie} recommendations={recommendations} cast={cast} keywords={keywords} reviews={reviews} />;
+    return <DetailPresenter result={result} error={error} loading={loading} isMovie={isMovie} recommendations={recommendations} cast={cast} keywords={keywords} reviews={reviews} changes={changes} />;
   }
 }
 

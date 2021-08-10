@@ -5,6 +5,8 @@ import Message from "Components/Message";
 import Helmet from "react-helmet";
 import noPoster from "../../assets/noPoster.png";
 import noActor from "../../assets/noActor.png";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 const Container = styled.div`
   width: 100%;
@@ -245,9 +247,8 @@ const ActorCharacter = styled.p`
 `;
 
 const CompanyContainer = styled.div`
-  border-top: 1px solid gray;
+  /* border-top: 1px solid gray; */
   margin-top: 100px;
-  padding-top: 30px;
 `;
 
 const CompanyTitle = styled.div`
@@ -286,8 +287,31 @@ const Budget = styled.h2``;
 
 const Revenue = styled.h2``;
 
-const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews }) => {
+const SplideContainer = styled.div`
+  border-top: 1px solid gray;
+  margin-top: 100px;
+  padding-top: 30px;
+`;
+
+const SplideTitle = styled.h1`
+  font-size: 25px;
+  margin-bottom: 30px;
+`;
+
+const SplideLink = styled.a`
+  height: 100%;
+  display: inline-block;
+`;
+
+const SplideImage = styled.img`
+  width: 100%;
+  cursor: pointer;
+`;
+
+const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, changes }) => {
   // console.log(result, error, loading);
+
+  console.log("changes", changes);
 
   return loading ? (
     <Loader></Loader>
@@ -333,56 +357,12 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               <Overview>{result.overview && result.overview}</Overview>
               <Keywords>
                 <KeywordTitle>키워드</KeywordTitle>
-                <KeywordContent>{keywords ? keywords.map((keyword) => <KeywordSpan>{"*" + keyword.name}</KeywordSpan>) : ""}</KeywordContent>
+                <KeywordContent>{keywords ? keywords.map((keyword) => <KeywordSpan>{"#" + keyword.name}</KeywordSpan>) : ""}</KeywordContent>
               </Keywords>
             </Data>
           </CoverHeading>
 
           <CoverMiddle>
-            <TeaserContainer>
-              <TeaserTitle>트레일러</TeaserTitle>
-              <TeaserVideo>
-                {result.videos && result.videos.results[0] && result.videos.results[0].key && (
-                  <IframeContainer>
-                    <Iframe
-                      src={`https://www.youtube.com/embed/${result.videos.results[0].key}?playlist=${result.videos.results[0].key}`}
-                      width="420"
-                      height="290"
-                      frameborder="0"
-                      allow="autoplay; fullscreen"
-                    ></Iframe>
-                    <IframeDesc>{result.videos.results[0].name && result.videos.results[0].name}</IframeDesc>
-                  </IframeContainer>
-                )}
-
-                {result.videos && result.videos.results[1] && result.videos.results[1].key && (
-                  <IframeContainer>
-                    <Iframe
-                      src={`https://www.youtube.com/embed/${result.videos.results[1].key}?playlist=${result.videos.results[1].key}`}
-                      width="420"
-                      height="290"
-                      frameborder="0"
-                      allow="autoplay; fullscreen"
-                    ></Iframe>
-                    <IframeDesc>{result.videos.results[1].name && result.videos.results[1].name}</IframeDesc>
-                  </IframeContainer>
-                )}
-
-                {result.videos && result.videos.results[2] && result.videos.results[2].key && (
-                  <IframeContainer>
-                    <Iframe
-                      src={`https://www.youtube.com/embed/${result.videos.results[2].key}?playlist=${result.videos.results[2].key}`}
-                      width="420"
-                      height="290"
-                      frameborder="0"
-                      allow="autoplay; fullscreen"
-                    ></Iframe>
-                    <IframeDesc>{result.videos.results[2].name && result.videos.results[2].name}</IframeDesc>
-                  </IframeContainer>
-                )}
-              </TeaserVideo>
-            </TeaserContainer>
-
             <ActorContainer>
               <ActorTitle>배우</ActorTitle>
               <ActorImageContainer>
@@ -399,22 +379,94 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                     )
                   )}
               </ActorImageContainer>
+
+              <CompanyContainer>
+                <CompanyTitle>제작사</CompanyTitle>
+                <CompanyContent>
+                  <CompanyImage bgUrl={result.production_companies[0].logo_path}></CompanyImage>
+                  <CompanyName>
+                    {result.production_companies[0].name} ({result.production_companies[0].origin_country})
+                  </CompanyName>
+                </CompanyContent>
+                <CompanyMoney>
+                  <Budget>예산: ${result.budget.toLocaleString("KR")}</Budget>
+                  <CompanyDivider>/</CompanyDivider>
+                  <Revenue>수익: ${result.revenue.toLocaleString("KR")}</Revenue>
+                </CompanyMoney>
+              </CompanyContainer>
             </ActorContainer>
 
-            <CompanyContainer>
-              <CompanyTitle>제작사</CompanyTitle>
-              <CompanyContent>
-                <CompanyImage bgUrl={result.production_companies[0].logo_path}></CompanyImage>
-                <CompanyName>
-                  {result.production_companies[0].name} ({result.production_companies[0].origin_country})
-                </CompanyName>
-              </CompanyContent>
-              <CompanyMoney>
-                <Budget>예산: ${result.budget.toLocaleString("KR")}</Budget>
-                <CompanyDivider>/</CompanyDivider>
-                <Revenue>수익: ${result.revenue.toLocaleString("KR")}</Revenue>
-              </CompanyMoney>
-            </CompanyContainer>
+            <TeaserContainer>
+              <TeaserTitle>트레일러</TeaserTitle>
+              <TeaserVideo>
+                {result.videos && result.videos.results[0] && result.videos.results[0].key && (
+                  <IframeContainer>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${result.videos.results[0].key}?playlist=${result.videos.results[0].key}`}
+                      width="420"
+                      height="280"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
+                    <IframeDesc>{result.videos.results[0].name && result.videos.results[0].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+
+                {result.videos && result.videos.results[1] && result.videos.results[1].key && (
+                  <IframeContainer>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${result.videos.results[1].key}?playlist=${result.videos.results[1].key}`}
+                      width="420"
+                      height="280"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
+                    <IframeDesc>{result.videos.results[1].name && result.videos.results[1].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+
+                {result.videos && result.videos.results[2] && result.videos.results[2].key && (
+                  <IframeContainer>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${result.videos.results[2].key}?playlist=${result.videos.results[2].key}`}
+                      width="420"
+                      height="280"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
+                    <IframeDesc>{result.videos.results[2].name && result.videos.results[2].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+              </TeaserVideo>
+            </TeaserContainer>
+
+            <SplideContainer>
+              <SplideTitle>스틸컷</SplideTitle>
+              <Splide
+                options={{
+                  rewind: true,
+                  perPage: 3,
+                  perMove: 1,
+                  gap: "1rem",
+                }}
+              >
+                {changes &&
+                  changes.map(
+                    (image) =>
+                      image.action &&
+                      image.action === "added" &&
+                      image.value &&
+                      image.value.backdrop &&
+                      image.value.backdrop.file_path && (
+                        <SplideSlide>
+                          <SplideLink href={`https://image.tmdb.org/t/p/original${image.value.backdrop.file_path}`} target="_blank">
+                            <SplideImage src={`https://image.tmdb.org/t/p/original${image.value.backdrop.file_path}`} alt="" />
+                          </SplideLink>
+                        </SplideSlide>
+                      )
+                  )}
+              </Splide>
+            </SplideContainer>
           </CoverMiddle>
         </CoverContainer>
       </Content>
