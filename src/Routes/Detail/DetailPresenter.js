@@ -3,12 +3,14 @@ import styled from "styled-components";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Helmet from "react-helmet";
+import noPoster from "../../assets/noPoster.png";
 import noActor from "../../assets/noActor.png";
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
+  height: 400vh;
 `;
 
 const BlurBackground = styled.div`
@@ -25,7 +27,7 @@ const BlurBackground = styled.div`
 
 const Content = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -42,7 +44,8 @@ const CoverContainer = styled.div`
   max-width: 1280px;
   height: 700px;
   color: white;
-  border: 3px solid blue;
+  margin-top: 50px;
+  /* border: 3px solid blue; */
 `;
 
 const CoverLink = styled.a`
@@ -122,20 +125,95 @@ const Overview = styled.p`
 
 const Item = styled.span``;
 
-const Keywords = styled.span``;
-
-const ActorContainer = styled.div`
-  border: 3px solid orange;
+const Keywords = styled.div`
+  margin-top: 35px;
 `;
 
-const ActorTitle = styled.h1``;
+const KeywordTitle = styled.h1`
+  font-size: 18px;
+  color: gray;
+`;
+
+const KeywordContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 15px;
+`;
+
+const KeywordSpan = styled.span`
+  color: #fed330;
+  border: 1px solid #fed330;
+  background-color: transparent;
+  padding: 7px 12px;
+  box-sizing: border-box;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+  border-radius: 5px;
+
+  &:hover {
+    color: white;
+    background-color: #fed330;
+  }
+`;
+
+const TeaserContainer = styled.div`
+  border-top: 1px solid gray;
+  margin-top: 100px;
+  padding-top: 30px;
+`;
+
+const TeaserTitle = styled.h1`
+  font-size: 25px;
+`;
+
+const TeaserVideo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+`;
+
+const IframeContainer = styled.div``;
+
+const Iframe = styled.iframe`
+  margin-right: 15px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+`;
+
+const IframeDesc = styled.h2`
+  margin-top: 10px;
+  font-size: 20px;
+`;
+
+const ActorContainer = styled.div`
+  border-top: 1px solid gray;
+  margin-top: 100px;
+  padding-top: 30px;
+`;
+
+const ActorTitle = styled.h1`
+  font-size: 25px;
+`;
 
 const ActorImageContainer = styled.div`
-  border: 3px solid purple;
+  display: flex;
+  margin-top: 20px;
 `;
 
 const ActorImage = styled.div`
-  border: 3px solid yellow;
+  margin-right: 30px;
+  text-align: center;
+  width: 120px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 
 const ActorPhoto = styled.div`
@@ -144,11 +222,69 @@ const ActorPhoto = styled.div`
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 5px solid white;
+
+  &:hover {
+    border: 5px solid #fed330;
+    transform: scale(1.08);
+  }
 `;
 
-const ActorName = styled.h2``;
+const ActorName = styled.h2`
+  margin-top: 15px;
+  height: 30px;
+  font-size: 16px;
+`;
 
-const ActorCharacter = styled.p``;
+const ActorCharacter = styled.p`
+  color: gray;
+  margin-top: 10px;
+  font-size: 14px;
+`;
+
+const CompanyContainer = styled.div`
+  border-top: 1px solid gray;
+  margin-top: 100px;
+  padding-top: 30px;
+`;
+
+const CompanyTitle = styled.div`
+  font-size: 25px;
+`;
+
+const CompanyContent = styled.div`
+  margin-top: 30px;
+`;
+
+const CompanyName = styled.h2`
+  font-size: 20px;
+  margin-top: 20px;
+`;
+
+const CompanyImage = styled.div`
+  background: url(${(props) => (props.bgUrl ? `https://image.tmdb.org/t/p/w500${props.bgUrl}` : noPoster)}) no-repeat center left;
+  background-size: contain;
+  height: 70px;
+  max-height: 70px;
+`;
+
+const CompanyMoney = styled.div`
+  font-size: 25px;
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  color: #fed330;
+`;
+
+const CompanyDivider = styled.div`
+  margin: 0 8px;
+`;
+
+const Budget = styled.h2``;
+
+const Revenue = styled.h2``;
 
 const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews }) => {
   // console.log(result, error, loading);
@@ -190,31 +326,95 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               </DateRunTimeContainer>
               <VoteContainer>
                 <Item>
-                  관람평
+                  평점
                   <VoteStrong>{result.vote_average && result.vote_average}</VoteStrong>
                 </Item>
               </VoteContainer>
               <Overview>{result.overview && result.overview}</Overview>
-              <Keywords>{keywords ? keywords.map((keyword) => keyword.name + "⭐") : ""}</Keywords>
+              <Keywords>
+                <KeywordTitle>키워드</KeywordTitle>
+                <KeywordContent>{keywords ? keywords.map((keyword) => <KeywordSpan>{"*" + keyword.name}</KeywordSpan>) : ""}</KeywordContent>
+              </Keywords>
             </Data>
           </CoverHeading>
 
           <CoverMiddle>
+            <TeaserContainer>
+              <TeaserTitle>트레일러</TeaserTitle>
+              <TeaserVideo>
+                {result.videos && result.videos.results[0] && result.videos.results[0].key && (
+                  <IframeContainer>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${result.videos.results[0].key}?playlist=${result.videos.results[0].key}`}
+                      width="420"
+                      height="290"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
+                    <IframeDesc>{result.videos.results[0].name && result.videos.results[0].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+
+                {result.videos && result.videos.results[1] && result.videos.results[1].key && (
+                  <IframeContainer>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${result.videos.results[1].key}?playlist=${result.videos.results[1].key}`}
+                      width="420"
+                      height="290"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
+                    <IframeDesc>{result.videos.results[1].name && result.videos.results[1].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+
+                {result.videos && result.videos.results[2] && result.videos.results[2].key && (
+                  <IframeContainer>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${result.videos.results[2].key}?playlist=${result.videos.results[2].key}`}
+                      width="420"
+                      height="290"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
+                    <IframeDesc>{result.videos.results[2].name && result.videos.results[2].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+              </TeaserVideo>
+            </TeaserContainer>
+
             <ActorContainer>
-              <ActorTitle>배우들</ActorTitle>
+              <ActorTitle>배우</ActorTitle>
               <ActorImageContainer>
                 {cast &&
-                  cast.map((cast) => {
-                    return (
+                  cast.map((cast, index) =>
+                    index < 7 ? (
                       <ActorImage>
                         <ActorPhoto bgUrl={cast.profile_path}></ActorPhoto>
                         <ActorName>{cast.name}</ActorName>
                         <ActorCharacter>{cast.character}</ActorCharacter>
                       </ActorImage>
-                    );
-                  })}
+                    ) : (
+                      ""
+                    )
+                  )}
               </ActorImageContainer>
             </ActorContainer>
+
+            <CompanyContainer>
+              <CompanyTitle>제작사</CompanyTitle>
+              <CompanyContent>
+                <CompanyImage bgUrl={result.production_companies[0].logo_path}></CompanyImage>
+                <CompanyName>
+                  {result.production_companies[0].name} ({result.production_companies[0].origin_country})
+                </CompanyName>
+              </CompanyContent>
+              <CompanyMoney>
+                <Budget>예산: ${result.budget.toLocaleString("KR")}</Budget>
+                <CompanyDivider>/</CompanyDivider>
+                <Revenue>수익: ${result.revenue.toLocaleString("KR")}</Revenue>
+              </CompanyMoney>
+            </CompanyContainer>
           </CoverMiddle>
         </CoverContainer>
       </Content>

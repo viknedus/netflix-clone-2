@@ -138,7 +138,7 @@ const HomePresenter = ({ movieDetail, error, loading }) => {
                 <Runtime>{movieDetail.runtime}분</Runtime>
               </YearRuntimeContainer>
               <Rating>
-                관람평
+                평점
                 <RatingChild>{movieDetail.vote_average}</RatingChild>
               </Rating>
               <Overview>{movieDetail.overview.substring(0, 310)}..</Overview>
