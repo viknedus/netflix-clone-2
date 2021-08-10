@@ -63,7 +63,7 @@ const ButtonLink = styled(Link)`
 `;
 
 const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 }) => {
-  console.log(nowPlaying, upcoming, popular, topRated, error, loading);
+  // console.log(nowPlaying, upcoming, popular, topRated, error, loading);
 
   const {
     location: { hash },

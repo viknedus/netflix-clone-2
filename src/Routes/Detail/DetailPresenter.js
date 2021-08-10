@@ -308,10 +308,8 @@ const SplideImage = styled.img`
   cursor: pointer;
 `;
 
-const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, changes }) => {
+const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, backdrops, posters }) => {
   // console.log(result, error, loading);
-
-  console.log("changes", changes);
 
   return loading ? (
     <Loader></Loader>
@@ -389,9 +387,9 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                   </CompanyName>
                 </CompanyContent>
                 <CompanyMoney>
-                  <Budget>예산: ${result.budget.toLocaleString("KR")}</Budget>
+                  <Budget>예산: ${result.budget && result.budget.toLocaleString("KR")}</Budget>
                   <CompanyDivider>/</CompanyDivider>
-                  <Revenue>수익: ${result.revenue.toLocaleString("KR")}</Revenue>
+                  <Revenue>수익: ${result.revenue && result.revenue.toLocaleString("KR")}</Revenue>
                 </CompanyMoney>
               </CompanyContainer>
             </ActorContainer>
@@ -450,17 +448,13 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                   gap: "1rem",
                 }}
               >
-                {changes &&
-                  changes.map(
-                    (image) =>
-                      image.action &&
-                      image.action === "added" &&
-                      image.value &&
-                      image.value.backdrop &&
-                      image.value.backdrop.file_path && (
+                {backdrops &&
+                  backdrops.map(
+                    (backdrop) =>
+                      backdrop.file_path && (
                         <SplideSlide>
-                          <SplideLink href={`https://image.tmdb.org/t/p/original${image.value.backdrop.file_path}`} target="_blank">
-                            <SplideImage src={`https://image.tmdb.org/t/p/original${image.value.backdrop.file_path}`} alt="" />
+                          <SplideLink href={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} target="_blank">
+                            <SplideImage src={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} alt="" />
                           </SplideLink>
                         </SplideSlide>
                       )

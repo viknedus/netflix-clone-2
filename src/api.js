@@ -56,7 +56,12 @@ export const moviesApi = {
   credits: (id) => api.get(`/movie/${id}/credits`),
   keywords: (id) => api.get(`/movie/${id}/keywords`),
   reviews: (id) => api.get(`/movie/${id}/reviews`),
-  changes: (id) => api.get(`/movie/${id}/changes`),
+  images: (id) =>
+    api.get(`/movie/${id}/images`, {
+      params: {
+        include_image_language: "kr,null",
+      },
+    }),
 
   // search함수는 term값을 받고 term을 이용해서 검색한다.
   // 위에 movieDetail은 append_to_response에 값을 넣어 전달했지만 아래 search는 params로 query안에 값을 전달해야 한다.
