@@ -683,6 +683,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                       <RecommendLink
                         href={recommendation.media_type === "movie" ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}` : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`}
                         bgUrl={recommendation.poster_path && recommendation.poster_path}
+                        target="_blank"
                       >
                         <RecommendSubTitle>
                           <RecommendName>{recommendation.title ? recommendation.title : recommendation.name}</RecommendName>
