@@ -28,7 +28,7 @@ const DescSubContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1300px;
+  width: 1280px;
 `;
 
 const DescTitle = styled.div`

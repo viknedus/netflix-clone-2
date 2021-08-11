@@ -13,12 +13,40 @@ const globalStyles = createGlobalStyle`
   *{
     box-sizing: border-box;
   }
+
+  html{
+    scroll-behavior: smooth;
+  }
+
   body{
-    background-color: black;
     /* background-color: rgb(25, 25, 25); */
     /* padding-top: 50px; */
+    background-color: black;
     font-family: 'Noto Sans KR', sans-serif;
+
+    &::-webkit-scrollbar {
+      width: 11px;
+      height: 11px;
+      background: #ffffff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 7px;
+      background-color: #202020;
+
+      &:hover {
+        background-color: #303030;
+      }
+      &:active{
+        background-color: #C0C0C0;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #101010;
+    }
   }
+  
   a{
     text-decoration: none;
   }

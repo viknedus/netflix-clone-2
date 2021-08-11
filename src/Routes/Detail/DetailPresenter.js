@@ -175,7 +175,7 @@ const TeaserTitle = styled.h1`
 const TeaserVideo = styled.div`
   display: flex;
   justify-content: flex-start;
-  margin-top: 15px;
+  margin-top: 25px;
 `;
 
 const IframeContainer = styled.div``;
@@ -189,7 +189,7 @@ const Iframe = styled.iframe`
 `;
 
 const IframeDesc = styled.h2`
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 20px;
 `;
 
@@ -205,7 +205,7 @@ const ActorTitle = styled.h1`
 
 const ActorImageContainer = styled.div`
   display: flex;
-  margin-top: 20px;
+  margin-top: 25px;
 `;
 
 const ActorImage = styled.div`
@@ -247,7 +247,7 @@ const ActorCharacter = styled.p`
 `;
 
 const CompanyContainer = styled.div`
-  margin-top: 60px;
+  margin-top: 80px;
 `;
 
 const CompanyTitle = styled.div`
@@ -255,7 +255,7 @@ const CompanyTitle = styled.div`
 `;
 
 const CompanyContent = styled.div`
-  margin-top: 17px;
+  margin-top: 20px;
 `;
 
 const CompanyName = styled.h2`
@@ -274,7 +274,7 @@ const CompanyMoney = styled.div`
   font-size: 20px;
   margin-top: 12px;
   display: flex;
-  color: gray;
+  color: white;
 `;
 
 const CompanyDivider = styled.div`
@@ -321,7 +321,7 @@ const ReviewContent = styled.div``;
 
 const Review = styled.div`
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 `;
 
 const ReviewImageContent = styled.div``;
@@ -338,11 +338,17 @@ const ReviewSubContent = styled.div`
 const ReviewName = styled.span`
   font-size: 20px;
   display: flex;
+  align-items: center;
 `;
 
 const ReviewDivider = styled.span`
   margin-left: 10px;
   margin-right: 10px;
+`;
+
+const ReviewDate = styled.span`
+  color: white;
+  font-size: 18px;
 `;
 
 const ReviewRating = styled.span`
@@ -378,11 +384,6 @@ const ReviewLink = styled.a`
   }
 `;
 
-const ReviewDate = styled.span`
-  color: gray;
-  font-size: 15px;
-`;
-
 const RecommendContainer = styled.div`
   border-top: 1px solid gray;
   margin-top: 100px;
@@ -398,10 +399,14 @@ const RecommendTitle = styled.h1`
   margin-bottom: 30px;
 `;
 
-const RecommendContent = styled.div``;
+const RecommendContent = styled.div`
+  border-radius: 7px;
+`;
 
 const RecommendSubContent = styled.div`
   transition: 0.5s;
+  box-shadow: rgb(0 0 0 / 35%) 0px 4px 6px 0px;
+  border-radius: 7px;
 
   &:hover {
     transform: scale(1.03);
@@ -432,6 +437,21 @@ const RecommendName = styled.div`
 
 const RecommendRating = styled.div`
   font-size: 15px;
+`;
+
+const GototopButton = styled.button`
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  z-index: 200;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(to right, #536976, #292e49);
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: rgb(0 0 0 / 50%) 0px 0px 3px 2px;
 `;
 
 const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, backdrops, posters }) => {
@@ -603,12 +623,13 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                             <ReviewName>
                               {review.author ? review.author : review.author_details.username}
                               <ReviewDivider>|</ReviewDivider>
+                              <ReviewDate>{review.created_at && review.created_at.substring(0, 10)}</ReviewDate>
+                              <ReviewDivider>|</ReviewDivider>
                               <ReviewRating>평점 {review.author_details.rating && review.author_details.rating}</ReviewRating>
                             </ReviewName>
                             <ReviewOverview>
                               <ReviewLink href={review.url && review.url}>{review.content && review.content.substring(0, 1000) + ".."}</ReviewLink>
                             </ReviewOverview>
-                            <ReviewDate>{review.created_at && review.created_at.substring(0, 10)}</ReviewDate>
                           </ReviewSubContent>
                         </Review>
                       )
@@ -649,6 +670,9 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
         </RecommendContainer>
       </Content>
       <Footer></Footer>
+      <GototopButton onClick={() => window.scrollTo(0, 0)}>
+        <i class="fas fa-arrow-up" style={{ color: "white", fontSize: "25px" }}></i>
+      </GototopButton>
     </Container>
   );
 };

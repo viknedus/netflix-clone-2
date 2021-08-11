@@ -27,9 +27,8 @@ const HeaderContainer = styled.header`
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(3px);
   z-index: 100;
-  padding: 15px 40px;
+  padding: 0 40px;
   width: 100%;
-  /* border-bottom: 1px solid rgb(25, 25, 25); */
 `;
 
 const Ul = styled.ul`
@@ -40,13 +39,13 @@ const Ul = styled.ul`
 
 const Image = styled.div`
   background: url(${netflixLogo}) no-repeat center center;
-  background-size: 160px;
+  background-size: 150px;
   margin-right: auto;
   width: 160px;
 `;
 
 const Li = styled.li`
-  width: 120px;
+  width: 140px;
   text-align: center;
   font-size: 20px;
 
@@ -60,7 +59,7 @@ const Li = styled.li`
 // 스타일 컴포넌트를 사용할 때 기존의 HTML태그는 styled.ul 형태로 사용하고, react에서 사용하는 컴포넌트는 styled(Link) 형태로 사용한다.
 // Link라는 것은 HTML태그가 아니고 react에 있는 컴포넌트이기 때문에 styled(Link) 형태로 써준다.
 const ScLink = styled(Link)`
-  height: 50px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
