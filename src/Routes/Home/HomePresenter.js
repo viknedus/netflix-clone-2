@@ -109,8 +109,6 @@ const HomeSubContainer = styled.div`
 `;
 
 const HomePresenter = ({ movieDetail, error, loading }) => {
-  console.log(movieDetail);
-
   return loading ? (
     <Loader></Loader>
   ) : (

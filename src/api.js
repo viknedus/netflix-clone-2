@@ -104,6 +104,13 @@ export const tvApi = {
         append_to_response: "videos",
       },
     }),
+  tvDetail2: (id) =>
+    api.get(`tv/${id}`, {
+      params: {
+        language: "en-US",
+        append_to_response: "videos",
+      },
+    }),
   similarMovies: (id) => api.get(`/tv/${id}/similar`),
   recommendations: (id) => api.get(`/tv/${id}/recommendations`),
   credits: (id) => api.get(`/tv/${id}/credits`),

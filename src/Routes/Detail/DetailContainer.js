@@ -26,6 +26,7 @@ class DetailContainer extends React.Component {
       reviews: null,
       backdrops: null,
       posters: null,
+      tvDetail2: null,
     };
   }
 
@@ -135,6 +136,12 @@ class DetailContainer extends React.Component {
           data: { posters },
         } = await tvApi.images(parsedId);
 
+        const {
+          data: {
+            videos: { results: tvDetail2 },
+          },
+        } = await tvApi.tvDetail2(parsedId);
+
         this.setState({
           recommendations,
           cast,
@@ -142,6 +149,7 @@ class DetailContainer extends React.Component {
           reviews,
           backdrops: backdrops && backdrops,
           posters: posters && posters,
+          tvDetail2,
         });
       }
 
@@ -156,7 +164,7 @@ class DetailContainer extends React.Component {
   }
 
   render() {
-    const { result, error, loading, isMovie, recommendations, cast, keywords, reviews, backdrops, posters } = this.state;
+    const { result, error, loading, isMovie, recommendations, cast, keywords, reviews, backdrops, posters, tvDetail2 } = this.state;
     // console.log(this.state);
 
     return (
@@ -171,6 +179,7 @@ class DetailContainer extends React.Component {
         reviews={reviews}
         backdrops={backdrops}
         posters={posters}
+        tvDetail2={tvDetail2}
       />
     );
   }

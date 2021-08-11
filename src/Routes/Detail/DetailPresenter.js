@@ -272,7 +272,7 @@ const CompanyImage = styled.div`
 
 const CompanyMoney = styled.div`
   font-size: 20px;
-  margin-top: 12px;
+  margin-top: 15px;
   display: flex;
   color: white;
 `;
@@ -454,7 +454,9 @@ const GototopButton = styled.button`
   box-shadow: rgb(0 0 0 / 50%) 0px 0px 3px 2px;
 `;
 
-const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, backdrops, posters }) => {
+const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, backdrops, posters, tvDetail2 }) => {
+  console.log(tvDetail2);
+
   return loading ? (
     <Loader></Loader>
   ) : error ? (
@@ -508,7 +510,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
             <TeaserContainer>
               <TeaserTitle>트레일러</TeaserTitle>
               <TeaserVideo>
-                {result.videos && result.videos.results[0] && result.videos.results[0].key && (
+                {isMovie === true && result.videos && result.videos.results[0] && result.videos.results[0].key && (
                   <IframeContainer>
                     <Iframe
                       src={`https://www.youtube.com/embed/${result.videos.results[0].key}?playlist=${result.videos.results[0].key}`}
@@ -521,7 +523,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                   </IframeContainer>
                 )}
 
-                {result.videos && result.videos.results[1] && result.videos.results[1].key && (
+                {isMovie === true && result.videos && result.videos.results[1] && result.videos.results[1].key && (
                   <IframeContainer>
                     <Iframe
                       src={`https://www.youtube.com/embed/${result.videos.results[1].key}?playlist=${result.videos.results[1].key}`}
@@ -534,7 +536,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                   </IframeContainer>
                 )}
 
-                {result.videos && result.videos.results[2] && result.videos.results[2].key && (
+                {isMovie === true && result.videos && result.videos.results[2] && result.videos.results[2].key && (
                   <IframeContainer>
                     <Iframe
                       src={`https://www.youtube.com/embed/${result.videos.results[2].key}?playlist=${result.videos.results[2].key}`}
@@ -544,6 +546,27 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                       allow="autoplay; fullscreen"
                     ></Iframe>
                     <IframeDesc>{result.videos.results[2].name && result.videos.results[2].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+
+                {isMovie === false && tvDetail2.length > 0 && tvDetail2[0] && tvDetail2[0].key && (
+                  <IframeContainer>
+                    <Iframe src={`https://www.youtube.com/embed/${tvDetail2[0].key}?playlist=${tvDetail2[0].key}`} width="420" height="280" frameborder="0" allow="autoplay; fullscreen"></Iframe>
+                    <IframeDesc>{tvDetail2[0].name && tvDetail2[0].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+
+                {isMovie === false && tvDetail2.length > 0 && tvDetail2[1] && tvDetail2[1].key && (
+                  <IframeContainer>
+                    <Iframe src={`https://www.youtube.com/embed/${tvDetail2[1].key}?playlist=${tvDetail2[1].key}`} width="420" height="280" frameborder="0" allow="autoplay; fullscreen"></Iframe>
+                    <IframeDesc>{tvDetail2[1].name && tvDetail2[1].name}</IframeDesc>
+                  </IframeContainer>
+                )}
+
+                {isMovie === false && tvDetail2.length > 0 && tvDetail2[2] && tvDetail2[2].key && (
+                  <IframeContainer>
+                    <Iframe src={`https://www.youtube.com/embed/${tvDetail2[2].key}?playlist=${tvDetail2[2].key}`} width="420" height="280" frameborder="0" allow="autoplay; fullscreen"></Iframe>
+                    <IframeDesc>{tvDetail2[2].name && tvDetail2[2].name}</IframeDesc>
                   </IframeContainer>
                 )}
               </TeaserVideo>
@@ -577,9 +600,13 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                   </CompanyName>
                 </CompanyContent>
                 <CompanyMoney>
-                  <Budget>💰예산: ${result.budget && result.budget.toLocaleString("KR")}</Budget>
-                  <CompanyDivider>|</CompanyDivider>
-                  <Revenue>💰수익: ${result.revenue && result.revenue.toLocaleString("KR")}</Revenue>
+                  {isMovie === true && (
+                    <>
+                      <Budget>💰예산: ${result.budget && result.budget.toLocaleString("KR")}</Budget>
+                      <CompanyDivider>|</CompanyDivider>
+                      <Revenue>💰수익: ${result.revenue && result.revenue.toLocaleString("KR")}</Revenue>
+                    </>
+                  )}
                 </CompanyMoney>
               </CompanyContainer>
             </ActorContainer>
@@ -688,6 +715,7 @@ DetailPresenter.propTypes = {
   reviews: PropTypes.array,
   backdrops: PropTypes.array,
   posters: PropTypes.array,
+  tvDetail2: PropTypes.array,
 };
 
 export default DetailPresenter;

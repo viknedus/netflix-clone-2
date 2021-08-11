@@ -62,6 +62,15 @@ const ButtonLink = styled(Link)`
   font-weight: bold;
 `;
 
+const ButtonTest = styled.button`
+  border: 3px solid red;
+  position: fixed;
+  bottom: 60px;
+  right: 50px;
+  cursor: pointer;
+  font-size: 35px;
+`;
+
 const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 }) => {
   // console.log(nowPlaying, upcoming, popular, topRated, error, loading);
 
