@@ -55,7 +55,12 @@ export const moviesApi = {
   recommendations: (id) => api.get(`/movie/${id}/recommendations`),
   credits: (id) => api.get(`/movie/${id}/credits`),
   keywords: (id) => api.get(`/movie/${id}/keywords`),
-  reviews: (id) => api.get(`/movie/${id}/reviews`),
+  reviews: (id) =>
+    api.get(`/movie/${id}/reviews`, {
+      params: {
+        language: "en-US",
+      },
+    }),
   images: (id) =>
     api.get(`/movie/${id}/images`, {
       params: {

@@ -7,20 +7,21 @@ import noPoster from "../../assets/noPoster.png";
 import noActor from "../../assets/noActor.png";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: relative;
-  height: 400vh;
+  border: 3px solid orange;
 `;
 
 const BlurBackground = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
   filter: blur(5px);
@@ -44,7 +45,6 @@ const CoverContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1280px;
-  height: 700px;
   color: white;
   margin-top: 50px;
   /* border: 3px solid blue; */
@@ -174,7 +174,7 @@ const TeaserTitle = styled.h1`
 
 const TeaserVideo = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: 15px;
 `;
 
@@ -260,7 +260,7 @@ const CompanyContent = styled.div`
 `;
 
 const CompanyName = styled.h2`
-  font-size: 20px;
+  font-size: 22px;
   margin-top: 20px;
 `;
 
@@ -272,11 +272,10 @@ const CompanyImage = styled.div`
 `;
 
 const CompanyMoney = styled.div`
-  font-size: 25px;
-  margin-top: 35px;
+  font-size: 20px;
+  margin-top: 12px;
   display: flex;
-  justify-content: center;
-  color: #fed330;
+  color: gray;
 `;
 
 const CompanyDivider = styled.div`
@@ -308,8 +307,147 @@ const SplideImage = styled.img`
   cursor: pointer;
 `;
 
+const ReviewContainer = styled.div`
+  border-top: 1px solid gray;
+  margin-top: 100px;
+  padding-top: 30px;
+`;
+
+const ReviewTitle = styled.h1`
+  font-size: 25px;
+  margin-bottom: 30px;
+`;
+
+const ReviewContent = styled.div``;
+
+const Review = styled.div`
+  display: flex;
+  margin-bottom: 40px;
+`;
+
+const ReviewImageContent = styled.div``;
+
+const ReviewImage = styled.img`
+  width: 75px;
+  border-radius: 50%;
+`;
+
+const ReviewSubContent = styled.div`
+  margin-left: 22px;
+`;
+
+const ReviewName = styled.span`
+  font-size: 20px;
+  display: flex;
+`;
+
+const ReviewDivider = styled.span`
+  margin-left: 10px;
+  margin-right: 10px;
+`;
+
+const ReviewRating = styled.span`
+  color: gold;
+  font-size: 20px;
+`;
+
+const ReviewOverview = styled.p`
+  margin-top: 13px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-size: 17px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 0px 12px 12px 12px;
+  box-sizing: border-box;
+  border: 3px solid white;
+  cursor: pointer;
+  color: white;
+`;
+
+const ReviewLink = styled.a`
+  color: white;
+
+  &:visited {
+    color: white;
+  }
+  &:active {
+    color: white;
+  }
+  &:link {
+    color: white;
+  }
+`;
+
+const ReviewDate = styled.span`
+  color: gray;
+  font-size: 15px;
+`;
+
+const RecommendContainer = styled.div`
+  border-top: 1px solid gray;
+  margin-top: 100px;
+  width: 100%;
+  color: white;
+  padding: 30px 0px;
+  max-width: 1600px;
+`;
+
+const RecommendTitle = styled.h1`
+  font-size: 25px;
+  margin-bottom: 30px;
+`;
+
+const RecommendContent = styled.div``;
+
+const RecommendSubContent = styled.div`
+  transition: 0.5s;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+`;
+
+const RecommendLink = styled.a`
+  display: block;
+  background: rgba(0, 0, 0, 0.5) url(${(props) => (props.bgUrl ? `https://image.tmdb.org/t/p/original${props.bgUrl}` : noPoster)}) no-repeat center center;
+  background-size: cover;
+  height: 270px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 7px;
+  color: white;
+
+  /* &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  } */
+`;
+
+const RecommendSubTitle = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+`;
+
+const RecommendName = styled.div`
+  font-size: 17px;
+  margin-bottom: 5px;
+`;
+
+const RecommendRating = styled.div`
+  font-size: 15px;
+`;
+
 const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, backdrops, posters }) => {
   // console.log(result, error, loading);
+
+  console.log(recommendations);
 
   return loading ? (
     <Loader></Loader>
@@ -361,39 +499,6 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
           </CoverHeading>
 
           <CoverMiddle>
-            <ActorContainer>
-              <ActorTitle>배우</ActorTitle>
-              <ActorImageContainer>
-                {cast &&
-                  cast.map((cast, index) =>
-                    index < 7 ? (
-                      <ActorImage>
-                        <ActorPhoto bgUrl={cast.profile_path}></ActorPhoto>
-                        <ActorName>{cast.name}</ActorName>
-                        <ActorCharacter>{cast.character}</ActorCharacter>
-                      </ActorImage>
-                    ) : (
-                      ""
-                    )
-                  )}
-              </ActorImageContainer>
-
-              <CompanyContainer>
-                <CompanyTitle>제작사</CompanyTitle>
-                <CompanyContent>
-                  <CompanyImage bgUrl={result.production_companies[0].logo_path}></CompanyImage>
-                  <CompanyName>
-                    {result.production_companies[0].name} ({result.production_companies[0].origin_country})
-                  </CompanyName>
-                </CompanyContent>
-                <CompanyMoney>
-                  <Budget>예산: ${result.budget && result.budget.toLocaleString("KR")}</Budget>
-                  <CompanyDivider>/</CompanyDivider>
-                  <Revenue>수익: ${result.revenue && result.revenue.toLocaleString("KR")}</Revenue>
-                </CompanyMoney>
-              </CompanyContainer>
-            </ActorContainer>
-
             <TeaserContainer>
               <TeaserTitle>트레일러</TeaserTitle>
               <TeaserVideo>
@@ -438,6 +543,38 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               </TeaserVideo>
             </TeaserContainer>
 
+            <ActorContainer>
+              <ActorTitle>배우</ActorTitle>
+              <ActorImageContainer>
+                {cast &&
+                  cast.map((cast, index) =>
+                    index < 7 ? (
+                      <ActorImage>
+                        <ActorPhoto bgUrl={cast.profile_path}></ActorPhoto>
+                        <ActorName>{cast.name}</ActorName>
+                        <ActorCharacter>{cast.character}</ActorCharacter>
+                      </ActorImage>
+                    ) : (
+                      ""
+                    )
+                  )}
+              </ActorImageContainer>
+              <CompanyContainer>
+                <CompanyTitle>제작사</CompanyTitle>
+                <CompanyContent>
+                  <CompanyImage bgUrl={result.production_companies[0].logo_path}></CompanyImage>
+                  <CompanyName>
+                    {result.production_companies[0].name} ({result.production_companies[0].origin_country})
+                  </CompanyName>
+                </CompanyContent>
+                <CompanyMoney>
+                  <Budget>💰예산: ${result.budget && result.budget.toLocaleString("KR")}</Budget>
+                  <CompanyDivider>|</CompanyDivider>
+                  <Revenue>💰수익: ${result.revenue && result.revenue.toLocaleString("KR")}</Revenue>
+                </CompanyMoney>
+              </CompanyContainer>
+            </ActorContainer>
+
             <SplideContainer>
               <SplideTitle>스틸컷</SplideTitle>
               <Splide
@@ -461,8 +598,63 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                   )}
               </Splide>
             </SplideContainer>
+
+            <ReviewContainer>
+              <ReviewTitle>리뷰 ({reviews ? reviews.length : "0"})</ReviewTitle>
+              <ReviewContent>
+                {reviews &&
+                  reviews.map(
+                    (review, index) =>
+                      index < 5 && (
+                        <Review>
+                          <ReviewImageContent>
+                            <ReviewImage src={noActor}></ReviewImage>
+                          </ReviewImageContent>
+                          <ReviewSubContent>
+                            <ReviewName>
+                              {review.author ? review.author : review.author_details.username}
+                              <ReviewDivider>|</ReviewDivider>
+                              <ReviewRating>평점 {review.author_details.rating && review.author_details.rating}</ReviewRating>
+                            </ReviewName>
+                            <ReviewOverview>
+                              <ReviewLink href={review.url}>{review.content && review.content.substring(0, 1000) + ".."}</ReviewLink>
+                            </ReviewOverview>
+                            <ReviewDate>{review.created_at && review.created_at.substring(0, 10)}</ReviewDate>
+                          </ReviewSubContent>
+                        </Review>
+                      )
+                  )}
+              </ReviewContent>
+            </ReviewContainer>
           </CoverMiddle>
         </CoverContainer>
+        <RecommendContainer>
+          <RecommendTitle>추천 영화</RecommendTitle>
+          <RecommendContent>
+            <Splide
+              options={{
+                rewind: true,
+                perPage: 8,
+                perMove: 1,
+                gap: "1rem",
+              }}
+            >
+              {recommendations &&
+                recommendations.map((recommendation) => (
+                  <SplideSlide>
+                    <RecommendSubContent>
+                      <RecommendLink href={`https://netflix-gw.netlify.app/#/movie/${recommendation.id}`} bgUrl={recommendation.poster_path}>
+                        <RecommendSubTitle>
+                          <RecommendName>{recommendation.title}</RecommendName>
+                          <RecommendRating>⭐{String(recommendation.vote_average).substring(0, 3)}</RecommendRating>
+                        </RecommendSubTitle>
+                      </RecommendLink>
+                    </RecommendSubContent>
+                  </SplideSlide>
+                ))}
+            </Splide>
+          </RecommendContent>
+        </RecommendContainer>
       </Content>
     </Container>
   );
