@@ -104,6 +104,22 @@ export const tvApi = {
         append_to_response: "videos",
       },
     }),
+  similarMovies: (id) => api.get(`/tv/${id}/similar`),
+  recommendations: (id) => api.get(`/tv/${id}/recommendations`),
+  credits: (id) => api.get(`/tv/${id}/credits`),
+  keywords: (id) => api.get(`/tv/${id}/keywords`),
+  reviews: (id) =>
+    api.get(`/tv/${id}/reviews`, {
+      params: {
+        language: "en-US",
+      },
+    }),
+  images: (id) =>
+    api.get(`/tv/${id}/images`, {
+      params: {
+        include_image_language: "kr,null",
+      },
+    }),
   search: (term) =>
     api.get("search/tv", {
       params: {

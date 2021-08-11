@@ -4,9 +4,11 @@ const FooterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 35px 0px;
-  border-top: 8px solid rgb(25, 25, 25);
+  padding: 40px 0px;
+  border-top: 1px solid rgb(25, 25, 25);
   width: 100%;
+  position: relative;
+  z-index: 100;
 `;
 
 const FooterContent = styled.div``;
@@ -16,7 +18,7 @@ const FooterLinkContainer = styled.div`
 `;
 
 const FooterLinkTitle = styled.h1`
-  color: rgb(108, 117, 125);
+  color: gray;
   font-size: 17px;
 `;
 
@@ -28,7 +30,7 @@ const FooterLinkContent = styled.div`
 `;
 
 const FooterLink = styled.a`
-  color: rgb(108, 117, 125);
+  color: gray;
   font-size: 14px;
   width: 110px;
   margin-bottom: 21px;

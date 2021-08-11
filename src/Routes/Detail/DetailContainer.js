@@ -74,27 +74,22 @@ class DetailContainer extends React.Component {
         const {
           data: { results: similarMovies },
         } = await moviesApi.similarMovies(parsedId);
-        // console.log(similarMovies);
 
         const {
           data: { results: recommendations },
         } = await moviesApi.recommendations(parsedId);
-        // console.log(recommendations);
 
         const {
           data: { cast },
         } = await moviesApi.credits(parsedId);
-        // console.log(cast);
 
         const {
           data: { keywords },
         } = await moviesApi.keywords(parsedId);
-        // console.log(keywords);
 
         const {
           data: { results: reviews },
         } = await moviesApi.reviews(parsedId);
-        // console.log(reviews);
 
         const {
           data: { backdrops },
@@ -114,6 +109,40 @@ class DetailContainer extends React.Component {
         // result = request.data;
 
         ({ data: result } = await tvApi.tvDetail(parsedId));
+
+        const {
+          data: { results: similarMovies },
+        } = await tvApi.similarMovies(parsedId);
+
+        const {
+          data: { results: recommendations },
+        } = await tvApi.recommendations(parsedId);
+
+        const {
+          data: { cast },
+        } = await tvApi.credits(parsedId);
+
+        const {
+          data: { results: keywords },
+        } = await tvApi.keywords(parsedId);
+
+        const {
+          data: { results: reviews },
+        } = await tvApi.reviews(parsedId);
+
+        const {
+          data: { backdrops },
+          data: { posters },
+        } = await tvApi.images(parsedId);
+
+        this.setState({
+          recommendations,
+          cast,
+          keywords,
+          reviews,
+          backdrops: backdrops && backdrops,
+          posters: posters && posters,
+        });
       }
 
       // console.log("result", result);

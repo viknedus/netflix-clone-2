@@ -3,7 +3,7 @@ import iconTV from "../assets/icon_tv.png";
 import iconMobile from "../assets/icon_mobile.jpg";
 import iconDevice from "../assets/icon_device.png";
 import iconKid from "../assets/icon_kid.png";
-import videoKnight from "../assets/video_knight.mp4";
+import videoTV from "../assets/video_tv.m4v";
 import videoDevice from "../assets/video_device.mp4";
 
 const Container = styled.div`
@@ -90,7 +90,7 @@ const Description = () => {
             </DescTitle>
             <DescImageContainer>
               <DescImage src={iconTV}></DescImage>
-              <DescVideoTV src={videoKnight} autoPlay muted loop></DescVideoTV>
+              <DescVideoTV src={videoTV} autoPlay muted loop></DescVideoTV>
             </DescImageContainer>
           </DescSubContent>
         </DescContent>

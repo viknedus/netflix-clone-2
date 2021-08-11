@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
+import Footer from "Components/Footer";
 import Helmet from "react-helmet";
 import noPoster from "../../assets/noPoster.png";
 import noActor from "../../assets/noActor.png";
+import noCompany2 from "../../assets/noCompany2.png";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import { Link } from "react-router-dom";
@@ -13,7 +15,6 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  border: 3px solid orange;
 `;
 
 const BlurBackground = styled.div`
@@ -25,7 +26,7 @@ const BlurBackground = styled.div`
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
   filter: blur(5px);
-  opacity: 0.35;
+  opacity: 0.2;
 `;
 
 const Content = styled.div`
@@ -38,25 +39,24 @@ const Content = styled.div`
   z-index: 1;
   flex-direction: column;
   font-family: "Do Hyeon", sans-serif;
-  border: 3px solid red;
 `;
 
 const CoverContainer = styled.div`
   display: flex;
   flex-direction: column;
+  width: 1280px;
   max-width: 1280px;
   color: white;
-  margin-top: 50px;
-  /* border: 3px solid blue; */
+  margin-top: 120px;
 `;
 
 const CoverLink = styled.a`
-  width: 100%;
+  width: 340px;
 `;
 
 const Cover = styled.div`
-  width: 100%;
-  height: 430px;
+  width: 340px;
+  height: 510px;
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
   border-radius: 15px;
@@ -75,7 +75,7 @@ const CoverHeading = styled.div`
 const CoverMiddle = styled.div``;
 
 const Data = styled.div`
-  padding-left: 30px;
+  padding-left: 45px;
 `;
 
 const Title = styled.h1`
@@ -247,8 +247,7 @@ const ActorCharacter = styled.p`
 `;
 
 const CompanyContainer = styled.div`
-  /* border-top: 1px solid gray; */
-  margin-top: 100px;
+  margin-top: 60px;
 `;
 
 const CompanyTitle = styled.div`
@@ -256,7 +255,7 @@ const CompanyTitle = styled.div`
 `;
 
 const CompanyContent = styled.div`
-  margin-top: 30px;
+  margin-top: 17px;
 `;
 
 const CompanyName = styled.h2`
@@ -265,7 +264,7 @@ const CompanyName = styled.h2`
 `;
 
 const CompanyImage = styled.div`
-  background: url(${(props) => (props.bgUrl ? `https://image.tmdb.org/t/p/w500${props.bgUrl}` : noPoster)}) no-repeat center left;
+  background: url(${(props) => (props.bgUrl ? `https://image.tmdb.org/t/p/w500${props.bgUrl}` : noCompany2)}) no-repeat center left;
   background-size: contain;
   height: 70px;
   max-height: 70px;
@@ -390,6 +389,7 @@ const RecommendContainer = styled.div`
   width: 100%;
   color: white;
   padding: 30px 0px;
+  padding-bottom: 120px;
   max-width: 1600px;
 `;
 
@@ -417,16 +417,6 @@ const RecommendLink = styled.a`
   position: relative;
   border-radius: 7px;
   color: white;
-
-  /* &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  } */
 `;
 
 const RecommendSubTitle = styled.div`
@@ -445,10 +435,6 @@ const RecommendRating = styled.div`
 `;
 
 const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, backdrops, posters }) => {
-  // console.log(result, error, loading);
-
-  console.log(recommendations);
-
   return loading ? (
     <Loader></Loader>
   ) : error ? (
@@ -493,7 +479,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               <Overview>{result.overview && result.overview}</Overview>
               <Keywords>
                 <KeywordTitle>키워드</KeywordTitle>
-                <KeywordContent>{keywords ? keywords.map((keyword) => <KeywordSpan>{"#" + keyword.name}</KeywordSpan>) : ""}</KeywordContent>
+                <KeywordContent>{keywords.length > 0 ? keywords.map((keyword) => <KeywordSpan>{keyword.name && "#" + keyword.name}</KeywordSpan>) : ""}</KeywordContent>
               </Keywords>
             </Data>
           </CoverHeading>
@@ -550,9 +536,9 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                   cast.map((cast, index) =>
                     index < 7 ? (
                       <ActorImage>
-                        <ActorPhoto bgUrl={cast.profile_path}></ActorPhoto>
-                        <ActorName>{cast.name}</ActorName>
-                        <ActorCharacter>{cast.character}</ActorCharacter>
+                        <ActorPhoto bgUrl={cast.profile_path && cast.profile_path}></ActorPhoto>
+                        <ActorName>{cast.name && cast.name}</ActorName>
+                        <ActorCharacter>{cast.character && cast.character}</ActorCharacter>
                       </ActorImage>
                     ) : (
                       ""
@@ -562,9 +548,12 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               <CompanyContainer>
                 <CompanyTitle>제작사</CompanyTitle>
                 <CompanyContent>
-                  <CompanyImage bgUrl={result.production_companies[0].logo_path}></CompanyImage>
+                  <CompanyImage
+                    bgUrl={result.production_companies.length > 0 && result.production_companies[0] && result.production_companies[0].logo_path && result.production_companies[0].logo_path}
+                  ></CompanyImage>
                   <CompanyName>
-                    {result.production_companies[0].name} ({result.production_companies[0].origin_country})
+                    {result.production_companies.length > 0 && result.production_companies[0] && result.production_companies[0].name && result.production_companies[0].name} (
+                    {result.production_companies.length > 0 && result.production_companies[0] && result.production_companies[0].origin_country && result.production_companies[0].origin_country})
                   </CompanyName>
                 </CompanyContent>
                 <CompanyMoney>
@@ -617,7 +606,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                               <ReviewRating>평점 {review.author_details.rating && review.author_details.rating}</ReviewRating>
                             </ReviewName>
                             <ReviewOverview>
-                              <ReviewLink href={review.url}>{review.content && review.content.substring(0, 1000) + ".."}</ReviewLink>
+                              <ReviewLink href={review.url && review.url}>{review.content && review.content.substring(0, 1000) + ".."}</ReviewLink>
                             </ReviewOverview>
                             <ReviewDate>{review.created_at && review.created_at.substring(0, 10)}</ReviewDate>
                           </ReviewSubContent>
@@ -629,7 +618,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
           </CoverMiddle>
         </CoverContainer>
         <RecommendContainer>
-          <RecommendTitle>추천 영화</RecommendTitle>
+          <RecommendTitle>추천 영화 / 프로그램</RecommendTitle>
           <RecommendContent>
             <Splide
               options={{
@@ -643,10 +632,13 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                 recommendations.map((recommendation) => (
                   <SplideSlide>
                     <RecommendSubContent>
-                      <RecommendLink href={`https://netflix-gw.netlify.app/#/movie/${recommendation.id}`} bgUrl={recommendation.poster_path}>
+                      <RecommendLink
+                        href={recommendation.media_type === "movie" ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}` : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`}
+                        bgUrl={recommendation.poster_path && recommendation.poster_path}
+                      >
                         <RecommendSubTitle>
-                          <RecommendName>{recommendation.title}</RecommendName>
-                          <RecommendRating>⭐{String(recommendation.vote_average).substring(0, 3)}</RecommendRating>
+                          <RecommendName>{recommendation.title ? recommendation.title : recommendation.name}</RecommendName>
+                          <RecommendRating>⭐{String(recommendation.vote_average && recommendation.vote_average).substring(0, 3)}</RecommendRating>
                         </RecommendSubTitle>
                       </RecommendLink>
                     </RecommendSubContent>
@@ -656,6 +648,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
           </RecommendContent>
         </RecommendContainer>
       </Content>
+      <Footer></Footer>
     </Container>
   );
 };
@@ -664,6 +657,13 @@ DetailPresenter.propTypes = {
   result: PropTypes.object,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
+  isMovie: PropTypes.bool,
+  recommendations: PropTypes.array,
+  cast: PropTypes.array,
+  keywords: PropTypes.array,
+  reviews: PropTypes.array,
+  backdrops: PropTypes.array,
+  posters: PropTypes.array,
 };
 
 export default DetailPresenter;
