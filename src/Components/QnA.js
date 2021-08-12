@@ -87,7 +87,7 @@ const QnASubDesc = styled.div`
     font-size: 15px;
 
     &.active {
-      height: 220px;
+      height: 240px;
     }
   }
 `;
