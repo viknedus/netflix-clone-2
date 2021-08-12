@@ -53,18 +53,18 @@
 
 ## 🌐 API
 
-- [x] Now Playing (Movie)
-- [x] Top Rated (Movie, TV)
-- [x] Popular (Movie, TV)
-- [x] Upcoming (Movie)
-- [x] Airing today (TV)
-- [x] Detail (Movie, TV)
-- [x] Search (Movie, TV)
-- [x] Recommendations (Movie, TV)
-- [x] Credits (Movie, TV)
-- [x] Keywords (Movie, TV)
-- [x] Reviews (Movie, TV)
-- [x] Images (Movie, TV)
+- [x] Now Playing
+- [x] Top Rated
+- [x] Popular
+- [x] Upcoming
+- [x] Airing today
+- [x] Detail
+- [x] Search
+- [x] Recommendations
+- [x] Credits
+- [x] Keywords
+- [x] Reviews
+- [x] Images
 
 ## 💎 Challenge
 
