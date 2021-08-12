@@ -13,6 +13,10 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   margin-top: 160px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h1`
@@ -21,11 +25,20 @@ const Title = styled.h1`
   text-align: center;
   margin-bottom: 30px;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const Form = styled.form`
   position: relative;
   margin-bottom: 80px;
+
+  @media (max-width: 768px) {
+    width: 85%;
+    margin-bottom: 10px;
+  }
 `;
 
 const Input = styled.input`
@@ -37,6 +50,12 @@ const Input = styled.input`
   width: 660px;
   padding: 15px 20px;
   background-color: white;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    font-size: 14px;
+    padding: 15px 10px;
+  }
 `;
 
 const Button = styled.button`
@@ -50,6 +69,10 @@ const Button = styled.button`
   color: white;
   padding: 13px 30px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -74,6 +97,12 @@ const ButtonLink = styled(Link)`
   box-sizing: border-box;
   font-size: 17px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    margin: 0 5px;
+    font-size: 15px;
+    font-weight: normal;
+  }
 `;
 
 const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, handleSubmit, updateSearchTerm }) => {

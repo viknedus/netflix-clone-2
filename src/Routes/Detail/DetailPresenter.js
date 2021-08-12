@@ -39,6 +39,10 @@ const Content = styled.div`
   z-index: 1;
   flex-direction: column;
   font-family: "Do Hyeon", sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 0 15px;
+  }
 `;
 
 const CoverContainer = styled.div`
@@ -48,10 +52,18 @@ const CoverContainer = styled.div`
   max-width: 1280px;
   color: white;
   margin-top: 120px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const CoverLink = styled.a`
   width: 340px;
+
+  @media (max-width: 768px) {
+    width: auto;
+  }
 `;
 
 const Cover = styled.div`
@@ -66,21 +78,41 @@ const Cover = styled.div`
   &:hover {
     transform: scale(1.03);
   }
+
+  @media (max-width: 768px) {
+    width: 260px;
+    height: 400px;
+  }
 `;
 
 const CoverHeading = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const CoverMiddle = styled.div``;
 
 const Data = styled.div`
   padding-left: 45px;
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+    margin-top: 30px;
+  }
 `;
 
 const Title = styled.h1`
   margin-bottom: 20px;
   font-size: 36px;
+
+  @media (max-width: 768px) {
+    font-size: 27px;
+  }
 `;
 
 const SubTitle = styled.h2`
@@ -88,34 +120,58 @@ const SubTitle = styled.h2`
   margin-top: 25px;
   margin-bottom: 16px;
   font-style: italic;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 const GenreContainer = styled.div`
   font-size: 18px;
   color: gray;
   margin-bottom: 6px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const DateRunTimeContainer = styled.div`
   font-size: 18px;
   color: gray;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const VoteContainer = styled.div`
   font-size: 18px;
   color: white;
   margin-top: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const VoteStrong = styled.strong`
   font-size: 22px;
   color: dodgerblue;
   margin-left: 7px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 const Divider = styled.span`
   color: gray;
   font-size: 18px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const Overview = styled.p`
@@ -123,17 +179,30 @@ const Overview = styled.p`
   line-height: 1.6;
   letter-spacing: 1px;
   margin-top: 30px;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+    margin-top: 15px;
+  }
 `;
 
 const Item = styled.span``;
 
 const Keywords = styled.div`
   margin-top: 35px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const KeywordTitle = styled.h1`
   font-size: 18px;
   color: gray;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const KeywordContent = styled.div`
@@ -160,12 +229,20 @@ const KeywordSpan = styled.span`
     color: white;
     background-color: #fed330;
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const TeaserContainer = styled.div`
   border-top: 1px solid gray;
   margin-top: 100px;
   padding-top: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const TeaserTitle = styled.h1`
@@ -176,9 +253,25 @@ const TeaserVideo = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-top: 25px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
-const IframeContainer = styled.div``;
+const IframeContainer = styled.div`
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 50px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 30px;
+
+    &:last-child {
+      margin-bottom: 0px;
+      border-bottom: none;
+    }
+  }
+`;
 
 const Iframe = styled.iframe`
   margin-right: 15px;
@@ -186,17 +279,31 @@ const Iframe = styled.iframe`
   &:last-child {
     margin-right: 0;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-right: 0px;
+  }
 `;
 
 const IframeDesc = styled.h2`
   margin-top: 12px;
   font-size: 20px;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+    font-size: 16px;
+  }
 `;
 
 const ActorContainer = styled.div`
   border-top: 1px solid gray;
   margin-top: 100px;
   padding-top: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const ActorTitle = styled.h1`
@@ -206,6 +313,10 @@ const ActorTitle = styled.h1`
 const ActorImageContainer = styled.div`
   display: flex;
   margin-top: 25px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const ActorImage = styled.div`
@@ -215,6 +326,12 @@ const ActorImage = styled.div`
 
   &:last-child {
     margin-right: 0;
+  }
+
+  @media (max-width: 768px) {
+    width: 100px;
+    margin-right: 22px;
+    margin-bottom: 22px;
   }
 `;
 
@@ -232,6 +349,11 @@ const ActorPhoto = styled.div`
     border: 5px solid #fed330;
     transform: scale(1.08);
   }
+
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;
 
 const ActorName = styled.h2`
@@ -244,10 +366,19 @@ const ActorCharacter = styled.p`
   color: gray;
   margin-top: 10px;
   font-size: 14px;
+
+  @media (max-width: 768px) {
+    margin-top: 8px;
+    font-size: 13px;
+  }
 `;
 
 const CompanyContainer = styled.div`
   margin-top: 80px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const CompanyTitle = styled.div`
@@ -261,6 +392,10 @@ const CompanyContent = styled.div`
 const CompanyName = styled.h2`
   font-size: 22px;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const CompanyImage = styled.div`
@@ -275,6 +410,10 @@ const CompanyMoney = styled.div`
   margin-top: 15px;
   display: flex;
   color: white;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 const CompanyDivider = styled.div`
@@ -289,6 +428,10 @@ const SplideContainer = styled.div`
   border-top: 1px solid gray;
   margin-top: 100px;
   padding-top: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const SplideTitle = styled.h1`
@@ -310,6 +453,10 @@ const ReviewContainer = styled.div`
   border-top: 1px solid gray;
   margin-top: 100px;
   padding-top: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const ReviewTitle = styled.h1`
@@ -392,6 +539,11 @@ const RecommendContainer = styled.div`
   padding: 30px 0px;
   padding-bottom: 120px;
   max-width: 1600px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 20px;
+  }
 `;
 
 const RecommendTitle = styled.h1`
@@ -501,7 +653,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               <Overview>{result.overview && result.overview}</Overview>
               <Keywords>
                 <KeywordTitle>키워드</KeywordTitle>
-                <KeywordContent>{keywords.length > 0 ? keywords.map((keyword) => <KeywordSpan>{keyword.name && "#" + keyword.name}</KeywordSpan>) : ""}</KeywordContent>
+                <KeywordContent>{keywords.length > 0 ? keywords.map((keyword, index) => index < 15 && <KeywordSpan>{keyword.name && "#" + keyword.name}</KeywordSpan>) : ""}</KeywordContent>
               </Keywords>
             </Data>
           </CoverHeading>

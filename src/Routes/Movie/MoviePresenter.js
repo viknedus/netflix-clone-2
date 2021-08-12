@@ -29,26 +29,42 @@ const Title = styled.h1`
   color: white;
   margin-bottom: 25px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 const SubTitle = styled.p`
   font-size: 18px;
   color: gray;
   line-height: 1.5;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const ButtonContainer = styled.div`
-  margin-top: 45px;
+  margin-top: 50px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px 0;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const ButtonContent = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
 `;
 
 const ButtonLink = styled(Link)`
@@ -60,6 +76,12 @@ const ButtonLink = styled(Link)`
   box-sizing: border-box;
   font-size: 17px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    margin: 0 5px;
+    font-size: 13px;
+    font-weight: normal;
+  }
 `;
 
 const ButtonTest = styled.button`
@@ -119,7 +141,7 @@ const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loadin
             <SubTitle>
               상영 예정인 영화 목록을 가져옵니다.
               <br />
-              지정된 날짜 내에서 앞으로 상영 예정인 모든 영화를 찾습니다.
+              지정된 날짜 내에서 앞으로 상영 예정인 영화를 찾습니다.
             </SubTitle>
           </TitleContent>
         </TitleContainer>

@@ -18,6 +18,10 @@ const Image = styled.div`
   height: 340px;
   transition: 0.2s linear;
   border-radius: 7px;
+
+  @media (max-width: 768px) {
+    height: 280px;
+  }
 `;
 
 const Overview = styled.span`
@@ -128,7 +132,6 @@ const PosterContainer = styled.div`
 `;
 
 const ScLink = styled(Link)`
-  /* width: 240px; */
   width: 220px;
   border-radius: 7px;
   margin-right: 20px;
@@ -146,6 +149,12 @@ const ScLink = styled(Link)`
     ${PosterContainer} {
       box-shadow: 0 2px 8px black, 0 2px 4px black;
     }
+  }
+
+  @media (max-width: 768px) {
+    margin: 0;
+    width: 185px;
+    margin-bottom: 40px;
   }
 `;
 

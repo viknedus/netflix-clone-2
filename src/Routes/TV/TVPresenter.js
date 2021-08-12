@@ -29,12 +29,20 @@ const Title = styled.h1`
   color: white;
   margin-bottom: 25px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 const SubTitle = styled.p`
   font-size: 18px;
   color: gray;
   line-height: 1.5;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -45,10 +53,18 @@ const ButtonContainer = styled.div`
   align-items: center;
   padding: 15px 0;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const ButtonContent = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
 `;
 
 const ButtonLink = styled(Link)`
@@ -60,6 +76,12 @@ const ButtonLink = styled(Link)`
   box-sizing: border-box;
   font-size: 17px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    margin: 0 5px;
+    font-size: 13px;
+    font-weight: normal;
+  }
 `;
 
 // TVContainer로부터 받아온 props들을 파라미터로 받는다.
@@ -113,7 +135,7 @@ const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading 
             <SubTitle>
               방영 예정인 TV 프로그램 목록을 가져옵니다.
               <br />
-              앞으로 1주일내에 방영될 에피소드가 있는 TV 프로그램을 찾습니다.
+              1주일내에 방영될 에피소드가 있는 TV 프로그램을 찾습니다.
             </SubTitle>
           </TitleContent>
         </TitleContainer>
@@ -124,7 +146,7 @@ const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading 
           <TitleContent>
             <Title>평점높은 TV 프로그램</Title>
             <SubTitle>
-              모든 TV 프로그램 중에서 평점이 높은 프로그램 목록을 가져옵니다.
+              모든 TV 프로그램 중에서 평점이 높은 프로그램을 가져옵니다.
               <br />
               평점이 높은 프로그램을 기준으로 정렬합니다.
             </SubTitle>

@@ -13,6 +13,11 @@ const Container = styled.div`
   :not(:last-child) {
     margin-bottom: 50px;
   }
+
+  @media (max-width: 768px) {
+    padding: 15px;
+    margin-top: 0px;
+  }
 `;
 
 const Title = styled.span`
@@ -28,6 +33,10 @@ const Children = styled.div`
   flex-direction: row;
   max-width: 2400px;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
 `;
 
 // children은 리액트가 가지고 있는 예약된 props이다.

@@ -29,6 +29,11 @@ const HeaderContainer = styled.header`
   z-index: 100;
   padding: 0 40px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    border: 3px solid red;
+    display: none;
+  }
 `;
 
 const Ul = styled.ul`
