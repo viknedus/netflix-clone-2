@@ -40,10 +40,11 @@
 - [x] The MovieDB API
 - [x] Container / Presenter Pattern
 - [x] To Do List with useReducer
-- [x] Deployment to Netlify
+- [x] Deployment to Netlify or GitHub
 
 ## 📑 Pages
 
+- [x] Home
 - [x] Movie
 - [x] TV
 - [x] Search
@@ -52,19 +53,23 @@
 
 ## 🌐 API
 
-- [x] Now Playing (Movie)
-- [x] Top Rated (TV)
-- [x] Popular (Movie, TV)
-- [x] Upcoming (Movie)
-- [x] Airing today (TV)
-- [x] Movie Detail
-- [x] TV Detail
-- [x] Search (Movie, TV)
+- [x] Now Playing
+- [x] Top Rated
+- [x] Popular
+- [x] Upcoming
+- [x] Airing today
+- [x] Detail
+- [x] Search
+- [x] Recommendations
+- [x] Credits
+- [x] Keywords
+- [x] Reviews
+- [x] Images
 
 ## 💎 Challenge
 
-- [ ] IMDB Link
-- [ ] Show Movie Details (Youtube Videos, Production Company, Countries)
-- [ ] Show TV Details (Seasons and Creators)
-- [ ] Collections Link
-- [ ] Collections Route
+- [x] IMDB Link
+- [x] Show Movie, TV Details
+- [x] Youtube Videos, Actors, Production Company, Still Cuts, Review, Recommended
+- [x] Collections Link
+- [x] Collections Route
