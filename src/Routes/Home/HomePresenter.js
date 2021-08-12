@@ -46,18 +46,34 @@ const Content = styled.div`
   transform: translateY(-50%);
   width: 550px;
   font-family: "Do Hyeon", sans-serif;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    left: 0;
+    padding: 0 15px;
+    top: 83%;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 53px;
   text-shadow: rgba(255, 255, 255, 0.6) 0px 5px 10px;
   font-family: "Do Hyeon", sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 30px;
+  }
 `;
 
 const SubTitle = styled.h2`
   font-size: 28px;
   margin-top: 25px;
   font-style: italic;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    margin-top: 15px;
+  }
 `;
 
 const Genres = styled.div`
@@ -65,20 +81,37 @@ const Genres = styled.div`
   color: rgb(108, 117, 125);
   margin-top: 18px;
   margin-bottom: 8px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-top: 10px;
+  }
 `;
 
 const YearRuntimeContainer = styled.div`
   font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const Year = styled.span`
   font-size: 20px;
   color: rgb(108, 117, 125);
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const Runtime = styled.span`
   font-size: 20px;
   color: rgb(108, 117, 125);
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const YearRuntimeSpan = styled.span`
@@ -91,17 +124,30 @@ const Rating = styled.div`
   color: white;
   margin-top: 12px;
   margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const RatingChild = styled.span`
   font-size: 22px;
   color: dodgerblue;
   margin-left: 7px;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
 `;
 
 const Overview = styled.div`
   font-size: 21px;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    line-height: 1.2;
+  }
 `;
 
 const HomeSubContainer = styled.div`
@@ -109,6 +155,9 @@ const HomeSubContainer = styled.div`
 `;
 
 const HomePresenter = ({ movieDetail, error, loading }) => {
+  const checkPC = "win16|win32|win64|macintel|mac|";
+  const checkPCMobileBool = checkPC.indexOf(navigator.platform.toLowerCase()) < 0;
+
   return loading ? (
     <Loader></Loader>
   ) : (
@@ -139,7 +188,7 @@ const HomePresenter = ({ movieDetail, error, loading }) => {
                 평점
                 <RatingChild>{movieDetail.vote_average}</RatingChild>
               </Rating>
-              <Overview>{movieDetail.overview.substring(0, 310)}..</Overview>
+              {checkPCMobileBool ? <Overview>{movieDetail.overview.substring(0, 310)}..</Overview> : <Overview>{movieDetail.overview.substring(0, 150)}..</Overview>}
             </Content>
             <HomeSubContainer>
               <Description></Description>

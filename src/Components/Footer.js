@@ -9,12 +9,21 @@ const FooterContainer = styled.div`
   width: 100%;
   position: relative;
   z-index: 100;
+
+  @media (max-width: 768px) {
+    padding: 20px 20px;
+    padding-bottom: 30px;
+  }
 `;
 
 const FooterContent = styled.div``;
 
 const FooterLinkContainer = styled.div`
   width: 500px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const FooterLinkTitle = styled.h1`
@@ -27,6 +36,10 @@ const FooterLinkContent = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 35px;
+
+  @media (max-width: 768px) {
+    margin-top: 26px;
+  }
 `;
 
 const FooterLink = styled.a`
@@ -38,10 +51,19 @@ const FooterLink = styled.a`
   &:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
 `;
 
 const FooterDescContainer = styled.div`
   margin-top: 30px;
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const FooterDescTitle = styled.h1`
@@ -77,7 +99,6 @@ const Footer = () => {
           </FooterLinkContent>
         </FooterLinkContainer>
         <FooterDescContainer>
-          {/* <FooterDescTitle>넷플릭스 대한민국</FooterDescTitle> */}
           <FooterDescRights>© 2021 GW. ALL RIGHTS RESERVED.</FooterDescRights>
         </FooterDescContainer>
       </FooterContent>

@@ -18,6 +18,10 @@ const Container = styled.div`
 
 const TitleContainer = styled.div`
   margin-top: 90px;
+
+  @media (max-width: 768px) {
+    margin-top: 40px;
+  }
 `;
 
 const TitleContent = styled.div`

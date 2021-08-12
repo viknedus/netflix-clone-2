@@ -31,8 +31,11 @@ const HeaderContainer = styled.header`
   width: 100%;
 
   @media (max-width: 768px) {
-    border: 3px solid red;
-    display: none;
+    padding: 0;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
   }
 `;
 
@@ -47,6 +50,11 @@ const Image = styled.div`
   background-size: 150px;
   margin-right: auto;
   width: 160px;
+
+  @media (max-width: 768px) {
+    margin-right: 0;
+    background-size: 110px;
+  }
 `;
 
 const Li = styled.li`
@@ -59,6 +67,11 @@ const Li = styled.li`
   /* $안에 자바스크립트 코드를 쓸 수 있고, 자바스크립트의 삼항연산자를 이용할 수 있다. */
   /* props를 매개변수로 받아서 props안에 current값을 체크해서 값이 있다면 true를, 없다면 false를 반환해서 border-bottom의 스타일을 준다. */
   border-bottom: 3px solid ${(props) => (props.current ? "#E30914" : "transparent")};
+
+  @media (max-width: 768px) {
+    width: 60px;
+    font-size: 16px;
+  }
 `;
 
 // 스타일 컴포넌트를 사용할 때 기존의 HTML태그는 styled.ul 형태로 사용하고, react에서 사용하는 컴포넌트는 styled(Link) 형태로 사용한다.
@@ -69,6 +82,10 @@ const ScLink = styled(Link)`
   align-items: center;
   justify-content: center;
   color: ${(props) => (props.current ? "#E30914" : "white")};
+
+  @media (max-width: 768px) {
+    height: 50px;
+  }
 `;
 
 // Header함수의 ()괄호 안에 인자에 props로 값을 받아올 수도 있고 props객체 안에 있는 바로 프로퍼티를 꺼내올 수도 있다.

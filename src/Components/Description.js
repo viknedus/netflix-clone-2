@@ -22,6 +22,10 @@ const DescContent = styled.div`
   align-items: center;
   width: 100%;
   border-top: 8px solid rgb(25, 25, 25);
+
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+  }
 `;
 
 const DescSubContent = styled.div`
@@ -29,12 +33,27 @@ const DescSubContent = styled.div`
   justify-content: center;
   align-items: center;
   width: 1280px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const DescTitle = styled.div`
   color: white;
   flex: 0.8;
   padding: 0 75px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+  }
 `;
 
 const DescH1 = styled.h1`
@@ -42,11 +61,20 @@ const DescH1 = styled.h1`
   margin-bottom: 20px;
   line-height: 1.3;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 25px;
+  }
 `;
 
 const DescP = styled.p`
   font-size: 27px;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    line-height: 1.5;
+  }
 `;
 
 const DescImageContainer = styled.div`
@@ -58,6 +86,11 @@ const DescImageContainer = styled.div`
 
 const DescImage = styled.img`
   width: 520px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 `;
 
 const DescVideoTV = styled.video`
@@ -67,6 +100,11 @@ const DescVideoTV = styled.video`
   transform: translate(-50%, -50%);
   width: 382px;
   z-index: -1;
+
+  @media (max-width: 768px) {
+    top: 45%;
+    width: 285px;
+  }
 `;
 
 const DescVideoDevice = styled.video`
@@ -76,6 +114,10 @@ const DescVideoDevice = styled.video`
   transform: translate(-50%, -50%);
   width: 320px;
   z-index: -1;
+
+  @media (max-width: 768px) {
+    width: 250px;
+  }
 `;
 
 const Description = () => {

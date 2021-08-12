@@ -55,6 +55,7 @@ const CoverContainer = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+    margin-top: 75px;
   }
 `;
 
@@ -111,7 +112,7 @@ const Title = styled.h1`
   font-size: 36px;
 
   @media (max-width: 768px) {
-    font-size: 27px;
+    font-size: 30px;
   }
 `;
 
@@ -123,6 +124,7 @@ const SubTitle = styled.h2`
 
   @media (max-width: 768px) {
     font-size: 18px;
+    margin-top: 20px;
   }
 `;
 
@@ -292,7 +294,7 @@ const IframeDesc = styled.h2`
 
   @media (max-width: 768px) {
     margin-top: 10px;
-    font-size: 16px;
+    font-size: 19px;
   }
 `;
 
@@ -469,6 +471,10 @@ const ReviewContent = styled.div``;
 const Review = styled.div`
   display: flex;
   margin-bottom: 50px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+  }
 `;
 
 const ReviewImageContent = styled.div``;
@@ -486,21 +492,39 @@ const ReviewName = styled.span`
   font-size: 20px;
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
 `;
 
 const ReviewDivider = styled.span`
   margin-left: 10px;
   margin-right: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+    margin-left: 7px;
+    margin-right: 7px;
+  }
 `;
 
 const ReviewDate = styled.span`
   color: white;
   font-size: 18px;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
 `;
 
 const ReviewRating = styled.span`
   color: gold;
   font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 19px;
+  }
 `;
 
 const ReviewOverview = styled.p`
@@ -515,6 +539,11 @@ const ReviewOverview = styled.p`
   border: 3px solid white;
   cursor: pointer;
   color: white;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    padding: 15px;
+  }
 `;
 
 const ReviewLink = styled.a`
@@ -543,6 +572,7 @@ const RecommendContainer = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     margin-top: 20px;
+    padding-bottom: 40px;
   }
 `;
 
@@ -604,6 +634,13 @@ const GototopButton = styled.button`
   outline: none;
   border: none;
   box-shadow: rgb(0 0 0 / 50%) 0px 0px 3px 2px;
+
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
 `;
 
 const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, backdrops, posters, tvDetail2 }) => {
@@ -730,7 +767,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               <ActorImageContainer>
                 {cast &&
                   cast.map((cast, index) =>
-                    index < 7 ? (
+                    index < 6 ? (
                       <ActorImage>
                         <ActorPhoto bgUrl={cast.profile_path && cast.profile_path}></ActorPhoto>
                         <ActorName>{cast.name && cast.name}</ActorName>
@@ -772,7 +809,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                   options={{
                     rewind: true,
                     perPage: 2,
-                    perMove: 1,
+                    perMove: 2,
                     gap: "1rem",
                   }}
                 >
@@ -825,14 +862,18 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                           </ReviewImageContent>
                           <ReviewSubContent>
                             <ReviewName>
-                              {review.author ? review.author : review.author_details.username}
+                              {review.author ? review.author.substring(0, 15) : review.author_details.username.substring(0, 15)}
                               <ReviewDivider>|</ReviewDivider>
                               <ReviewDate>{review.created_at && review.created_at.substring(0, 10)}</ReviewDate>
                               <ReviewDivider>|</ReviewDivider>
                               <ReviewRating>평점 {review.author_details.rating && review.author_details.rating}</ReviewRating>
                             </ReviewName>
                             <ReviewOverview>
-                              <ReviewLink href={review.url && review.url}>{review.content && review.content.substring(0, 1000) + ".."}</ReviewLink>
+                              {checkPCMobileBool ? (
+                                <ReviewLink href={review.url && review.url}>{review.content && review.content.substring(0, 150) + ".."}</ReviewLink>
+                              ) : (
+                                <ReviewLink href={review.url && review.url}>{review.content && review.content.substring(0, 900) + ".."}</ReviewLink>
+                              )}
                             </ReviewOverview>
                           </ReviewSubContent>
                         </Review>
@@ -846,7 +887,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
           <RecommendTitle>추천 영화 / 프로그램</RecommendTitle>
           <RecommendContent>
             {checkPCMobileBool ? (
-              <Splide options={{ rewind: true, perPage: 2, perMove: 1, gap: "1rem" }}>
+              <Splide options={{ rewind: true, perPage: 2, perMove: 2, gap: "1rem" }}>
                 {recommendations &&
                   recommendations.map((recommendation) => (
                     <SplideSlide>

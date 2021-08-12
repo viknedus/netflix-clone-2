@@ -7,20 +7,36 @@ const QnAContainer = styled.div`
   padding: 70px 0px;
   border-top: 8px solid rgb(25, 25, 25);
   width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 30px 15px;
+  }
 `;
 
 const QnAContent = styled.div`
   width: 800px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const QnATitle = styled.h1`
   color: white;
   font-size: 42px;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 27px;
+  }
 `;
 
 const QnASection = styled.div`
   margin-top: 65px;
+
+  @media (max-width: 768px) {
+    margin-top: 30px;
+  }
 `;
 
 const QnASubSection = styled.div``;
@@ -35,6 +51,11 @@ const QnASubTitle = styled.div`
   position: relative;
   cursor: pointer;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    font-size: 16px;
+  }
 `;
 
 const QnASubDesc = styled.div`
@@ -57,6 +78,17 @@ const QnASubDesc = styled.div`
     height: 240px;
     margin-top: 25px;
     transition: 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    padding: 0;
+    padding-top: 20px;
+    font-size: 15px;
+
+    &.active {
+      height: 220px;
+    }
   }
 `;
 
