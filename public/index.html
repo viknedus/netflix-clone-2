@@ -16,16 +16,5 @@
   </head>
   <body>
     <div id="root"></div>
-
-    <script>
-      var filter = "win16|win32|win64|macintel|mac|";
-      if (navigator.platform) {
-        if (filter.indexOf(navigator.platform.toLowerCase()) < 0) {
-          alert("모바일에서 접속하셨습니다");
-        } else {
-          alert("PC에서 접속하셨습니다");
-        }
-      }
-    </script>
   </body>
 </html>

@@ -607,7 +607,8 @@ const GototopButton = styled.button`
 `;
 
 const DetailPresenter = ({ result, error, loading = true, isMovie, recommendations, cast, keywords, reviews, backdrops, posters, tvDetail2 }) => {
-  console.log(tvDetail2);
+  const checkPC = "win16|win32|win64|macintel|mac|";
+  const checkPCMobileBool = checkPC.indexOf(navigator.platform.toLowerCase()) < 0;
 
   return loading ? (
     <Loader></Loader>
@@ -765,26 +766,50 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
 
             <SplideContainer>
               <SplideTitle>스틸컷</SplideTitle>
-              <Splide
-                options={{
-                  rewind: true,
-                  perPage: 3,
-                  perMove: 1,
-                  gap: "1rem",
-                }}
-              >
-                {backdrops &&
-                  backdrops.map(
-                    (backdrop) =>
-                      backdrop.file_path && (
-                        <SplideSlide>
-                          <SplideLink href={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} target="_blank">
-                            <SplideImage src={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} alt="" />
-                          </SplideLink>
-                        </SplideSlide>
-                      )
-                  )}
-              </Splide>
+
+              {checkPCMobileBool ? (
+                <Splide
+                  options={{
+                    rewind: true,
+                    perPage: 2,
+                    perMove: 1,
+                    gap: "1rem",
+                  }}
+                >
+                  {backdrops &&
+                    backdrops.map(
+                      (backdrop) =>
+                        backdrop.file_path && (
+                          <SplideSlide>
+                            <SplideLink href={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} target="_blank">
+                              <SplideImage src={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} alt="" />
+                            </SplideLink>
+                          </SplideSlide>
+                        )
+                    )}
+                </Splide>
+              ) : (
+                <Splide
+                  options={{
+                    rewind: true,
+                    perPage: 3,
+                    perMove: 1,
+                    gap: "1rem",
+                  }}
+                >
+                  {backdrops &&
+                    backdrops.map(
+                      (backdrop) =>
+                        backdrop.file_path && (
+                          <SplideSlide>
+                            <SplideLink href={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} target="_blank">
+                              <SplideImage src={`https://image.tmdb.org/t/p/original${backdrop.file_path}`} alt="" />
+                            </SplideLink>
+                          </SplideSlide>
+                        )
+                    )}
+                </Splide>
+              )}
             </SplideContainer>
 
             <ReviewContainer>
@@ -820,32 +845,47 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
         <RecommendContainer>
           <RecommendTitle>추천 영화 / 프로그램</RecommendTitle>
           <RecommendContent>
-            <Splide
-              options={{
-                rewind: true,
-                perPage: 8,
-                perMove: 1,
-                gap: "1rem",
-              }}
-            >
-              {recommendations &&
-                recommendations.map((recommendation) => (
-                  <SplideSlide>
-                    <RecommendSubContent>
-                      <RecommendLink
-                        href={recommendation.media_type === "movie" ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}` : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`}
-                        bgUrl={recommendation.poster_path && recommendation.poster_path}
-                        target="_blank"
-                      >
-                        <RecommendSubTitle>
-                          <RecommendName>{recommendation.title ? recommendation.title : recommendation.name}</RecommendName>
-                          <RecommendRating>⭐{String(recommendation.vote_average && recommendation.vote_average).substring(0, 3)}</RecommendRating>
-                        </RecommendSubTitle>
-                      </RecommendLink>
-                    </RecommendSubContent>
-                  </SplideSlide>
-                ))}
-            </Splide>
+            {checkPCMobileBool ? (
+              <Splide options={{ rewind: true, perPage: 2, perMove: 1, gap: "1rem" }}>
+                {recommendations &&
+                  recommendations.map((recommendation) => (
+                    <SplideSlide>
+                      <RecommendSubContent>
+                        <RecommendLink
+                          href={recommendation.media_type === "movie" ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}` : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`}
+                          bgUrl={recommendation.poster_path && recommendation.poster_path}
+                          target="_blank"
+                        >
+                          <RecommendSubTitle>
+                            <RecommendName>{recommendation.title ? recommendation.title : recommendation.name}</RecommendName>
+                            <RecommendRating>⭐{String(recommendation.vote_average && recommendation.vote_average).substring(0, 3)}</RecommendRating>
+                          </RecommendSubTitle>
+                        </RecommendLink>
+                      </RecommendSubContent>
+                    </SplideSlide>
+                  ))}
+              </Splide>
+            ) : (
+              <Splide options={{ rewind: true, perPage: 8, perMove: 1, gap: "1rem" }}>
+                {recommendations &&
+                  recommendations.map((recommendation) => (
+                    <SplideSlide>
+                      <RecommendSubContent>
+                        <RecommendLink
+                          href={recommendation.media_type === "movie" ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}` : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`}
+                          bgUrl={recommendation.poster_path && recommendation.poster_path}
+                          target="_blank"
+                        >
+                          <RecommendSubTitle>
+                            <RecommendName>{recommendation.title ? recommendation.title : recommendation.name}</RecommendName>
+                            <RecommendRating>⭐{String(recommendation.vote_average && recommendation.vote_average).substring(0, 3)}</RecommendRating>
+                          </RecommendSubTitle>
+                        </RecommendLink>
+                      </RecommendSubContent>
+                    </SplideSlide>
+                  ))}
+              </Splide>
+            )}
           </RecommendContent>
         </RecommendContainer>
       </Content>
