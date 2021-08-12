@@ -68,7 +68,7 @@ const Button = styled.button`
   right: 0;
   background-color: #e30914;
   color: white;
-  padding: 13px 30px;
+  padding: 14px 30px;
   cursor: pointer;
 
   @media (max-width: 768px) {
