@@ -22,6 +22,9 @@ https://netflix-gw.netlify.app
 #### Search
 <img src="/preview/8.png">
 
+#### Mobile
+<img src="/preview/9.png" height="6500"><img src="/preview/10.png" height="6500"><img src="/preview/11.png" height="6500">
+
 ## 🔥 Stack
 
 ### Front-end
