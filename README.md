@@ -1,8 +1,26 @@
 # Netflix-Clone
 
 ## 🔗 Demo
+netflix-gw.netlify.app
 
 ## 🖥 Preview
+#### Home
+<img src="/preview/1.png">   
+
+#### Movie
+<img src="/preview/2.png">
+
+#### Movie Detail
+<img src="/preview/4.png">
+
+#### TV
+<img src="/preview/5.png">
+
+#### TV Detail
+<img src="/preview/7.png">
+
+#### Search
+<img src="/preview/8.png">
 
 ## 🔥 Stack
 
