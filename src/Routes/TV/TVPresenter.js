@@ -139,7 +139,7 @@ const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading 
             <SubTitle>
               방영 예정인 TV 프로그램 목록을 가져옵니다.
               <br />
-              1주일내에 방영될 에피소드가 있는 TV 프로그램을 찾습니다.
+              1주일내에 방영될 에피소드가 있는 프로그램을 찾습니다.
             </SubTitle>
           </TitleContent>
         </TitleContainer>
