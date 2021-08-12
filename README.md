@@ -1,7 +1,7 @@
 # Netflix-Clone
 
 ## 🔗 Demo
-netflix-gw.netlify.app
+https://netflix-gw.netlify.app
 
 ## 🖥 Preview
 #### Home
