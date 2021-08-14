@@ -89,7 +89,7 @@ https://netflix-gw.netlify.app
 
 ## 💎 Challenge
 
-- [x] Show Movie, TV Details
+- [x] Show Movie Details, TV Details
 - [x] Youtube Videos, Actors, Production Company, Still Cuts, Review, Recommended
 - [x] Collections Link
 - [x] Collections Route
