@@ -56,8 +56,7 @@ https://netflix-gw.netlify.app
 
 ## ⚙ Features
 
-- [x] List Movies
-- [x] List TV
+- [x] List Movies, TV
 - [x] The MovieDB API
 - [x] Container / Presenter Pattern
 - [x] To Do List with useReducer
