@@ -56,8 +56,7 @@ https://netflix-gw.netlify.app
 
 ## ⚙ Features
 
-- [x] List Movies
-- [x] List TV
+- [x] List Movies, TV
 - [x] The MovieDB API
 - [x] Container / Presenter Pattern
 - [x] To Do List with useReducer
@@ -89,7 +88,7 @@ https://netflix-gw.netlify.app
 
 ## 💎 Challenge
 
-- [x] Show Movie, TV Details
+- [x] Show Movie Details, TV Details
 - [x] Youtube Videos, Actors, Production Company, Still Cuts, Review, Recommended
 - [x] Collections Link
 - [x] Collections Route
