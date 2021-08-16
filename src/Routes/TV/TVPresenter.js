@@ -90,7 +90,7 @@ const ButtonLink = styled(Link)`
 
 // TVContainer로부터 받아온 props들을 파라미터로 받는다.
 const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading }) => {
-  console.log(topRated, popular, airingToday, onTheAir, error, loading);
+  // console.log(topRated, popular, airingToday, onTheAir, error, loading);
 
   const {
     location: { hash },
