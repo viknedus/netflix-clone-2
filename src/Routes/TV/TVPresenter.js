@@ -82,7 +82,7 @@ const ButtonLink = styled(Link)`
   font-weight: bold;
 
   @media (max-width: 768px) {
-    margin: 0 5px;
+    margin: 0 1px;
     font-size: 13px;
     font-weight: normal;
   }

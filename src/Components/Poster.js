@@ -153,7 +153,7 @@ const ScLink = styled(Link)`
 
   @media (max-width: 768px) {
     margin: 0;
-    width: 185px;
+    width: 170px;
     margin-bottom: 40px;
   }
 `;

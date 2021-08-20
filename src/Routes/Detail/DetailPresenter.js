@@ -332,7 +332,7 @@ const ActorImage = styled.div`
 
   @media (max-width: 768px) {
     width: 100px;
-    margin-right: 22px;
+    margin-right: 15px;
     margin-bottom: 22px;
   }
 `;

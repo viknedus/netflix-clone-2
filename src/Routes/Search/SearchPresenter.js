@@ -28,7 +28,7 @@ const Title = styled.h1`
   line-height: 1.6;
 
   @media (max-width: 768px) {
-    font-size: 20px;
+    font-size: 19px;
   }
 `;
 

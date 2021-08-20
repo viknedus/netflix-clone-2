@@ -53,7 +53,7 @@ const QnASubTitle = styled.div`
   margin-bottom: 10px;
 
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 20px 15px;
     font-size: 16px;
   }
 `;
