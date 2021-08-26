@@ -32,6 +32,7 @@ https://netflix-gw.netlify.app
 <img height="30" src="https://img.shields.io/badge/React-black?style=for-the-badge&logo=React&logoColor=#61DAFB"/> <img height="30" src="https://img.shields.io/badge/Javascript-black?style=for-the-badge&logo=Javascript&logoColor=F7DF1E"/>
 <img height="30" src="https://img.shields.io/badge/Typescript-black?style=for-the-badge&logo=Typescript&logoColor=3178C6"/>
 <img height="30" src="https://img.shields.io/badge/Netlify-black?style=for-the-badge&logo=Netlify&logoColor=00C7B7"/>
+<img height="30" src="https://img.shields.io/badge/Styled components-black?style=for-the-badge&logo=styled-components&logoColor=DB7093"/>
 
 ## ✅ Packages
 
@@ -39,10 +40,10 @@ https://netflix-gw.netlify.app
 - [x] React Router
 - [x] React Hooks
 - [x] React Context
-- [x] Styled Components
-- [x] Typescript
 - [x] Axios
 - [x] Ajax
+- [x] Typescript
+- [x] Styled Components
 
 ## 📖 Theory
 
