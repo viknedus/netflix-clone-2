@@ -680,7 +680,7 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               <DateRunTimeContainer>
                 <Item>{result.release_date ? result.release_date : result.first_air_date}</Item>
                 <Divider>▪</Divider>
-                <Item>{result.runtime ? result.runtime : result.episode_run_time[0]}분</Item>
+                <Item>{result.runtime || result.runtime === 0 ? result.runtime : result.episode_run_time[0]}분</Item>
               </DateRunTimeContainer>
               <VoteContainer>
                 <Item>
