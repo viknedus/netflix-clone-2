@@ -182,7 +182,7 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false, overview, 
 
         <ContentContainer>
           {/* title.length를 체크해서 15보다 크면 substring(0,15)를 통해 0부터 15까지의 글자수만 전달하도록 한다. */}
-          <Title>{title.length > 15 ? `${title.substring(0, 15)}..` : title}</Title>
+          <Title>{title && title.length > 15 ? `${title.substring(0, 15)}..` : title}</Title>
 
           <YearRatingContainer>
             <Year>개봉일 {year}</Year>

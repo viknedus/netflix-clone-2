@@ -66,11 +66,6 @@ const FooterDescContainer = styled.div`
   }
 `;
 
-const FooterDescTitle = styled.h1`
-  color: rgb(108, 117, 125);
-  font-size: 13px;
-`;
-
 const FooterDescRights = styled.h2`
   color: white;
   font-size: 14px;

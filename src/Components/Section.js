@@ -11,7 +11,7 @@ const Container = styled.div`
 
   /* :not(:last-child)를 통해 마지막 Container를 제외한 나머지 것들에 스타일을 준다. */
   :not(:last-child) {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
   }
 
   @media (max-width: 768px) {

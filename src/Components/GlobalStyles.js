@@ -32,10 +32,10 @@ const globalStyles = createGlobalStyle`
 
     &::-webkit-scrollbar-thumb {
       border-radius: 7px;
-      background-color: #202020;
+      background-color: #787878;
 
       &:hover {
-        background-color: #303030;
+        background-color: #C0C0C0;
       }
       &:active{
         background-color: #C0C0C0;

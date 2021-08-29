@@ -9,7 +9,6 @@ import noActor from "../../assets/noActor.png";
 import noCompany2 from "../../assets/noCompany2.png";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
-import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -659,12 +658,16 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
 
       {/* {console.log(result.backdrop_path)} */}
       {/* BlurBackground컴포넌트는 result안에 있는 backdrop_path를 가져오고 만약 있으면 https://image.tmdb.org/t/p/original${result.backdrop_path}를, 없으면 noPoster변수를 imageUrl props로 전달한다. */}
-      <BlurBackground imageUrl={result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` : `https://image.tmdb.org/t/p/original${result.poster_path}`}></BlurBackground>
+      <BlurBackground
+        imageUrl={result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` : `https://image.tmdb.org/t/p/original${result.poster_path}`}
+      ></BlurBackground>
       <Content>
         <CoverContainer>
           <CoverHeading>
             <CoverLink href={result.homepage ? result.homepage : "#"}>
-              <Cover imageUrl={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : `https://image.tmdb.org/t/p/original${result.backdrop_path}`}></Cover>
+              <Cover
+                imageUrl={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : `https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+              ></Cover>
             </CoverLink>
             <Data>
               <Title>{result.title ? result.title : result.name}</Title>
@@ -691,7 +694,9 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
               <Overview>{result.overview && result.overview}</Overview>
               <Keywords>
                 <KeywordTitle>키워드</KeywordTitle>
-                <KeywordContent>{keywords.length > 0 ? keywords.map((keyword, index) => index < 15 && <KeywordSpan>{keyword.name && "#" + keyword.name}</KeywordSpan>) : ""}</KeywordContent>
+                <KeywordContent>
+                  {keywords.length > 0 ? keywords.map((keyword, index) => index < 15 && <KeywordSpan>{keyword.name && "#" + keyword.name}</KeywordSpan>) : ""}
+                </KeywordContent>
               </Keywords>
             </Data>
           </CoverHeading>
@@ -741,21 +746,39 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
 
                 {isMovie === false && tvDetail2.length > 0 && tvDetail2[0] && tvDetail2[0].key && (
                   <IframeContainer>
-                    <Iframe src={`https://www.youtube.com/embed/${tvDetail2[0].key}?playlist=${tvDetail2[0].key}`} width="420" height="280" frameborder="0" allow="autoplay; fullscreen"></Iframe>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${tvDetail2[0].key}?playlist=${tvDetail2[0].key}`}
+                      width="420"
+                      height="280"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
                     <IframeDesc>{tvDetail2[0].name && tvDetail2[0].name}</IframeDesc>
                   </IframeContainer>
                 )}
 
                 {isMovie === false && tvDetail2.length > 0 && tvDetail2[1] && tvDetail2[1].key && (
                   <IframeContainer>
-                    <Iframe src={`https://www.youtube.com/embed/${tvDetail2[1].key}?playlist=${tvDetail2[1].key}`} width="420" height="280" frameborder="0" allow="autoplay; fullscreen"></Iframe>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${tvDetail2[1].key}?playlist=${tvDetail2[1].key}`}
+                      width="420"
+                      height="280"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
                     <IframeDesc>{tvDetail2[1].name && tvDetail2[1].name}</IframeDesc>
                   </IframeContainer>
                 )}
 
                 {isMovie === false && tvDetail2.length > 0 && tvDetail2[2] && tvDetail2[2].key && (
                   <IframeContainer>
-                    <Iframe src={`https://www.youtube.com/embed/${tvDetail2[2].key}?playlist=${tvDetail2[2].key}`} width="420" height="280" frameborder="0" allow="autoplay; fullscreen"></Iframe>
+                    <Iframe
+                      src={`https://www.youtube.com/embed/${tvDetail2[2].key}?playlist=${tvDetail2[2].key}`}
+                      width="420"
+                      height="280"
+                      frameborder="0"
+                      allow="autoplay; fullscreen"
+                    ></Iframe>
                     <IframeDesc>{tvDetail2[2].name && tvDetail2[2].name}</IframeDesc>
                   </IframeContainer>
                 )}
@@ -782,11 +805,24 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                 <CompanyTitle>제작사</CompanyTitle>
                 <CompanyContent>
                   <CompanyImage
-                    bgUrl={result.production_companies.length > 0 && result.production_companies[0] && result.production_companies[0].logo_path && result.production_companies[0].logo_path}
+                    bgUrl={
+                      result.production_companies.length > 0 &&
+                      result.production_companies[0] &&
+                      result.production_companies[0].logo_path &&
+                      result.production_companies[0].logo_path
+                    }
                   ></CompanyImage>
                   <CompanyName>
-                    {result.production_companies.length > 0 && result.production_companies[0] && result.production_companies[0].name && result.production_companies[0].name} (
-                    {result.production_companies.length > 0 && result.production_companies[0] && result.production_companies[0].origin_country && result.production_companies[0].origin_country})
+                    {result.production_companies.length > 0 &&
+                      result.production_companies[0] &&
+                      result.production_companies[0].name &&
+                      result.production_companies[0].name}{" "}
+                    (
+                    {result.production_companies.length > 0 &&
+                      result.production_companies[0] &&
+                      result.production_companies[0].origin_country &&
+                      result.production_companies[0].origin_country}
+                    )
                   </CompanyName>
                 </CompanyContent>
                 <CompanyMoney>
@@ -893,7 +929,11 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                     <SplideSlide>
                       <RecommendSubContent>
                         <RecommendLink
-                          href={recommendation.media_type === "movie" ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}` : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`}
+                          href={
+                            recommendation.media_type === "movie"
+                              ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}`
+                              : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`
+                          }
                           bgUrl={recommendation.poster_path && recommendation.poster_path}
                           target="_blank"
                         >
@@ -913,7 +953,11 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
                     <SplideSlide>
                       <RecommendSubContent>
                         <RecommendLink
-                          href={recommendation.media_type === "movie" ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}` : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`}
+                          href={
+                            recommendation.media_type === "movie"
+                              ? `https://netflix-gw.netlify.app/#/movie/${recommendation.id}`
+                              : `https://netflix-gw.netlify.app/#/tv/${recommendation.id}`
+                          }
                           bgUrl={recommendation.poster_path && recommendation.poster_path}
                           target="_blank"
                         >

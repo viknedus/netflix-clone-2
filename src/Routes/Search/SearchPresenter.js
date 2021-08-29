@@ -165,6 +165,7 @@ const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, 
               ))}
             </Section>
           )}
+
           {tvResults && tvResults.length > 0 && hash === "#/search/result-tv" && (
             <Section title="TV 프로그램">
               {tvResults.map((tv) => (
