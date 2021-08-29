@@ -10,7 +10,10 @@ class MovieContainer extends React.Component {
     topRated: null,
     error: null,
     loading: true,
-    nowPlaying2: null,
+    popularInfinite: null,
+    nowPlayingInfinite: null,
+    upcomingInfinite: null,
+    topRatedInfinite: null,
   };
 
   async componentDidMount() {
@@ -32,15 +35,30 @@ class MovieContainer extends React.Component {
       } = await moviesApi.topRated();
 
       const {
-        data: { results: nowPlaying2 },
-      } = await moviesApi.nowPlaying2();
+        data: { results: popularInfinite },
+      } = await moviesApi.popularInfinite();
+
+      const {
+        data: { results: nowPlayingInfinite },
+      } = await moviesApi.nowPlayingInfinite();
+
+      const {
+        data: { results: upcomingInfinite },
+      } = await moviesApi.upcomingInfinite();
+
+      const {
+        data: { results: topRatedInfinite },
+      } = await moviesApi.topRatedInfinite();
 
       this.setState({
         nowPlaying,
         upcoming,
         popular,
         topRated,
-        nowPlaying2,
+        popularInfinite,
+        nowPlayingInfinite,
+        upcomingInfinite,
+        topRatedInfinite,
       });
     } catch (error) {
       console.log(error);
@@ -56,10 +74,23 @@ class MovieContainer extends React.Component {
   }
 
   render() {
-    const { nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 } = this.state;
+    const { nowPlaying, upcoming, popular, topRated, error, loading, popularInfinite, nowPlayingInfinite, upcomingInfinite, topRatedInfinite } = this.state;
     // console.log(this.state);
 
-    return <MoviePresenter nowPlaying={nowPlaying} upcoming={upcoming} popular={popular} topRated={topRated} error={error} loading={loading} nowPlaying2={nowPlaying2} />;
+    return (
+      <MoviePresenter
+        nowPlaying={nowPlaying}
+        upcoming={upcoming}
+        popular={popular}
+        topRated={topRated}
+        error={error}
+        loading={loading}
+        popularInfinite={popularInfinite}
+        nowPlayingInfinite={nowPlayingInfinite}
+        upcomingInfinite={upcomingInfinite}
+        topRatedInfinite={topRatedInfinite}
+      />
+    );
   }
 }
 

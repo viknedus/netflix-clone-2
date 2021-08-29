@@ -6,6 +6,10 @@ import Message from "Components/Message";
 import Poster from "Components/Poster";
 import Helmet from "react-helmet";
 import { Link, withRouter } from "react-router-dom";
+import useInfiniteScroll from "useInfiniteScroll";
+import { useEffect, useState } from "react";
+import uniqBy from "lodash.uniqby";
+import { moviesApi } from "api";
 
 const Container = styled.div`
   display: flex;
@@ -88,21 +92,98 @@ const ButtonLink = styled(Link)`
   }
 `;
 
-const ButtonTest = styled.button`
-  border: 3px solid red;
+const GototopButton = styled.button`
   position: fixed;
   bottom: 60px;
-  right: 50px;
+  right: 60px;
+  z-index: 200;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(to right, #536976, #292e49);
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 35px;
+  outline: none;
+  border: none;
+  box-shadow: rgb(0 0 0 / 50%) 0px 0px 3px 2px;
+
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
 `;
 
-const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 }) => {
+const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loading, nowPlayingInfinite, popularInfinite, upcomingInfinite, topRatedInfinite }) => {
   // console.log(nowPlaying, upcoming, popular, topRated, error, loading);
 
   const {
     location: { hash },
   } = window;
+
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+  const page = useInfiniteScroll();
+
+  const getInfiniteApi = async () => {
+    if (page !== 1) {
+      if (hash === "#/movie") {
+        try {
+          const {
+            data: { results: newPopularMovies },
+          } = await moviesApi.popularInfinite(page);
+          const totalMovies = [...popularMovies, ...newPopularMovies];
+          const uniqByMovies = uniqBy(totalMovies, "id");
+
+          setPopularMovies(uniqByMovies);
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (hash === "#/movie/now-playing") {
+        try {
+          const {
+            data: { results: newNowPlayingMovies },
+          } = await moviesApi.nowPlayingInfinite(page);
+          const totalMovies = [...nowPlayingMovies, ...newNowPlayingMovies];
+          const uniqByMovies = uniqBy(totalMovies, "id");
+
+          setNowPlayingMovies(uniqByMovies);
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (hash === "#/movie/upcoming") {
+        try {
+          const {
+            data: { results: newUpcomingMovies },
+          } = await moviesApi.upcomingInfinite(page);
+          const totalMovies = [...upcomingMovies, ...newUpcomingMovies];
+          const uniqByMovies = uniqBy(totalMovies, "id");
+
+          setUpcomingMovies(uniqByMovies);
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (hash === "#/movie/top-rated") {
+        try {
+          const {
+            data: { results: newTopRatedMovies },
+          } = await moviesApi.topRatedInfinite(page);
+          const totalMovies = [...topRatedMovies, ...newTopRatedMovies];
+          const uniqByMovies = uniqBy(totalMovies, "id");
+
+          setTopRatedMovies(uniqByMovies);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    getInfiniteApi();
+  }, [page]);
 
   return loading ? (
     <Loader></Loader>
@@ -199,9 +280,45 @@ const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loadin
         </Section>
       )}
 
+      {popularInfinite && popularInfinite.length > 0 && hash === "#/movie" && (
+        <Section title="인기 영화">
+          {popularMovies.map((movie) => (
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.title}
+              rating={movie.vote_average}
+              year={movie.release_date ? movie.release_date : ""}
+              isMovie={true}
+              overview={movie.overview}
+              popularity={movie.popularity && Math.round(movie.popularity)}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+
       {nowPlaying && nowPlaying.length > 0 && hash === "#/movie/now-playing" && (
         <Section title="현재 상영중">
           {nowPlaying.map((movie) => (
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.title}
+              rating={movie.vote_average}
+              year={movie.release_date ? movie.release_date : ""}
+              isMovie={true}
+              overview={movie.overview}
+              popularity={movie.popularity && Math.round(movie.popularity)}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+
+      {nowPlayingInfinite && nowPlayingInfinite.length > 0 && hash === "#/movie/now-playing" && (
+        <Section title="현재 상영중">
+          {nowPlayingMovies.map((movie) => (
             <Poster
               key={movie.id}
               id={movie.id}
@@ -235,6 +352,24 @@ const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loadin
         </Section>
       )}
 
+      {upcomingInfinite && upcomingInfinite.length > 0 && hash === "#/movie/upcoming" && (
+        <Section title="상영 예정">
+          {upcomingMovies.map((movie) => (
+            <Poster
+              key={movie.id}
+              id={movie.id}
+              imageUrl={movie.poster_path}
+              title={movie.title}
+              rating={movie.vote_average}
+              year={movie.release_date ? movie.release_date : ""}
+              isMovie={true}
+              overview={movie.overview}
+              popularity={movie.popularity && Math.round(movie.popularity)}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+
       {topRated && topRated.length > 0 && hash === "#/movie/top-rated" && (
         <Section title="평점높은 영화">
           {topRated.map((movie) => (
@@ -253,9 +388,9 @@ const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loadin
         </Section>
       )}
 
-      {/* {nowPlaying2 && nowPlaying2.length > 0 && (
-        <Section title="현재 상영중2">
-          {nowPlaying2.map((movie) => (
+      {topRatedInfinite && topRatedInfinite.length > 0 && hash === "#/movie/top-rated" && (
+        <Section title="평점높은 영화">
+          {topRatedMovies.map((movie) => (
             <Poster
               key={movie.id}
               id={movie.id}
@@ -269,7 +404,11 @@ const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loadin
             ></Poster>
           ))}
         </Section>
-      )} */}
+      )}
+
+      <GototopButton onClick={() => window.scrollTo(0, 0)}>
+        <i class="fas fa-arrow-up" style={{ color: "white", fontSize: "25px" }}></i>
+      </GototopButton>
 
       {error && <Message text={error}></Message>}
     </Container>
@@ -283,7 +422,10 @@ MoviePresenter.propTypes = {
   topRated: PropTypes.array,
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  nowPlaying2: PropTypes.array,
+  popularInfinite: PropTypes.array,
+  nowPlayingInfinite: PropTypes.array,
+  upcomingInfinite: PropTypes.array,
+  topRatedInfinite: PropTypes.array,
 };
 
 export default withRouter(MoviePresenter);
