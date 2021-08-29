@@ -85,10 +85,31 @@ export const moviesApi = {
       },
     }),
 
-  nowPlaying2: () =>
+  popularInfinite: (page) =>
+    api.get(`movie/popular`, {
+      params: {
+        page: page,
+      },
+    }),
+
+  nowPlayingInfinite: (page) =>
     api.get(`movie/now_playing`, {
       params: {
-        page: "2",
+        page: page,
+      },
+    }),
+
+  upcomingInfinite: (page) =>
+    api.get(`movie/upcoming`, {
+      params: {
+        page: page,
+      },
+    }),
+
+  topRatedInfinite: (page) =>
+    api.get(`movie/top_rated`, {
+      params: {
+        page: page,
       },
     }),
 };
@@ -131,6 +152,34 @@ export const tvApi = {
     api.get("search/tv", {
       params: {
         query: term,
+      },
+    }),
+
+  popularInfinite: (page) =>
+    api.get(`tv/popular`, {
+      params: {
+        page: page,
+      },
+    }),
+
+  airingTodayInfinite: (page) =>
+    api.get(`tv/airing_today`, {
+      params: {
+        page: page,
+      },
+    }),
+
+  onTheAirInfinite: (page) =>
+    api.get(`tv/on_the_air`, {
+      params: {
+        page: page,
+      },
+    }),
+
+  topRatedInfinite: (page) =>
+    api.get(`tv/top_rated`, {
+      params: {
+        page: page,
       },
     }),
 };
