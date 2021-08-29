@@ -10,6 +10,10 @@ class TVContainer extends React.Component {
     onTheAir: null,
     error: null,
     loading: true,
+    popularInfinite: null,
+    airingTodayInfinite: null,
+    onTheAirInfinite: null,
+    topRatedInfinite: null,
   };
 
   // componentDidMount를 통해 컴포넌트가 생성되고 난 후 실행시킬 코드를 안에 넣어준다.
@@ -32,15 +36,31 @@ class TVContainer extends React.Component {
         data: { results: onTheAir },
       } = await tvApi.onTheAir();
 
-      // console.log(topRated, popular, airingToday, onTheAir);
+      const {
+        data: { results: popularInfinite },
+      } = await tvApi.popularInfinite();
 
-      // throw Error();
+      const {
+        data: { results: airingTodayInfinite },
+      } = await tvApi.airingTodayInfinite();
+
+      const {
+        data: { results: onTheAirInfinite },
+      } = await tvApi.onTheAirInfinite();
+
+      const {
+        data: { results: topRatedInfinite },
+      } = await tvApi.topRatedInfinite();
 
       this.setState({
         topRated,
         popular,
         airingToday,
         onTheAir,
+        popularInfinite,
+        airingTodayInfinite,
+        onTheAirInfinite,
+        topRatedInfinite,
       });
     } catch {
       this.setState({
@@ -54,10 +74,22 @@ class TVContainer extends React.Component {
   }
 
   render() {
-    const { topRated, popular, airingToday, onTheAir, error, loading } = this.state;
-    // console.log(this.state);
+    const { topRated, popular, airingToday, onTheAir, error, loading, popularInfinite, airingTodayInfinite, onTheAirInfinite, topRatedInfinite } = this.state;
 
-    return <TYPresenter topRated={topRated} popular={popular} airingToday={airingToday} onTheAir={onTheAir} error={error} loading={loading} />;
+    return (
+      <TYPresenter
+        topRated={topRated}
+        popular={popular}
+        airingToday={airingToday}
+        onTheAir={onTheAir}
+        error={error}
+        loading={loading}
+        popularInfinite={popularInfinite}
+        airingTodayInfinite={airingTodayInfinite}
+        onTheAirInfinite={onTheAirInfinite}
+        topRatedInfinite={topRatedInfinite}
+      />
+    );
   }
 }
 

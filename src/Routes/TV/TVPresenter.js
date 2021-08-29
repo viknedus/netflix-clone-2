@@ -6,6 +6,10 @@ import Message from "Components/Message";
 import Poster from "Components/Poster";
 import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import useInfiniteScroll from "useInfiniteScroll";
+import { tvApi } from "api";
+import uniqBy from "lodash.uniqby";
 
 const Container = styled.div`
   display: flex;
@@ -88,13 +92,99 @@ const ButtonLink = styled(Link)`
   }
 `;
 
+const GototopButton = styled.button`
+  position: fixed;
+  bottom: 60px;
+  right: 60px;
+  z-index: 200;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(to right, #536976, #292e49);
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: rgb(0 0 0 / 50%) 0px 0px 3px 2px;
+
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
+`;
+
 // TVContainer로부터 받아온 props들을 파라미터로 받는다.
-const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading }) => {
+const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading, popularInfinite, airingTodayInfinite, onTheAirInfinite, topRatedInfinite }) => {
   // console.log(topRated, popular, airingToday, onTheAir, error, loading);
 
   const {
     location: { hash },
   } = window;
+
+  const [popularTV, setPopularTV] = useState([]);
+  const [airingTodayTV, setAiringTodayTV] = useState([]);
+  const [onTheAirTV, setonTheAirTV] = useState([]);
+  const [topRatedTV, setTopRatedTV] = useState([]);
+  const page = useInfiniteScroll();
+
+  const getInfiniteApi = async () => {
+    if (page !== 1) {
+      if (hash === "#/tv") {
+        try {
+          const {
+            data: { results: newPopularTV },
+          } = await tvApi.popularInfinite(page);
+          const totalTV = [...popularTV, ...newPopularTV];
+          const uniqByTV = uniqBy(totalTV, "id");
+
+          setPopularTV(uniqByTV);
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (hash === "#/tv/airing-today") {
+        try {
+          const {
+            data: { results: newNowPlayingTV },
+          } = await tvApi.airingTodayInfinite(page);
+          const totalTV = [...airingTodayTV, ...newNowPlayingTV];
+          const uniqByTV = uniqBy(totalTV, "id");
+
+          setAiringTodayTV(uniqByTV);
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (hash === "#/tv/on-the-air") {
+        try {
+          const {
+            data: { results: newUpcomingTV },
+          } = await tvApi.onTheAirInfinite(page);
+          const totalTV = [...onTheAirTV, ...newUpcomingTV];
+          const uniqByTV = uniqBy(totalTV, "id");
+
+          setonTheAirTV(uniqByTV);
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (hash === "#/tv/top-rated") {
+        try {
+          const {
+            data: { results: newTopRatedTV },
+          } = await tvApi.topRatedInfinite(page);
+          const totalTV = [...topRatedTV, ...newTopRatedTV];
+          const uniqByTV = uniqBy(totalTV, "id");
+
+          setTopRatedTV(uniqByTV);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    getInfiniteApi();
+  }, [page]);
 
   // loading을 체크해서 loading이 true일 때는 Loader컴포넌트를, false면 Container컴포넌트를 리턴한다.
   // Container컴포넌트는 Section컴포넌트를 가지고 있고 Section컴포넌트로 title에 값을 넘겨주고 children에는 <Section></Section>사이의 값을 데이터로 넘겨준다.
@@ -192,9 +282,43 @@ const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading 
         </Section>
       )}
 
+      {popularInfinite && popularInfinite.length > 0 && hash === "#/tv" && (
+        <Section title="인기 프로그램">
+          {popularTV.map((tv) => (
+            <Poster
+              key={tv.id}
+              id={tv.id}
+              imageUrl={tv.poster_path}
+              title={tv.name}
+              rating={tv.vote_average}
+              year={tv.first_air_date ? tv.first_air_date : ""}
+              isMovie={false}
+              popularity={tv.popularity && Math.round(tv.popularity)}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+
       {airingToday && airingToday.length > 0 && hash === "#/tv/airing-today" && (
         <Section title="현재 방영중">
           {airingToday.map((tv) => (
+            <Poster
+              key={tv.id}
+              id={tv.id}
+              imageUrl={tv.poster_path}
+              title={tv.name}
+              rating={tv.vote_average}
+              year={tv.first_air_date ? tv.first_air_date : ""}
+              isMovie={false}
+              popularity={tv.popularity && Math.round(tv.popularity)}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+
+      {airingTodayInfinite && airingTodayInfinite.length > 0 && hash === "#/tv/airing-today" && (
+        <Section title="현재 방영중">
+          {airingTodayTV.map((tv) => (
             <Poster
               key={tv.id}
               id={tv.id}
@@ -226,6 +350,23 @@ const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading 
         </Section>
       )}
 
+      {onTheAirInfinite && onTheAirInfinite.length > 0 && hash === "#/tv/on-the-air" && (
+        <Section title="방영 예정">
+          {onTheAirTV.map((tv) => (
+            <Poster
+              key={tv.id}
+              id={tv.id}
+              imageUrl={tv.poster_path}
+              title={tv.name}
+              rating={tv.vote_average}
+              year={tv.first_air_date ? tv.first_air_date : ""}
+              isMovie={false}
+              popularity={tv.popularity && Math.round(tv.popularity)}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+
       {topRated && topRated.length > 0 && hash === "#/tv/top-rated" && (
         <Section title="평점높은 프로그램">
           {topRated.map((tv) => (
@@ -243,6 +384,27 @@ const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading 
           ))}
         </Section>
       )}
+
+      {topRatedInfinite && topRatedInfinite.length > 0 && hash === "#/tv/top-rated" && (
+        <Section title="평점높은 프로그램">
+          {topRatedTV.map((tv) => (
+            <Poster
+              key={tv.id}
+              id={tv.id}
+              imageUrl={tv.poster_path}
+              title={tv.name}
+              rating={tv.vote_average}
+              year={tv.first_air_date ? tv.first_air_date : ""}
+              isMovie={false}
+              popularity={tv.popularity && Math.round(tv.popularity)}
+            ></Poster>
+          ))}
+        </Section>
+      )}
+
+      <GototopButton onClick={() => window.scrollTo(0, 0)}>
+        <i class="fas fa-arrow-up" style={{ color: "white", fontSize: "25px" }}></i>
+      </GototopButton>
 
       {error && <Message text={error}></Message>}
     </Container>
