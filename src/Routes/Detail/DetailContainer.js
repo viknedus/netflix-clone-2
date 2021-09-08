@@ -53,7 +53,6 @@ class DetailContainer extends React.Component {
       // 주의! push()를 해준 후 return을 해줘야 함수가 종료되서 아래 콘솔로그 코드가 실행되지 않는다.
       return;
     }
-    // console.log("abc");
 
     let result = null;
     const { isMovie } = this.state;
@@ -152,11 +151,8 @@ class DetailContainer extends React.Component {
           tvDetail2,
         });
       }
-
-      // console.log("result", result);
     } catch (error) {
       console.log(error);
-
       this.setState({ error: "Can't find Anything." });
     } finally {
       this.setState({ loading: false, result });
@@ -165,7 +161,6 @@ class DetailContainer extends React.Component {
 
   render() {
     const { result, error, loading, isMovie, recommendations, cast, keywords, reviews, backdrops, posters, tvDetail2 } = this.state;
-    // console.log(this.state);
 
     return (
       <DetailPresenter

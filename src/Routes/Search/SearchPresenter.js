@@ -107,9 +107,6 @@ const ButtonLink = styled(Link)`
 `;
 
 const SearchPresenter = ({ movieResults, tvResults, searchTerm, error, loading, handleSubmit, updateSearchTerm }) => {
-  // console.log("movieResults", movieResults);
-  // console.log("tvResults", tvResults);
-
   const {
     location: { hash },
   } = window;

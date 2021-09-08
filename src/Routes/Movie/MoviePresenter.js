@@ -114,9 +114,18 @@ const GototopButton = styled.button`
   }
 `;
 
-const MoviePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loading, nowPlayingInfinite, popularInfinite, upcomingInfinite, topRatedInfinite }) => {
-  // console.log(nowPlaying, upcoming, popular, topRated, error, loading);
-
+const MoviePresenter = ({
+  nowPlaying,
+  upcoming,
+  popular,
+  topRated,
+  error,
+  loading,
+  nowPlayingInfinite,
+  popularInfinite,
+  upcomingInfinite,
+  topRatedInfinite,
+}) => {
   const {
     location: { hash },
   } = window;

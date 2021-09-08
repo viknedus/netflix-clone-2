@@ -62,13 +62,6 @@ const Popularity = styled.span`
   }
 `;
 
-const PopularityChild = styled.span`
-  color: dodgerblue;
-  font-size: 21px;
-  margin-left: 7px;
-  margin-bottom: 5px;
-`;
-
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -177,7 +170,7 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false, overview, 
           {/* {console.log(require("../assets/noPoster.png"))} */}
           <Image imageUrl={imageUrl ? `https://image.tmdb.org/t/p/w300${imageUrl}` : noPoster}></Image>
           <Overview>{overview ? `${overview.substring(0, 130)}..` : title}</Overview>
-          <Popularity>{/* 순위<PopularityChild>{popularity}</PopularityChild> */}상세정보</Popularity>
+          <Popularity>상세정보</Popularity>
         </PosterContainer>
 
         <ContentContainer>

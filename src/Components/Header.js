@@ -93,8 +93,6 @@ const ScLink = styled(Link)`
 // 예를들어 /tv 라우트로 들어가게 되면 TV컴포넌트를 보여줄 것이고 TV컴포넌트로부터 해당 컴포넌트의 정보들을 props로 전달받게 되는 것이다.
 // props객체안에 location객체안에 pathname값을 바로 꺼내왔다.
 const Header = ({ location: { pathname } }) => {
-  // console.log(pathname);
-
   return (
     <HeaderContainer>
       {/* 스타일 컴포넌트 모듈을 사용해서 React에서 HTML태그에 CSS 스타일을 줄 때는 ul 태그 대신 위에서 변수를 만들고 그 만든 변수 List로 태그명을 바꿔준다. */}

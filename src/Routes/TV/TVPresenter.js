@@ -115,9 +115,18 @@ const GototopButton = styled.button`
 `;
 
 // TVContainer로부터 받아온 props들을 파라미터로 받는다.
-const TVPresenter = ({ topRated, popular, airingToday, onTheAir, error, loading, popularInfinite, airingTodayInfinite, onTheAirInfinite, topRatedInfinite }) => {
-  // console.log(topRated, popular, airingToday, onTheAir, error, loading);
-
+const TVPresenter = ({
+  topRated,
+  popular,
+  airingToday,
+  onTheAir,
+  error,
+  loading,
+  popularInfinite,
+  airingTodayInfinite,
+  onTheAirInfinite,
+  topRatedInfinite,
+}) => {
   const {
     location: { hash },
   } = window;

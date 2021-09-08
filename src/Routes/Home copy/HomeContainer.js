@@ -25,17 +25,14 @@ class HomeContainer extends React.Component {
       const {
         data: { results: nowPlaying },
       } = await moviesApi.nowPlaying();
-      // console.log(nowPlaying);
 
       const {
         data: { results: upcoming },
       } = await moviesApi.upcoming();
-      // console.log(upcoming);
 
       const {
         data: { results: popular },
       } = await moviesApi.popular();
-      // console.log(popular);
 
       const {
         data: { results: topRated },
@@ -44,8 +41,6 @@ class HomeContainer extends React.Component {
       const {
         data: { results: nowPlaying2 },
       } = await moviesApi.nowPlaying2();
-
-      console.log("nowPlaying2", nowPlaying2);
 
       // throw Error()를 통해 의도적으로 에러를 던져서 catch문이 실행되도록 테스트해볼 수 있다.
       // throw Error();
@@ -63,7 +58,6 @@ class HomeContainer extends React.Component {
       });
     } catch (error) {
       console.log(error);
-
       this.setState({
         error: "Can't find Movie Information.",
       });
@@ -76,11 +70,18 @@ class HomeContainer extends React.Component {
 
   render() {
     const { nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 } = this.state;
-    // console.log(this.state);
 
-    console.log(this.state);
-
-    return <HomePresenter nowPlaying={nowPlaying} upcoming={upcoming} popular={popular} topRated={topRated} error={error} loading={loading} nowPlaying2={nowPlaying2} />;
+    return (
+      <HomePresenter
+        nowPlaying={nowPlaying}
+        upcoming={upcoming}
+        popular={popular}
+        topRated={topRated}
+        error={error}
+        loading={loading}
+        nowPlaying2={nowPlaying2}
+      />
+    );
   }
 }
 

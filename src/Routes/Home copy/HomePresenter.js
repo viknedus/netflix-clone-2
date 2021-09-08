@@ -20,9 +20,6 @@ const Container = styled.div`
 // netlify는 static Component(정적 컴포넌트)를 가지고 함께 작동한다.
 
 const HomePresenter = ({ nowPlaying, upcoming, popular, topRated, error, loading, nowPlaying2 }) => {
-  // console.log(nowPlaying, upcoming, popular, topRated, error, loading);
-  console.log(topRated);
-
   // HomePresenter함수는 만약 loading이 true면 Loader컴포넌트를, false면 Container컴포넌트를 리턴한다.
   return loading ? (
     <Loader></Loader>

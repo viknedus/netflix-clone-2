@@ -62,7 +62,6 @@ class MovieContainer extends React.Component {
       });
     } catch (error) {
       console.log(error);
-
       this.setState({
         error: "Can't find Movie Information.",
       });
@@ -75,7 +74,6 @@ class MovieContainer extends React.Component {
 
   render() {
     const { nowPlaying, upcoming, popular, topRated, error, loading, popularInfinite, nowPlayingInfinite, upcomingInfinite, topRatedInfinite } = this.state;
-    // console.log(this.state);
 
     return (
       <MoviePresenter

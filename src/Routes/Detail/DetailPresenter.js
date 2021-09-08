@@ -72,7 +72,8 @@ const Cover = styled.div`
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
   border-radius: 15px;
-  box-shadow: rgb(0 0 0 / 50%) 0px 7px 10px, rgb(0 0 0 / 24%) 0px -12px 30px, rgb(0 0 0 / 24%) 0px 4px 6px, rgb(0 0 0 / 34%) 0px 12px 13px, rgb(0 0 0 / 18%) 0px -3px 5px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 7px 10px, rgb(0 0 0 / 24%) 0px -12px 30px, rgb(0 0 0 / 24%) 0px 4px 6px, rgb(0 0 0 / 34%) 0px 12px 13px,
+    rgb(0 0 0 / 18%) 0px -3px 5px;
   transition: 0.5s;
 
   &:hover {
@@ -656,17 +657,20 @@ const DetailPresenter = ({ result, error, loading = true, isMovie, recommendatio
         <title>{result.title ? result.title : result.name}</title>
       </Helmet>
 
-      {/* {console.log(result.backdrop_path)} */}
       {/* BlurBackground컴포넌트는 result안에 있는 backdrop_path를 가져오고 만약 있으면 https://image.tmdb.org/t/p/original${result.backdrop_path}를, 없으면 noPoster변수를 imageUrl props로 전달한다. */}
       <BlurBackground
-        imageUrl={result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` : `https://image.tmdb.org/t/p/original${result.poster_path}`}
+        imageUrl={
+          result.backdrop_path ? `https://image.tmdb.org/t/p/original${result.backdrop_path}` : `https://image.tmdb.org/t/p/original${result.poster_path}`
+        }
       ></BlurBackground>
       <Content>
         <CoverContainer>
           <CoverHeading>
             <CoverLink href={result.homepage ? result.homepage : "#"}>
               <Cover
-                imageUrl={result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : `https://image.tmdb.org/t/p/original${result.backdrop_path}`}
+                imageUrl={
+                  result.poster_path ? `https://image.tmdb.org/t/p/original${result.poster_path}` : `https://image.tmdb.org/t/p/original${result.backdrop_path}`
+                }
               ></Cover>
             </CoverLink>
             <Data>

@@ -38,7 +38,6 @@ class SearchContainer extends React.Component {
     const {
       target: { value },
     } = event;
-    // console.log(value);
 
     this.setState({
       searchTerm: value,
@@ -67,7 +66,6 @@ class SearchContainer extends React.Component {
       });
     } catch (error) {
       console.log(error);
-
       this.setState({
         error: "Can't fint Results.",
       });
@@ -80,7 +78,6 @@ class SearchContainer extends React.Component {
 
   render() {
     const { movieResults, tvResults, searchTerm, error, loading } = this.state;
-    // console.log(this.state);
 
     return (
       <SearchPresenter

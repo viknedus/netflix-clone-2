@@ -32,7 +32,6 @@ class HomeContainer extends React.Component {
         this.setState({
           movieDetail,
         });
-
         return;
       }
 
@@ -41,7 +40,6 @@ class HomeContainer extends React.Component {
       });
     } catch (error) {
       console.log(error);
-
       this.setState({
         error: "Can't find Home Video.",
       });
@@ -54,7 +52,6 @@ class HomeContainer extends React.Component {
 
   render() {
     const { movieDetail, error, loading } = this.state;
-    // console.log(this.state);
 
     return <HomePresenter movieDetail={movieDetail} error={error} loading={loading} />;
   }
