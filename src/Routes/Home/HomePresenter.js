@@ -34,7 +34,6 @@ const Iframe = styled.iframe`
     left: 0;
     width: 100%;
     height: 100%;
-    /* border: 3px solid yellow; */
   }
 `;
 
@@ -46,6 +45,17 @@ const Content = styled.div`
   transform: translateY(-50%);
   width: 550px;
   font-family: "Do Hyeon", sans-serif;
+  animation: homeAni 0.7s ease-in;
+
+  @keyframes homeAni {
+    from {
+      opacity: 0;
+      transform: translateY(-40%);
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   @media (max-width: 768px) {
     width: 100%;
@@ -188,7 +198,11 @@ const HomePresenter = ({ movieDetail, error, loading }) => {
                 평점
                 <RatingChild>{movieDetail.vote_average}</RatingChild>
               </Rating>
-              {checkPCMobileBool ? <Overview>{movieDetail.overview.substring(0, 310)}..</Overview> : <Overview>{movieDetail.overview.substring(0, 150)}..</Overview>}
+              {checkPCMobileBool ? (
+                <Overview>{movieDetail.overview.substring(0, 310)}..</Overview>
+              ) : (
+                <Overview>{movieDetail.overview.substring(0, 150)}..</Overview>
+              )}
             </Content>
             <HomeSubContainer>
               <Description></Description>

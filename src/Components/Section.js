@@ -7,24 +7,28 @@ const Container = styled.div`
   padding-top: 0px;
   padding-bottom: 0;
   margin-top: 15px;
-  /* border: 3px solid yellow; */
+  animation: sectionAni 0.6s ease-in;
 
   /* :not(:last-child)를 통해 마지막 Container를 제외한 나머지 것들에 스타일을 준다. */
   :not(:last-child) {
     margin-bottom: 20px;
   }
 
+  @keyframes sectionAni {
+    from {
+      transform: translateY(25px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
   @media (max-width: 768px) {
     padding: 15px;
     margin-top: 0px;
   }
-`;
-
-const Title = styled.span`
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  font-size: 18px;
 `;
 
 const Children = styled.div`
@@ -46,7 +50,6 @@ const Children = styled.div`
 const Section = ({ title, children }) => {
   return (
     <Container>
-      {/* <Title>{title}</Title> */}
       <Children>{children}</Children>
     </Container>
   );
