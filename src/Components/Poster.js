@@ -14,7 +14,6 @@ const Image = styled.div`
   /* w300대신 w400이나 w500, original을 통해 가져오려고 하는 이미지 크기를 조정할 수 있다. */
   background: url(${(props) => props.imageUrl}) no-repeat center center;
   background-size: cover;
-  /* height: 360px; */
   height: 340px;
   transition: 0.2s linear;
   border-radius: 7px;

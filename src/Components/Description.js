@@ -52,7 +52,6 @@ const DescTitle = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-}
   }
 `;
 

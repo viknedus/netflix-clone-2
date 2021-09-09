@@ -22,8 +22,6 @@ const HeaderContainer = styled.header`
   left: 50%;
   transform: translate(-50%);
   display: flex;
-  /* background-color: transparent; */
-  /* background-color: black; */
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(3px);
   z-index: 100;
